@@ -136,7 +136,8 @@
                 
                
                 <!-- CUSTOM SONTENT HERE !! -->
-                <!-- Create Data -->
+ 
+                    <!-- Create Data -->
                     <?php if($action == 'add') { ?>
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
@@ -159,95 +160,72 @@
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== --> 
-                        <a href="<?php echo base_url('admin-area/customer') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Type User</button></a>   
+                        <a href="<?php echo base_url('admin-area/type-user') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Type User</button></a>   
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body ">
                                             <h4 class="card-title">Add Type User</h4>
-                                            <h6 class="card-subtitle">Add new Type User/Customer </h6>
+                                            <h6 class="card-subtitle">Add new Type User </h6>
 
                                             <!-- Notif Status-->
-                                            <?php if ($status_action == 'email'): ?>
-                                            <div class="alert alert-warning"> 
-                                                <i class="fa fa-warning"></i> Email sudah ada.
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                                            </div>
-                                            <?php endif ?>
+                                            
 
 
-                                            <form class="m-t-40" action="<?php echo base_url('admin-area/create-customer-account'); ?>" method="post" enctype="multipart/form-data" novalidate>
+                                            <form class="m-t-40 p-20" action="<?php echo base_url('admin-area/create-type-user'); ?>" method="post" enctype="multipart/form-data" novalidate>
 
                                                     
-                                                <div class="form-group">
-                                                    <h5>Nama <span class="text-danger">*</span></h5>
+                                               <!--  <div class="form-group">
+                                                    <h5>Nama Type <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required"> </div>
+                                                        <input type="text" name="nama_kategori"  class="form-control" required data-validation-required-message="This field is required"> 
+                                                    </div>
                                                     <div class="form-control-feedback"></div>
-                                                </div>
+                                                </div> -->
 
-                                                <div class="form-group">
-                                                    <h5>Email <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="email" name="email" class="form-control" required data-validation-required-message="This field is required"> </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5>Password <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="password" name="password" class="form-control" required data-validation-required-message="This field is required" maxlength='15' minlength="5"> </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <h5>Ulangi Password <span class="text-danger">*</span></h5>
-                                                    <div class="controls">
-                                                        <input type="password" name="password2" data-validation-match-match="password" class="form-control" maxlength='15' required> </div>
-                                                </div>
                                                 <div class="row">
-                                                    <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <h5>Status <span class="text-danger">*</span></h5>
-                                                        <fieldset class="controls">
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" value="1" name="status" required id="styled_radio1" class="custom-control-input">
-                                                                <label class="custom-control-label" for="styled_radio1">Aktif</label>
-                                                            </div>
+
+                                                        <div class="controls ">
+
+                                                        <h5>Type <span class="text-danger">*</span></h5>
+                                                        <input type="text" name="nama_type"  class="form-control" required data-validation-required-message="This field is required"> 
                                                         
-                                                            <div class="custom-control custom-radio">
-                                                                <input type="radio" value="0" name="status" id="styled_radio2" class="custom-control-input">
-                                                                <label class="custom-control-label" for="styled_radio2">Nonaktif</label>
-                                                            </div>
-                                                        </fieldset>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <h5>Pilih Type Type User <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-                                                            <select name="type_admin" id="select" required class="form-control">
-                                                                <option value="">--Type Admin </option>
-                                                                <?php foreach ($type_admin    as $type_admin): ?>
-                                                                <option value="<?php echo $type_admin->id ?>"><?php echo $type_admin->type ?></option>
-                                                                <?php endforeach ?>
-                                                                
-                                                                
-                                                                
-                                                            </select>
                                                         </div>
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <h5>Pilih Foto Profil <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-                                                        <input type="file" id="input-file-now-custom-3" name="photo" class="dropify" data-height="100%" class="form-control"  >
-                                                        </div>
-
-                                                    </div>
+                                                        <div class="form-control-feedback"></div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <h5>Discount <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                        <input required data-validation-required-message="This field is required" id="posisi" type="text" value="" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
+                                                        </div>
+                                                        <div class="form-control-feedback"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        
+
+                                                        <h5>Keterangan <span class="text-danger">*</span></h5>
+                                                        <input type="text" name="keterangan"  class="form-control" > 
+                                                        
+                                                
+
+                                                        <div class="form-control-feedback">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                </div>
+
+                                               
+                                                
 
 
                                                                                            
@@ -331,11 +309,27 @@
                                                         <th>Type</th>
                                                         <th>Discount</th>
                                                         <th>Keterangan</th>
-                                                        <th></th>
+                                                      
                                                         <th scope="col">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    <?php foreach ($type_user as $type_users): ?>
+                                                        <tr data-id="<?php echo $type_users->id ?>">
+                                                        <td><?php echo $type_users->id ?></td>
+                                                        <td><?php echo $type_users->nama_type ?></td>
+                                                        <td><?php echo $type_users->discount ?> %</td>
+                                                        <td><?php echo $type_users->keterangan ?></td>
+                                                        <td>
+                                                              <a href="?action=edit&id=<?php echo $type_users->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
+
+                                                            <button type="button" data-id="<?php echo $type_users->id ;?>" data-name="<?php echo $type_users->nama_type ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-type" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
+
+
+                                                        </td>
+                                                        </tr>
+                                                        
+                                                    <?php endforeach ?>
                                             
                                                   
                                                 </tbody>
@@ -347,6 +341,124 @@
                         </div>
                     <?php } ?>
                     <!-- End Read Data -->
+
+
+                    <!-- Create Data -->
+                    <?php if($action == 'edit') { ?>
+                        <!-- ============================================================== -->
+                        <!-- Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== -->
+                        <div class="row page-titles">
+                            <div class="col-md-5 align-self-center">
+                                <h4 class="text-themecolor">Type User</h4>
+                            </div>
+                            <div class="col-md-7 align-self-center text-right">
+                                <div class="d-flex justify-content-end align-items-center">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                                        <li class="breadcrumb-item">Type User</li>
+                                        <li class="breadcrumb-item active">Edit Type User</li
+                                    </ol>
+                                    <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- End Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== --> 
+                        <a href="<?php echo base_url('admin-area/type-user') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Type User</button></a>   
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body ">
+                                            <h4 class="card-title">Edit Type User</h4>
+                                            <h6 class="card-subtitle">Edit Type User </h6>
+
+                                            <!-- Notif Status-->
+                                            
+
+
+                                            <form class="m-t-40 p-20" action="<?php echo base_url('admin-area/update-type-user'); ?>" method="post" enctype="multipart/form-data" novalidate>
+
+                                                    
+                                               <!--  <div class="form-group">
+                                                    <h5>Nama Type <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="text" name="nama_kategori"  class="form-control" required data-validation-required-message="This field is required"> 
+                                                    </div>
+                                                    <div class="form-control-feedback"></div>
+                                                </div> -->
+
+                                                <?php foreach ($data_type_user_edit as $edit_data ): ?>
+                                                    
+
+                                                <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+
+                                                        <div class="controls ">
+
+                                                        <h5>Type <span class="text-danger">*</span></h5>
+                                                        <input type="text" name="nama_type"  class="form-control" required data-validation-required-message="This field is required" value="<?php echo $edit_data->nama_type; ?>">
+
+                                                        <input type="hidden" name="id" value="<?php echo $edit_data->id; ?>">  
+                                                        
+                                                        </div>
+                                                        <div class="form-control-feedback"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group ">
+                                                        <h5>Discount <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                        <input required data-validation-required-message="This field is required" id="posisi" type="text" value="<?php echo $edit_data->discount; ?>" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
+                                                        </div>
+                                                        <div class="form-control-feedback"></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        
+
+                                                        <h5>Keterangan <span class="text-danger">*</span></h5>
+                                                        <input type="text" name="keterangan" value="<?php echo $edit_data->keterangan; ?>" class="form-control"  data-validation-required-message="This field is required"> 
+                                                        
+                                                        
+
+                                                        <div class="form-control-feedback">
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                </div>
+                                                <?php endforeach ?>
+
+
+
+                                               
+                                                
+
+
+                                                                                           
+                                                <div class="text-xs-right">
+                                                    <button type="submit" class="btn btn-info">Submit</button>
+                                                    <button type="reset" class="btn btn-inverse">Cancel</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <?php } ?>
+                    <!-- End Create Data -->
+
+
+
 
              
 
@@ -581,7 +693,7 @@
 
     <script type="text/javascript">
 
-    $(document).on("click",".hapus-brand",function(){
+    $(document).on("click",".hapus-type",function(){
     
     $.ajaxSetup({
       type:"post",
@@ -591,7 +703,7 @@
 
     var id=$(this).attr("data-id");
     // var nama=$(this).attr("data-name");
-    var logo=$(this).attr("data-logo");
+   
 
 
         swal({   
@@ -607,8 +719,8 @@
         }, function(isConfirm){   
             if (isConfirm) {  
                 $.ajax({
-                data:{id:id,logo:logo},
-                url:"<?php echo base_url('Admin-area/delete-brand');?>",
+                data:{id:id},
+                url:"<?php echo base_url('Admin-area/delete-type-user');?>",
                 success: function(html) {
                     $("tr[data-id='"+id+"']").fadeOut(1500,function(){
                         $(this).remove();
@@ -678,7 +790,7 @@
             maxboostedstep: 10000000,
             prefix: '$'
         });
-        $("input[name='posisi']").TouchSpin();
+        $("input[name='discount']").TouchSpin();
         $("input[name='tch3_22']").TouchSpin({
             initval: 40
         });

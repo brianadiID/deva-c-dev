@@ -9,6 +9,8 @@ class Admin_area extends CI_Controller {
         $this->load->model('admin/Admin_account');
         $this->load->model('admin/Category_model');
         $this->load->model('admin/Brand_model');
+        $this->load->model('admin/Type_user_model');
+        $this->load->model('admin/Customer_model');
         $this->load->library('upload');
         // cek login
         
@@ -758,10 +760,31 @@ class Admin_area extends CI_Controller {
 
 // Customers Management
     function customer(){
+
+
         $data['action'] = $this->input->get('action');
         $data['status_action'] = $this->session->flashdata('status_action');
+        $data['customers'] = $this->Customer_model->read();
 
+        $data['type_user'] = $this->db->query("SELECT * from t_type_customer order by discount desc")->result();
+       
+
+
+       // Edit Data
+
+       if($this->input->get('id')){
+            $id = $this->input->get('id');
+            $where = array (
+                'id' => $id
+            );
+            $data['data_type_user_edit'] = $this->Customer_model->get_data($where);
+             $this->load->view('admin/customer',$data);
+      
+
+       }else{
        $this->load->view('admin/customer',$data);
+                   
+       }
  
     }
 
@@ -771,9 +794,81 @@ class Admin_area extends CI_Controller {
     function type_user(){
         $data['action'] = $this->input->get('action');
         $data['status_action'] = $this->session->flashdata('status_action');
+        $data['type_user'] = $this->Type_user_model->read();
+       
 
-       $this->load->view('admin/type_user',$data);
+
+       // Edit Data
+
+       if($this->input->get('id')){
+            $id = $this->input->get('id');
+            $where = array (
+                'id' => $id
+            );
+            $data['data_type_user_edit'] = $this->Type_user_model->get_data($where);
+            $this->load->view('admin/type_user',$data); 
+
+       }else{
+            $this->load->view('admin/type_user',$data);        
+       }
  
+    }
+
+    function create_type_user(){
+
+        $data = array (
+            'nama_type'  => $this->input->post('nama_type'),
+            'discount'   => $this->input->post('discount'),
+            'keterangan' => $this->input->post('keterangan')
+        );
+
+
+        // Upload ke Database
+        $this->Type_user_model->create($data);
+
+        // Notif Succes
+        $status_action = 'save';
+        $this->session->set_flashdata('status_action', $status_action);
+        redirect(base_url().'admin-area/type-user');
+
+    }
+
+    function update_type_user(){
+
+        $data = array (
+            'nama_type'  => $this->input->post('nama_type'),
+            'discount'   => $this->input->post('discount'),
+            'keterangan' => $this->input->post('keterangan')
+        );
+
+        $where = array (
+            'id' => $this->input->post('id')
+        );
+
+
+
+        // Update ke Database
+      
+        if( $this->Type_user_model->update($data,$where)){
+        $status_action = 'update';
+        $this->session->set_flashdata('status_action', $status_action);
+
+        redirect(base_url().'admin-area/type_user');
+        }
+
+    }
+
+
+    function delete_type_user(){
+            $id    = $this->input->post("id");
+     
+            
+            $this->Type_user_model->delete($id);
+
+            
+            echo "{}";
+    
+
     }
 
 // End Type User Managemen 
