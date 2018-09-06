@@ -30,6 +30,11 @@ class Customer extends CI_Controller {
         $this->load->view('Customer_order');
         
     }
+    function checkout(){
+        
+        $this->load->view('checkout');
+        
+    }
     
     function order_detail(){
         
