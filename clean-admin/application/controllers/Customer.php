@@ -31,8 +31,11 @@ class Customer extends CI_Controller {
         
     }
     function checkout(){
+         
+        $data['cart']=$this->cart->contents();
+        $data['total']=number_format($this->cart->total());
         
-        $this->load->view('checkout');
+        $this->load->view('customer_checkout',$data);
         
     }
     

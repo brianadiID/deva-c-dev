@@ -94,6 +94,62 @@
         input.loading {
             background: #fff url(assets/website/image/resize.gif) no-repeat center !important;
         }
+         .btn-kanan{
+                float: right;
+                height: 50px;
+            }
+            .btn-kanan:hover{
+                color:white;
+                background: black;
+            }
+            th{
+                background: #928d8d;
+                color: white;
+                text-align: center;
+            }
+            
+            .bg_red{
+              color: white;
+              background: red;
+            }
+            .bg_blue{
+              color: white;
+              background: blue;
+            }
+            .bg_yellow{
+              color: white;
+              background: yellow;
+            }
+            .bg_green{
+              color: white;
+              background: green;
+            }
+            .center{
+                    text-align: center;
+            }
+           
+            .radius{
+                border-radius: 50px;
+            }
+            
+            .table td, .table th{
+                vertical-align: middle;
+            }
+            
+            .max200{
+                
+                max-height:200px; 
+                
+            }
+            .table .thead-dark th{
+               color: #fff;
+                background-color: #22df00;
+                border-color: #22df00; 
+                
+            }
+        .shopping_cart_area .shopping_cart_inner .table thead tr th:last-child{
+            width: 20%;
+        }
     </style>
 
     <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">
@@ -210,9 +266,9 @@
                                                 <input type="text" name="username" id="username" class="inpt-control required" placeholder="John_Doe"> 
                                                     <div class="form-tooltip">
                                                         <span class="tooltip-title">Why do we need this info?</span>
-                                                        <p class="tooptip-content">Lorem Ipsum is simply dummy text of the printing and
+                                                        <p class="tooptip-content"><!--Lorem Ipsum is simply dummy text of the printing and
 														typesetting industry. Lorem Ipsum has been the industry's
-														standard dummy text ever since the 1500s</p>
+														standard dummy text ever since the 1500s--></p>
                                                         <span class="tooltip-info">Your information is Safe here & never shared.</span>
                                                     </div>  
                                                 </div>
@@ -227,16 +283,14 @@
                                                     <input type="password" name="password" min="5" max="20" id="password" class="inpt-control required" placeholder="Password">
                                                     <div class="form-tooltip">
                                                         <span class="tooltip-title">Why do we need this info?</span>
-                                                        <p class="tooptip-content">Lorem Ipsum is simply dummy text of the printing and
-								    						typesetting industry. Lorem Ipsum has been the industry's
-								    						standard dummy text ever since the 1500s</p>
+                                                        <p class="tooptip-content"></p>
                                                         <span class="tooltip-info">Your information is Safe here & never shared.</span>
                                                     </div> 
                                                 </div> 
                                             </div>
                                          </div>
                                     </div>
-                                    <div class="row">
+                                  <!--  <div class="row">
                                         <div class="col-md-12">
                                             <div class="inpt-form-group"> 
                                                 <label for="confirmpassword">Confirm Password</label>
@@ -252,7 +306,7 @@
                                                 </div>
                                             </div>
                                          </div>
-                                    </div>
+                                    </div>-->
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="inpt-form-group"> 
@@ -262,9 +316,9 @@
                                                    <input type="text" name="email" id="email" class="inpt-control required" placeholder="Please Enter your mail ID">
                                                    <div class="form-tooltip tooltip-edge">
                                                         <span class="tooltip-title">Why do we need this info?</span>
-                                                       <p class="tooptip-content">Lorem Ipsum is simply dummy text of the printing and
+                                                       <p class="tooptip-content"><!--Lorem Ipsum is simply dummy text of the printing and
 								    						typesetting industry. Lorem Ipsum has been the industry's
-								    						standard dummy text ever since the 1500s</p>
+								    						standard dummy text ever since the 1500s--></p>
                                                         <span class="tooltip-info">Your information is Safe here & never shared.</span>
                                                    </div> 
                                                 </div>
@@ -311,7 +365,7 @@
                                             </div>
                                          </div>
                                     </div>
-                                    <div class="row">
+                                   <!-- <div class="row">
                                        <div class="col-md-6">
                                            <div class="inpt-form-group"> 
                                                <label for="firstname">First Name</label>
@@ -426,7 +480,7 @@
                                                 </div>
                                             </div>
                                          </div>
-                                    </div>
+                                    </div>-->
                                     <div class="row"> 
                                         <div class="col-md-12">
                                             <div class="inpt-form-group"> 
@@ -485,7 +539,7 @@
                                             </div>
                                          </div>
                                     </div>
-                                    <div class="row">
+                                  <!--  <div class="row">
                                         <div class="col-md-9">
                                             <div class="inpt-form-group"> 
                                                 <label for="cardnum">Card Number</label>
@@ -503,7 +557,7 @@
                                          </div>
                                         <div class="col-md-3">
                                             <div class="inpt-form-group"> 
-                                                <label for="cvc">CVC</label>
+                                                <label for="cvc">C2VC</label>
                                                 <div class="inpt-group">
                                                     <input type="text" name="cvc" id="cvc" class="inpt-control required" placeholder="***">
                                                     <div class="form-tooltip">
@@ -585,7 +639,7 @@
                                                 </div> 
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div> 
                             </div> 
                         </div> 
@@ -600,6 +654,62 @@
                         <div class="rms-content-body"> 
                             <div class="row">
                                 <div class="col-md-8">
+                              
+                                    
+                                    <!---->
+                                
+                                    
+                                    <div class="shopping_cart_area">
+    <div class="container">
+        <div class="shopping_cart_inner">
+            <div class="table-responsive"> 
+                <table class="table table-striped"> 
+                    <thead class="thead-dark"> 
+                        <tr> 
+                            <th>Image</th> 
+                            <th>Product Name</th>                             
+                            <th>Qnty</th> 
+                            <th>Price</th> 
+                            <th colspan="2">Total</th> 
+                           
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+
+                                                                        
+<input type="hidden" name="1[rowid]" value="0f7b7f5f8cf0ded4442e3d2e91c79b0b">
+ <?php foreach ($cart as $items) { ?>
+                        <tr>
+                            <td><img src="<?php echo base_url()?>my-assets/image/product/<?php echo $items['gbr']; ?>" alt=""></td>
+                            <td><?php echo $items['name']; ?></td>
+                           
+                            
+                            <td><?php echo $items['qty']; ?></td>
+                            
+                            <td>Rp. <?php echo number_format($items['price']); ?></td>
+                            <td>Rp. <?php echo number_format($items['price']*$items['qty']); ?></td>
+                            
+                            
+                        </tr>
+<?php } ?> 
+             
+
+                                                                       
+                    </tbody> 
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+                                    
+                                    
+                                    
+                                    
+                                    <!---->
+                                    
+                                    
+                                </div>
+                                <div class="col-md-4" style="margin-top: 25px;">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="desc-container">
@@ -645,6 +755,42 @@
                                                             <tr>
                                                                 <td class="desc-label">Telephone NO.</td>
                                                                 <td class="desc-val">4519-1235-9869-4321</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="col-md-12">
+                                            <div class="desc-container">
+                                                <div class="desc-table"><p>Rangkuman Pesanan</p>
+                                                    <table> 
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="desc-label">Subtotal (x item)</td>
+                                                                <td class="desc-val"><b><?php echo 'Rp.'.$total; ?></b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="desc-label">Biaya pengiriman</td>
+                                                                <td class="desc-val"><b>Rp. <?php echo number_format($items['price']*2/$items['qty']); ?></b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="enter_coupon">
+                                                                        <label>Enter your coupon here:</label><input type="hidden" name="grandtotal" id="gt" value="<?php echo $total; ?>">
+                                                                        <input type="text" name="coupon_code" placeholder="Enter your coupon here" required="">
+                                                                        <button type="submit" id="tombol">Apply Coupon</button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="desc-label">Discount</td>
+                                                                <td class="desc-val"><b>Rp.- <?php echo number_format($items['price']); ?></b></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="desc-label"><h4>TOTAL</h4></td>
+                                                                <td class="desc-val">
+                                                                    <b style="font-size:20px; color:gree"><?php echo 'Rp.'.$total; ?></b></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

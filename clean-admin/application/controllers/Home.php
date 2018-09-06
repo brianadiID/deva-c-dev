@@ -124,7 +124,7 @@ class Home extends CI_Controller {
             </div>
             <!-- View cart -->
             <div class="checkout-box" style="margin-top: 5px; margin-right:25px;">
-                 <a href="#">Checkout</a>
+                 <a href="'.base_url().'customer/checkout">Checkout</a>
             </div>
             <!-- quotation -->
             <div class="checkout-box">
