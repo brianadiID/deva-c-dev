@@ -14,7 +14,7 @@ class Model_kategori extends CI_Model
 
 
 	function read(){
-//		$this->db->where("id_parent",);
+		$this->db->where("id_parent",0);
 		$query=$this->db->get("t_kategori");
 
 		return $query->result_array();

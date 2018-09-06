@@ -43,7 +43,7 @@ class Customer extends CI_Controller {
         $data['total']=number_format($this->cart->total());
         
 		
-        print_r($data['cart']);
+        
         $this->load->view('Customer_cart',$data);
         
     }

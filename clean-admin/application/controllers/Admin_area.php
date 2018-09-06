@@ -754,6 +754,19 @@ class Admin_area extends CI_Controller {
 // End Video 
 
 
+
+
+// Customers Management
+    function customer(){
+        $data['action'] = $this->input->get('action');
+        $data['status_action'] = $this->session->flashdata('status_action');
+
+       $this->load->view('admin/customer',$data);
+ 
+    }
+
+// End Management
+
 // Logout Action
 
 

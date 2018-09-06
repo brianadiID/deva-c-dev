@@ -15,14 +15,25 @@
                         </li>
 
                         <li> 
-                            <a class="has-arrow waves-effect waves-dark" href="s" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Product </span>
+                            <a class="has-arrow waves-effect waves-dark" href="s" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Products </span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="index-2">Add Product <i class="fa fa-circle-o text-success"></i></a></li>
-                                <li><a href="index2">Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li>
-                                <li><a href="index3">Manage Product <i class="fa fa-circle-o text-danger"></i></a></li>
+                                <li><a href="index-2">-- Add Product <i class="fa fa-circle-o text-success"></i></a></li>
+                                <li><a href="index2">-- Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li>
+                                <li><a href="index3">-- Manage Product <i class="fa fa-circle-o text-danger"></i></a></li>
                             </ul>
                         </li>
+
+                        <li> 
+                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin-area/customer'); ?>" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Customers </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="<?php echo base_url('admin-area/customer'); ?>?action=add">-- Add Customer <i class="fa fa-circle-o text-success"></i></a></li>
+                              <!--   <li><a href="index2">Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li> -->
+                                <li><a href="<?php echo base_url('admin-area/customer'); ?>">-- Manage Customers <i class="fa fa-circle-o text-danger"></i></a></li>
+                            </ul>
+                        </li>
+
 
 
 

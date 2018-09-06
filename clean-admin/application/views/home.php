@@ -55,7 +55,10 @@
 
         <!-- jquery-ui.min.js -->
         <script src="<?php echo base_url().'assets/website/vendor/jquery-ui/jquery-ui.min.js'?>" type="text/javascript"></script>
-        
+        <!-- Addon -->
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles.css">
+        <!-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
+        <script src="<?php echo base_url()?>assets/script.js"></script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

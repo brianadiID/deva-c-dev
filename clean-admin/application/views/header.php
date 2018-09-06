@@ -7,43 +7,85 @@
                         <div class="dropdown-toggle menu_part" >
                         <span>CATEGORIES</span><!--<i class="fa fa-chevron-down"></i>-->
                         </div>
-                        <div class="dropdown-menu">
-                            <ul>
-                                <?php foreach ($kategori as $list):  ?> 
-                                <li>
-                                <a href="<?php echo base_url('katalog/kategori/').$list['id']; ?>" class="<?php if($list['id_parent'] != 0 ) echo 'cat_menu_link';?>">
-                                   <?php echo $list['nama_kategori']; ?>
-                                </a>
-                                        
-                                        <style type="text/css">
-                                            .category_menu .dropdown-menu ul li .cat_sub_menu{
-                                                width: 100%;
-                                            }
-                                        </style>   
-                                                    
+         
+                        <div id='cssmenu'>
+                          <?php 
+                            function html_menu(&$strmenu="", $parent=0) {
+                               $query = "SELECT * 
+                                FROM t_kategori WHERE id_parent ='$parent' 
+                                ORDER BY id";
+                               
+                              $konek =  mysqli_connect("localhost","root","","theklakklik");
+                               $sql = mysqli_query($konek,$query);
 
-                                                    <div class="row m0 cat_sub_menu">
-                                                        <ul>
-                                                            <?php
-                                                            $data_parent = $this->db->query("SELECT * from t_kategori where id_parent = $list[id] ")->result_array();
+
+                            if (mysqli_num_rows($sql) > 0) {
+                               $strmenu .= '<ul>';
+                            }
+
                             
-                                                             foreach ($data_parent as $child):  ?> 
-                                                            <li>
-                                                            <a href="<?php echo base_url('katalog/kategori/').$child['id']; ?>">
-                                                               <?php echo $child['nama_kategori']; ?>
-                                                            </a>
-                                                                
-                                                                               
-                                                            </li>    
-                                                            <?php endforeach ?>   
 
+                            while ($row = mysqli_fetch_assoc($sql)) {
+
+
+
+                              $strmenu .= '<li class="has-sub"  >'; 
+                             
+                              $strmenu .= sprintf("<a href='#' tabindex='999' title='%s'>%s<span class='caret'></span></a>", $row['id'], $row['nama_kategori'], $row['nama_kategori']);
+
+                             html_menu($strmenu, $row['id']);
+                              $strmenu .= "</li>";
+                            }
+
+                            if (mysqli_num_rows($sql) > 0)
+                              $strmenu .= '</ul>';
+                            }
+
+                            $strmenu = "";
+                            html_menu($strmenu, 0);
+                            echo $strmenu;
+                            ?>
+
+                      <!--   <ul>
+                           <li><a href='#'>Home</a></li>
+                           <li class='active has-sub'><a href='#'>Products</a>
+                              <ul>
+                                 <li class='has-sub'><a href='#'>Product 1</a>
+                                    <ul>
+                                       <li class="has-sub"><a href='#'>Sub Product 1</a>
+                                          <ul>
+                                             <li class="has-sub"><a href='#'>Sub Product 1.1</a>
+                                                 <ul>
+                                                   <li class="has-sub"><a href='#'>Last Sub</a>
+                                                        <ul>
+                                                           <li><a href='#'>Sub ENd</a></li>
+                                                           <li><a href='#'>Sub Product</a></li>
                                                         </ul>
 
-                                                    </div>
-                                </li>    
-                                <?php endforeach ?>   
+                                                   </li>
+                                                   <li><a href='#'>Last Sub</a></li>
+                                                </ul>
 
-                            </ul>
+                                             </li>
+
+
+                                             <li><a href='#'>Sub Product 1.2</a></li>
+                                          </ul>
+                                       </li>
+                                       <li><a href='#'>Sub Product</a></li>
+                                    </ul>
+                                 </li>
+                                 <li class='has-sub'><a href='#'>Product 2</a>
+                                    <ul>
+                                       <li><a href='#'>Sub Product</a></li>
+                                       <li><a href='#'>Sub Product</a></li>
+                                    </ul>
+                                 </li>
+                              </ul>
+                           </li>
+                           <li><a href='#'>About</a></li>
+                           <li><a href='#'>Contact</a></li>
+                        </ul> -->
                         </div>
                     </div>
                 </div>

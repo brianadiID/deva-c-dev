@@ -187,20 +187,19 @@
    $(document).ready(function() {
   
      $("#tombol").click(function() {
-         
-       $("#grandtotal").html("<b>Ini harga setelah diskon</b>");
-        /* var grandtotal          = $('#gt').val();*/
+      
+         var grandtotal          = $('#gt').val();
        
          
-         /*$.ajax({
-                        url : "<?php base_url();?>cart/grandtotal",
+         $.ajax({
+                        url : "<?php echo base_url();?>cart/grandtotal",
                         method : "POST",
                         data : {row_id : row_id},
                         success :function(){
-                           $("#grandtotal").html(data);
+                           $("#grandtotal").html("<b>#jQuery</b> is Amazing...");
 
                         }
-                    });*/
+                    });
      
      
      })

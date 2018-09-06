@@ -30,8 +30,8 @@ class Cart extends CI_Controller{
     
     
     function grandtotal(){ //fungsi Add To Cart
-		$data =  $this->input->post('grandtotal');    
-		  
+		$total =  $this->input->post('grandtotal'),
+		);
 		$this->cart->insert($data);
 		echo $this->show_cart(); //tampilkan cart setelah added
 	}
