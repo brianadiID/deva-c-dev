@@ -82,10 +82,11 @@ class Home extends CI_Controller {
 		$output = '';
 		$no = 0;
         $rows = count($this->cart->contents());
+        $output .='<div class="cart-dropdown">';
 		foreach ($this->cart->contents() as $items) {
 			$no++;
 			$output .='
-
+            
 				<li class="cart-content">
 					<div class="img-box">
                         <img src="'.base_url('my-assets/image/product/').$items['gbr'].'" alt="Awesome Image">
@@ -112,17 +113,22 @@ class Home extends CI_Controller {
 		if($rows > 0 ){
 
 		$output .= '
-
-		<li class="cart-footer clearfix">
+        </div>
+		<li class="cart-footer clearfix" style="padding-top:20px;">
             <div class="total-price">
                 <h4>Total Price: <span>Rp '.number_format($this->cart->total()).'</span></h4>
             </div>
             <div class="checkout-box">
-                <a href="#">Checkout</a>
+            <a href="'.base_url().'customer/cart">View Cart</a>
+               
             </div>
             <!-- View cart -->
-            <div class="checkout-box" style="margin-top: 5px">
-                <a href="'.base_url().'customer/cart">View Cart</a>
+            <div class="checkout-box" style="margin-top: 5px; margin-right:25px;">
+                 <a href="#">Checkout</a>
+            </div>
+            <!-- quotation -->
+            <div class="checkout-box">
+                <a href="#">Request Quotation</a>
             </div>
         </li>
 

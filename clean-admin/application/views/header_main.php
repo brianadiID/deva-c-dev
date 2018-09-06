@@ -45,7 +45,35 @@
                         </form> 
                     <!--</div>-->
                     
+                    <style type="text/css">
+                        .cart-dropdown{
+                                max-height: 325px;
+                                overflow: scroll;
+                                overflow-x: hidden;
+                                     }
                     
+                    </style>
+                    <style>
+                    /* width */
+                    ::-webkit-scrollbar {
+                        width: 10px;
+                    }
+
+                    /* Track */
+                    ::-webkit-scrollbar-track {
+                        background: #f1f1f1; 
+                    }
+
+                    /* Handle */
+                    ::-webkit-scrollbar-thumb {
+                        background: #888; 
+                    }
+
+                    /* Handle on hover */
+                    ::-webkit-scrollbar-thumb:hover {
+                        background: #555; 
+                    }
+                    </style>
                     <!--========= Cart Box start =========-->
                     <div class="dropdown cart_area tab_up_cart" id="tab_up_cart">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
@@ -63,7 +91,8 @@
                             <span id="detail_cart">
                                 
                             </span>
-                           
+                              <div></div>                       
+
 
 
                         </ul>
