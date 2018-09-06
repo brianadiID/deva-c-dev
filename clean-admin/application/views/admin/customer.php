@@ -263,7 +263,93 @@
                             </div>
 
                     <?php } ?>
-                    <!-- End Create Data -->
+                    <!-- End Create Data -!>
+
+
+                       <!-- Read data -->
+                    <?php if($action == '') {?> 
+                        <!-- ============================================================== -->
+                        <!-- Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== -->
+                        <div class="row page-titles">
+                            <div class="col-md-5 align-self-center">
+                                <h4 class="text-themecolor">Customer Account</h4>
+                            </div>
+                            <div class="col-md-7 align-self-center text-right">
+                                <div class="d-flex justify-content-end align-items-center">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                                        <li class="breadcrumb-item">Customer Account</li>
+                                        <li class="breadcrumb-item active">Manage Customer</li
+                                    </ol>
+                                    <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- End Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== -->    
+
+
+                        <a href="?action=add"><button type="button" class="btn btn-success m-b-10"><i class="fa fa-plus-circle"></i> Add Customer</button></a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Manage Customer</h4>
+                                        <h6 class="card-subtitle">Customer Data</h6>
+                                        <hr>
+
+                                        <!-- Notif Status-->
+                                        <?php if ($status_action == 'save'): ?>
+                                        <div class="alert alert-success"> 
+                                            <i class="fa fa-check-circle"></i> Data berhasil di Tambahkan.
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                                        </div>
+                                        <?php endif ?>
+
+                                        <?php if ($status_action == 'update'): ?>
+                                        <div class="alert alert-warning"> 
+                                            <i class="fa fa-check-circle"></i> Data berhasil di Update.
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                                        </div>
+                                        <?php endif ?>
+                                        <!-- End Notif Status -->
+
+                                        
+
+                                        
+                                        
+
+
+                                        <div class="table-responsive ">
+
+                                            <table id="myTable" class="nowrap table table-bordered table-striped ">
+                                                <thead>
+                                                    <tr >
+                                                        <th>No</th>
+                                                        <th>Nama</th>
+                                                        <th>Email</th>
+                                                        <th>Perusahaan</th>
+                                                        <th></th>
+                                                        <th scope="col">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                               
+                                                    
+                                                  
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <!-- End Read Data -->
+
+             
 
              
 
