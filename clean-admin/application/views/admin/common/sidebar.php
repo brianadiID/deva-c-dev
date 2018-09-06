@@ -25,6 +25,17 @@
                         </li>
 
                         <li> 
+                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin-area/type-user'); ?>" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Type User </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="<?php echo base_url('admin-area/type-user'); ?>?action=add">-- Add Type User <i class="fa fa-circle-o text-success"></i></a></li>
+                              <!--   <li><a href="index2">Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li> -->
+                                <li><a href="<?php echo base_url('admin-area/type-user'); ?>">-- Manage Type User <i class="fa fa-circle-o text-danger"></i></a></li>
+                            </ul>
+                        </li>
+                        
+
+                        <li> 
                             <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin-area/customer'); ?>" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Customers </span>
                             </a>
                             <ul aria-expanded="false" class="collapse">

@@ -767,6 +767,17 @@ class Admin_area extends CI_Controller {
 
 // End Management
 
+// Type User Managemen
+    function type_user(){
+        $data['action'] = $this->input->get('action');
+        $data['status_action'] = $this->session->flashdata('status_action');
+
+       $this->load->view('admin/type_user',$data);
+ 
+    }
+
+// End Type User Managemen 
+
 // Logout Action
 
 
