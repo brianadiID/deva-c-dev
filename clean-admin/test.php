@@ -11,7 +11,7 @@
                 <meta name="author" content="BDTASK">
         <meta name="description" content="">
 
-        <title>Costumer</title>
+        <title>produk</title>
    
         <!-- Favicons --> 
         <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
@@ -21,10 +21,10 @@
         <!-- Bootstrap core CSS -->
         <link href="<?php echo base_url().'assets/website/vendor/bootstrap/css/bootstrap.min.css'?>" rel="stylesheet">  
         
-        <!-- FontAwesome Icon CSS -->
+        <!-- ffa Icon CSS -->
         <link href="<?php echo base_url().'assets/website/vendor/font-awesome/css/font-awesome.min.css'?>" rel="stylesheet" type="text/css"> 
         
-        <!-- Jquery UI CSS -->
+        <!-- Jq UI CSS -->
         <link href="<?php echo base_url().'assets/website/vendor/jquery-ui/jquery-ui.min.css'?>" rel="stylesheet"> 
         
         <!-- Owl Carousel CSS -->
