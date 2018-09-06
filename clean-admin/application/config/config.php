@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/clean-admin/';
+$config['base_url'] = 'http://localhost/github/deva-c-dev/clean-admin/';
 
 /*
 |--------------------------------------------------------------------------
