@@ -231,6 +231,7 @@
                                                         <div class="controls">
                                                             <select  name="type_admin" id="select" required class="type-users form-control">
                                                                 <option data-keterangan="" data-discount=""  value="">--Type user </option>
+                                                                
                                                                 <?php foreach ($type_user    as  $type_user): ?>
                                                                 <option  class="type-user-option" data-keterangan="<?php echo $type_user->keterangan ?>" data-discount="<?php echo $type_user->discount ?>" value="<?php echo $type_user->id ?>"><?php echo $type_user->nama_type ?>
                                                                     
@@ -866,6 +867,7 @@ $(this).find("textarea[class~='editor']").fadeIn(1000).focus();
                 $("#detail_keterangan").css("font-weight", "bold");
                 $( '#detail_discount' ).html(discount+'%');
                 $( '#detail_keterangan' ).html(keterangan );
+
             });
         </script>
 
