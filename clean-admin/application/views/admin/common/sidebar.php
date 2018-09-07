@@ -30,7 +30,7 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin-area/type-user'); ?>?action=add">-- Add Type User <i class="fa fa-circle-o text-success"></i></a></li>
                               <!--   <li><a href="index2">Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li> -->
-                                <li><a href="<?php echo base_url('admin-area/type-user'); ?>">-- Manage Type User <i class="fa fa-circle-o text-danger"></i></a></li>
+                                <li><a href="<?php echo base_url('admin-area/type-user'); ?>">-- Manage Type User <span class="badge badge-pill badge-secondary"><?php echo $this->Type_user_model->count(); ?></span></a></li>
                             </ul>
                         </li>
                         
@@ -41,7 +41,7 @@
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url('admin-area/customer'); ?>?action=add">-- Add Customer <i class="fa fa-circle-o text-success"></i></a></li>
                               <!--   <li><a href="index2">Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li> -->
-                                <li><a href="<?php echo base_url('admin-area/customer'); ?>">-- Manage Customers <i class="fa fa-circle-o text-danger"></i></a></li>
+                                <li><a href="<?php echo base_url('admin-area/customer'); ?>">-- Manage Customers <span class="badge badge-pill badge-secondary"><?php echo $this->Customer_model->count(); ?></span></a></li>
                             </ul>
                         </li>
 

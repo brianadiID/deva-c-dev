@@ -136,7 +136,7 @@
                 
                
                 <!-- CUSTOM SONTENT HERE !! -->
-                <!-- Create Data -->
+                    <!-- Create Data -->
                     <?php if($action == 'add') { ?>
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
@@ -195,7 +195,9 @@
                                                 <div class="form-group">
                                                     <h5>Password <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <input type="password" name="password" class="form-control" required data-validation-required-message="This field is required" maxlength='15' minlength="5"> </div>
+                                                        <input type="password" name="password" class="form-control" required data-validation-required-message="This field is required" maxlength='15' minlength="5"> 
+                                                    </div>
+
                                                 </div>
 
                                                 <div class="form-group">
@@ -211,6 +213,54 @@
 
                                                     <div class="form-control-feedback"></div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <h5>Jenis Kelamin <span class="text-danger"></span></h5>
+                                                    
+                                                        <select  name="jenis_kelamin" id="select" required class="jenis_kelamin form-control">
+                                                            <option data-keterangan="" data-discount=""  value="">--JENIS KELAMIN </option>
+                                                            
+                                                            
+                                                            <option  class="jenis_kelamin-option" data-keterangan="" value="L" >
+                                                                LAKI - LAKI
+                                                                
+                                                            </option>
+                                                            <option  class="jenis_kelamin-option" data-keterangan="" value="P" >
+                                                                PEREMPUAN
+                                                                
+                                                            </option>
+                                                            
+                                                            
+                                                            
+                                                        </select>
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>Media Sosial <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="media_sosial"  class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>Alamat <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="alamat"  class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>No Telp <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="no_telp"  class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
 
 
                                                 <div class="row">
@@ -229,7 +279,7 @@
                                                     <div class="form-group">
                                                         <h5>Pilih Type User <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                            <select  name="type_admin" id="select" required class="type-users form-control">
+                                                            <select  name="type_user" id="select" required class="type-users form-control">
                                                                 <option data-keterangan="" data-discount=""  value="">--Type user </option>
                                                                 
                                                                 <?php foreach ($type_user    as  $type_user): ?>
@@ -244,7 +294,7 @@
                                                             </select>
                                                         <div>   
                                                             <p style="color:#858585;">*Keterangan :</p>
-                                                            <span> Discount :</span><p id="detail_discount"></p>
+                                                            <span> Discount :</span><p id="detail_discount"><span style="font-weight: bold;">%</span></p>
                                                            Keterangan :<p id="detail_keterangan"> </p>
 
 
@@ -276,6 +326,9 @@
 
                                                     
                                                 </div>
+                                                
+
+
 
 
                                                                                            
@@ -294,7 +347,7 @@
                     <!-- End Create Data -!>
 
 
-                       <!-- Read data -->
+                    <!-- Read data -->
                     <?php if($action == '') {?> 
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
@@ -372,9 +425,9 @@
                                                 <tbody>
                                                 <?php $no=1; foreach ($customers as $data_customers): ?>
 
-                                                    <tr>
+                                                    <tr data-id="<?php echo $data_customers->id ;?>">
                                                         <td><?php echo $no++; ?></td>
-                                                        <td id="nama_admin"><img src="<?php echo base_url();?>my-assets/image/customers/<?php echo $data_customers->photo ; ?>" alt="<?php echo $data_customers->photo ; ?>" width="40" class="img-circle"> <?php echo $data_customers->nama ; ?></td>
+                                                        <td id="nama_customer"><img src="<?php echo base_url();?>my-assets/image/customers/<?php echo $data_customers->photo ; ?>" alt="<?php echo $data_customers->photo ; ?>" width="40" class="img-circle"> <?php echo $data_customers->nama ; ?></td>
                                                         <td><?php echo $data_customers->email; ?></td>
                                                         <td><?php echo $data_customers->perusahaan; ?></td>
                                                         <td><?php echo $data_customers->level; ?></td>
@@ -386,7 +439,7 @@
                                                         <td>
                                                             <a href="?action=edit&id=<?php echo $data_customers->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
 
-                                                            <button type="button" data-id="<?php echo $data_customers->id ;?>" data-name="<?php echo $data_customers->nama ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-customer" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
+                                                            <button type="button" data-id="<?php echo $data_customers->id ;?>" data-name="<?php echo $data_customers->nama ;?>" data-photo="<?php echo $data_customers->photo ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-customer" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
 
 
 
@@ -408,6 +461,229 @@
                         </div>
                     <?php } ?>
                     <!-- End Read Data -->
+
+                    <!-- Create Data -->
+                    <?php if($action == 'edit') { ?>
+                        <!-- ============================================================== -->
+                        <!-- Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== -->
+                        <div class="row page-titles">
+                            <div class="col-md-5 align-self-center">
+                                <h4 class="text-themecolor">Customer</h4>
+                            </div>
+                            <div class="col-md-7 align-self-center text-right">
+                                <div class="d-flex justify-content-end align-items-center">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                                        <li class="breadcrumb-item">Customer</li>
+                                        <li class="breadcrumb-item active">Edit Customer</li
+                                    </ol>
+                                    <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- End Bread crumb and right sidebar toggle -->
+                        <!-- ============================================================== --> 
+                        <a href="<?php echo base_url('admin-area/customer') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Customer</button></a>   
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Add Customer</h4>
+                                            <h6 class="card-subtitle">Edit Customer/User </h6>
+
+                                            <!-- Notif Status-->
+                                            <?php if ($status_action == 'email'): ?>
+                                            <div class="alert alert-warning"> 
+                                                <i class="fa fa-warning"></i> Email sudah ada.
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                                            </div>
+                                            <?php endif ?>
+
+
+                                            <form class="m-t-40" action="<?php echo base_url('admin-area/update-customer'); ?>" method="post" enctype="multipart/form-data" novalidate>
+
+                                                    
+                                                <div class="form-group">
+                                                    <h5>Nama <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="text" name="nama" value="<?php echo $data_edit->nama ?>"  class="form-control" required data-validation-required-message="This field is required"> 
+                                                        <input type="hidden" name="id" value="<?php echo $data_edit->id; ?>" >
+
+
+                                                    </div>
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>Email <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="email" value="<?php echo $data_edit->email ?>" name="email" class="form-control" required data-validation-required-message="This field is required"> 
+                                                     <input type="hidden" value="<?php echo $data_edit->email ?>" name="email_old" class="form-control" required data-validation-required-message="This field is required">
+                                                 </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>Password <span class="text-danger">*</span></h5>
+                                                    
+                                                        <input type="password"  name="password" class="form-control" maxlength='15' minlength="5"> 
+                                                    
+                                                    <div class="form-control-feedback">
+                                                        <small>*Jangan diisi jika password tidak diubah.</small>
+                                                    </div>
+                                                </div>
+<!-- 
+                                                <div class="form-group">
+                                                    <h5>Ulangi Password <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="password" name="password2" data-validation-match-match="password" class="form-control" maxlength='15' required> </div>
+                                                </div> -->
+
+                                                <div class="form-group">
+                                                    <h5>Perusahaan <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="perusahaan" value="<?php echo $data_edit->perusahaan; ?>" class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>Jenis Kelamin <span class="text-danger"></span></h5>
+                                                    
+                                                        <select  name="jenis_kelamin" id="select" required class="jenis_kelamin form-control">
+                                                            <option data-keterangan="" data-discount=""  value="">--JENIS KELAMIN </option>
+                                                            
+                                                            
+                                                            <option  class="jenis_kelamin-option" data-keterangan="" <?php if($data_edit->jenis_kelamin == 'L') echo 'selected' ?> value="L" >
+                                                                LAKI - LAKI
+                                                                
+                                                            </option>
+                                                            <option  class="jenis_kelamin-option" <?php if($data_edit->jenis_kelamin == 'P') echo 'selected' ?> data-keterangan="" value="P" >
+                                                                PEREMPUAN
+                                                                
+                                                            </option>
+                                                            
+                                                            
+                                                            
+                                                        </select>
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>Media Sosial <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="media_sosial" value="<?php echo $data_edit->media_sosial; ?>" class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>Alamat <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="alamat" value="<?php echo $data_edit->alamat; ?>" class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <h5>No Telp <span class="text-danger"></span></h5>
+                                                    
+                                                        <input type="text" name="no_telp" value="<?php echo $data_edit->no_telp; ?>" class="form-control" data-validation-required-message="This field is required"> 
+
+                                                    <div class="form-control-feedback"></div>
+                                                </div>
+
+
+
+                                                <div class="row">
+
+                                                    <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <h5>Pilih Foto Profil <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                        <input type="file" id="input-file-now-custom-3" name="photo" class="dropify" data-height="100%" class="form-control"  data-default-file="<?php echo base_url();?>my-assets/image/customers/<?php echo $data_edit->photo ; ?>"  >
+
+
+                                                        </div>
+                                                        <input type="hidden" name="gambar_lama" value="<?php echo $data_edit->photo; ?>" >
+
+
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="col-md-5">
+                                                    <div class="form-group">
+                                                        <h5>Pilih Type User <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                            <select  name="type_user" id="select" required class="type-users form-control">
+                                                                <option data-keterangan="" data-discount=""  value="">--Type user </option>
+                                                                
+                                                                <?php foreach ($type_user    as  $type_user): ?>
+                                                                <option  <?php if($data_edit->level == $type_user->id) echo 'selected' ;?> class="type-user-option" data-keterangan="<?php echo $type_user->keterangan ?>" data-discount="<?php echo $type_user->discount ?>" value="<?php echo $type_user->id ?>"><?php echo $type_user->nama_type ?>
+                                                                    
+                                                                    
+                                                                </option>
+                                                                <?php endforeach ?>
+                                                                
+                                                                
+                                                                
+                                                            </select>
+                                                        <div>   
+                                                            <p style="color:#858585;">*Keterangan :</p>
+                                                            <span> Discount :</span><p id="detail_discount"><span style="font-weight: bold;">%</span></p>
+                                                           Keterangan :<p id="detail_keterangan"> </p>
+
+
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                                 
+
+                                                    <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <h5>Status <span class="text-danger">*</span></h5>
+                                                        <fieldset class="controls">
+                                                            <div class="custom-control custom-radio">
+                                                                <input  <?php if($data_edit->status == 1) echo 'checked' ;?>  type="radio" value="1" name="status" required id="styled_radio1" class="custom-control-input">
+                                                                <label class="custom-control-label" for="styled_radio1">Aktif</label>
+                                                            </div>
+                                                        
+                                                            <div class="custom-control custom-radio">
+                                                                <input <?php if($data_edit->status == 0) echo 'checked' ;?> type="radio" value="0" name="status" id="styled_radio2" class="custom-control-input">
+                                                                <label class="custom-control-label" for="styled_radio2">Nonaktif</label>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                    </div>
+
+                                                    
+
+                                                    
+                                                </div>
+                                                
+
+
+
+
+                                                                                           
+                                                <div class="text-xs-right">
+                                                    <button type="submit" class="btn btn-info">Submit</button>
+                                                    <button type="reset" class="btn btn-inverse">Cancel</button>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    <?php } ?>
+                    <!-- End Create Data -!>
+
 
              
 
@@ -644,7 +920,7 @@
 
     <script type="text/javascript">
 
-    $(document).on("click",".hapus-brand",function(){
+    $(document).on("click",".hapus-customer",function(){
     
     $.ajaxSetup({
       type:"post",
@@ -654,7 +930,7 @@
 
     var id=$(this).attr("data-id");
     // var nama=$(this).attr("data-name");
-    var logo=$(this).attr("data-logo");
+    var photo=$(this).attr("data-photo");
 
 
         swal({   
@@ -670,19 +946,25 @@
         }, function(isConfirm){   
             if (isConfirm) {  
                 $.ajax({
-                data:{id:id,logo:logo},
-                url:"<?php echo base_url('Admin-area/delete-brand');?>",
+                data:{id:id,photo:photo},
+                url:"<?php echo base_url('Admin-area/delete-customer');?>",
                 success: function(html) {
                     $("tr[data-id='"+id+"']").fadeOut(1500,function(){
                         $(this).remove();
                     });
                     swal({   
                         title: "Deleted !",   
-                        text: "Sukses dihapus",   
+                        text: "Admin sukses dihapus",   
                         type: "success",       
                         confirmButtonText: "Ok",    
                         closeOnConfirm: false,   
                         closeOnCancel: false 
+                    }, function(isConfirm){   
+                        if (isConfirm) {     
+                             location.reload();
+                        } else {     
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");   
+                        } 
                     });
                 }
 
@@ -853,22 +1135,31 @@ $(this).find("textarea[class~='editor']").fadeIn(1000).focus();
     </script>
 
        <script type="text/javascript">
+        $(document).ready(function(){
+      
+          
+                 var discount1 = $('.type-users').find(':selected').data('discount');
+                 var keterangan1 = $('.type-users').find(':selected').data('keterangan');
+                // alert(keterangan);\
+                $("#detail_discount").css("font-weight", "bold");
+                $("#detail_keterangan").css("font-weight", "bold");
+                $( '#detail_discount' ).html(discount1+'%').fadeIn(1000);
+                $( '#detail_keterangan' ).html(keterangan1 ).fadeIn(1000);
+
+            
+
             $('.type-users').change(function(){
-                // var discount = $('data-discount').attr();
-                // var keterangan = $('data-keterangan').attr();
-                // var id = $('data-produkid');
-                // var keterangan       = $(this).data("keterangan");
-               
-               
+          
                  var discount = $(this).find(':selected').data('discount');
                  var keterangan = $(this).find(':selected').data('keterangan');
                 // alert(keterangan);\
                 $("#detail_discount").css("font-weight", "bold");
                 $("#detail_keterangan").css("font-weight", "bold");
-                $( '#detail_discount' ).html(discount+'%');
-                $( '#detail_keterangan' ).html(keterangan );
+                $( '#detail_discount' ).html(discount+'%').fadeIn(1000);
+                $( '#detail_keterangan' ).html(keterangan ).fadeIn(1000);
 
             });
+        });
         </script>
 
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();call

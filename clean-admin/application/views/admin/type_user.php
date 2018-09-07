@@ -169,6 +169,13 @@
                                             <h6 class="card-subtitle">Add new Type User </h6>
 
                                             <!-- Notif Status-->
+                                             <!-- Notif Status-->
+                                            <?php if ($status_action == 'limit'): ?>
+                                            <div class="alert alert-warning"> 
+                                                <i class="fa fa-warning"></i> Type User sudah 5 !
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                                            </div>
+                                            <?php endif ?>
                                             
 
 

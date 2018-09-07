@@ -1,3 +1,8 @@
+  <!-- Addon -->
+        <link rel="stylesheet" href="<?php echo base_url()?>assets/styles.css">
+        <!-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
+        <script src="<?php echo base_url()?>assets/script.js"></script>
+
  <div class="header_top">
             <div class="container">
                 <div class="row m0 header_top_inner">

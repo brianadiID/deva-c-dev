@@ -148,65 +148,6 @@ class Admin_area extends CI_Controller {
 
 
 
-
-
-
-
-
-
-        // // ==================
-
-        // // Upload File
-        // $config['upload_path'] = './my-assets/image/admin';
-        // $config['allowed_types'] = 'gif|jpg|png';
-        // $config['max_size'] = 3000;
-        // // $config['max_width'] = 1024;
-        // // $config['max_height'] = 768;
-        
-
-
-
-        // $this->load->library('upload', $config);
-
-        // $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[t_admin.email]');
-
-        // if($this->form_validation->run() != false){
-        //         // Upload ke Folder
-        //         $this->upload->do_upload('photo');
-
-        //         // Array File
-        //         $data = array('upload_data' => $this->upload->data());
-        //         foreach ($data as $item){
-        //             $file_name = $item['file_name'];
-        //         }
-
-
-        //         // Buat data array to database
-        //         $data = array (
-        //             'nama'      => $nama,
-        //             'email'     => $email,
-        //             'password'  => md5($password),
-        //             'status'    => $status,
-        //             'type'      => $type_admin,
-        //             'photo'     => $file_name
-        //         );   
-
-        //         // Upload ke Database
-        //         $this->Admin_account->create($data);
-
-        //         // Notif Succes
-        //         $status_action = 'save';
-        //         $this->session->set_flashdata('status_action', $status_action);
-        //         redirect(base_url().'admin-area/admin-account');
-
-        // }else{
-
-        //     $status_action = 'email'; 
-        //     $this->session->set_flashdata('status_action',$status_action);
-        //     redirect(base_url().'admin-area/admin-account'.'?action=add');
-             
-
-        // }
         
      
 
@@ -450,7 +391,11 @@ class Admin_area extends CI_Controller {
 
         
         $this->Admin_account->delete($id);
-        unlink("./my-assets/image/admin/".$photo);
+        if($photo != ''){
+             unlink("./my-assets/image/admin/".$photo);
+            
+
+        }
         
 
         echo "{}";
@@ -777,7 +722,14 @@ class Admin_area extends CI_Controller {
             $where = array (
                 'id' => $id
             );
-            $data['data_type_user_edit'] = $this->Customer_model->get_data($where);
+
+            $data['data_customers_edit'] = $this->Customer_model->get_data($where);
+            foreach ($data['data_customers_edit'] as $data['data_edit']) {
+                # code...
+            }
+
+            // print_r($data['data_edit']);
+
              $this->load->view('admin/customer',$data);
       
 
@@ -788,7 +740,395 @@ class Admin_area extends CI_Controller {
  
     }
 
-// End Management
+
+    function create_customer_account(){
+       
+
+        $config['upload_path'] = './my-assets/image/customers/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[t_customer.email]');
+
+            if($this->form_validation->run() != false){
+
+                if(!empty($_FILES['photo']['name'])){
+         
+                    if ($this->upload->do_upload('photo')){
+                        $gbr = $this->upload->data();
+                        //Compress Image
+                        $config['image_library']='gd2';
+                        $config['source_image']='./my-assets/image/customers/'.$gbr['file_name'];
+                        $config['create_thumb']= FALSE;
+                        $config['maintain_ratio']= TRUE;
+                        $config['quality']= '50%';
+                        $config['width']= 600;
+                        // $config['height']= 400;
+                        $config['new_image']= './my-assets/image/customers/'.$gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+         
+                        $gambar=$gbr['file_name'];
+
+                        $data = array(
+                        'nama' => $this->input->post('nama'),
+                        'email' => $this->input->post('email'),
+                        'password' => md5($this->input->post('nama')),
+                        'perusahaan' => $this->input->post('perusahaan'),
+                        'level' => $this->input->post('type_user'),
+                        'status' => $this->input->post('status'),
+                        'media_sosial' => $this->input->post('media_sosial'),
+                        'alamat' => $this->input->post('alamat'),
+                        'no_telp' => $this->input->post('no_telp'),
+                        'photo' => $gambar,
+                        'jenis_kelamin' => $this->input->post('jenis_kelamin')
+
+                        );   
+
+                        // Upload ke Database
+                        $this->Customer_model->create($data);
+
+                        // Notif Succes
+                        $status_action = 'save';
+                        $this->session->set_flashdata('status_action', $status_action);
+                        redirect(base_url().'admin-area/customer');
+                        
+                    }else{
+                        echo "Upload Foto gagal";
+                    }
+                              
+                }else{
+                    // Buat data array to database
+                    $data = array(
+                        'nama' => $this->input->post('nama'),
+                        'email' => $this->input->post('email'),
+                        'password' => md5($this->input->post('nama')),
+                        'perusahaan' => $this->input->post('perusahaan'),
+                        'level' => $this->input->post('type_user'),
+                        'status' => $this->input->post('status'),
+                        'media_sosial' => $this->input->post('media_sosial'),
+                        'alamat' => $this->input->post('alamat'),
+                        'no_telp' => $this->input->post('no_telp'),
+                        'jenis_kelamin' => $this->input->post('jenis_kelamin')
+
+                    );   
+
+                    // Upload ke Database
+                    $this->Customer_model->create($data);
+
+                    // Notif Succes
+                    $status_action = 'save';
+                    $this->session->set_flashdata('status_action', $status_action);
+                    redirect(base_url().'admin-area/customer');
+                }
+            }else{
+                $status_action = 'email'; 
+                $this->session->set_flashdata('status_action',$status_action);
+                redirect(base_url().'admin-area/customer'.'?action=add');
+            }
+
+    }
+
+    function update_customer(){
+        
+
+        $email_old  = $this->input->post('email_old');
+        $email      = $this->input->post('email');
+        $gambar_lama= $this->input->post('gambar_lama');
+        
+        $config['upload_path'] = './my-assets/image/customers/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+        // Jika Email tidak sama
+        if($email_old != $email){
+                $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[t_admin.email]');
+                
+                if($this->form_validation->run() != false){
+                    // JIka ada file diupload
+                    if(!empty($_FILES['photo']['name'])){
+                        // Jika Upload Berhasil
+                        if ($this->upload->do_upload('photo')){
+                            $gbr = $this->upload->data();
+                            //Compress Image
+                            $config['image_library']='gd2';
+                            $config['source_image']='./my-assets/image/customers/'.$gbr['file_name'];
+                            $config['create_thumb']= FALSE;
+                            $config['maintain_ratio']= TRUE;
+                            $config['quality']= '50%';
+                            $config['width']= 600;
+                            // $config['height']= 400;
+                            $config['new_image']= './my-assets/image/customers/'.$gbr['file_name'];
+                            $this->load->library('image_lib', $config);
+                            $this->image_lib->resize();
+                            
+                            $gambar=$gbr['file_name'];
+                            unlink("./my-assets/image/customers/".$gambar_lama);
+
+                            // Cek Pssword Kosong atau tidak
+                            if($password != ''){
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'media_sosial' => $this->input->post('media_sosial'),
+                                    'alamat' => $this->input->post('alamat'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'level' => $this->input->post('type_user'),
+                                    'status' => $this->input->post('status'),
+                                    'photo' => $gambar,
+                                    'password' => md5($this->input->post('password'))
+                                );
+
+                            }else{
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'media_sosial' => $this->input->post('media_sosial'),
+                                    'alamat' => $this->input->post('alamat'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'level' => $this->input->post('type_user'),
+                                    'status' => $this->input->post('status'),
+                                    'photo' => $gambar
+                                    
+                                );
+
+                            }
+
+                                
+                            $where = array (
+                                'id' => $this->input->post('id')
+                            );
+
+                            // Update ke Database
+                          
+                            if( $this->Customer_model->update($data,$where)){
+                            $status_action = 'update';
+                            $this->session->set_flashdata('status_action', $status_action);
+
+                            redirect(base_url().'admin-area/customer');
+                            }
+                                
+                        // Jika Upload Gagal
+                        }else{
+                            echo 'Upload gagal';
+                        }
+                    
+                    //Jika tidak ada file di upload 
+                    }else{
+
+                        if($password != ''){
+                            $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'media_sosial' => $this->input->post('media_sosial'),
+                                    'alamat' => $this->input->post('alamat'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'level' => $this->input->post('type_user'),
+                                    'status' => $this->input->post('status'),
+                                    'password' => md5($this->input->post('password'))
+                                );
+                        }else{
+                            $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'media_sosial' => $this->input->post('media_sosial'),
+                                    'alamat' => $this->input->post('alamat'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'level' => $this->input->post('type_user'),
+                                    'status' => $this->input->post('status'),
+                                    
+                                );
+                        }
+
+                        
+                        $where = array (
+                            'id' => $this->input->post('id')
+                        );
+
+
+                        // Update ke Database
+                          
+                        if( $this->Customer_model->update($data,$where)){
+                        $status_action = 'update';
+                        $this->session->set_flashdata('status_action', $status_action);
+
+                        redirect(base_url().'admin-area/customer');
+                        }
+
+                            
+                    }
+                
+                // JIka Validasi salah 
+                }else{
+                        $status_action = 'email'; 
+                        $this->session->set_flashdata('status_action',$status_action);
+                        redirect(base_url().'admin-area/customer'.'?action=edit&id='.$this->input->post('id'));
+                }
+                        
+
+        // Jika Email Sama
+        }else{
+
+            if(!empty($_FILES['photo']['name'])){
+                        // Jika Upload Berhasil
+                        if ($this->upload->do_upload('photo')){
+                            $gbr = $this->upload->data();
+                            //Compress Image
+                            $config['image_library']='gd2';
+                            $config['source_image']='./my-assets/image/customers/'.$gbr['file_name'];
+                            $config['create_thumb']= FALSE;
+                            $config['maintain_ratio']= TRUE;
+                            $config['quality']= '50%';
+                            $config['width']= 600;
+                            // $config['height']= 400;
+                            $config['new_image']= './my-assets/image/customers/'.$gbr['file_name'];
+                            $this->load->library('image_lib', $config);
+                            $this->image_lib->resize();
+                            
+                            $gambar=$gbr['file_name'];
+                            unlink("./my-assets/image/customers/".$gambar_lama);
+
+                            // Cek Pssword Kosong atau tidak
+                            if($password != ''){
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'media_sosial' => $this->input->post('media_sosial'),
+                                    'alamat' => $this->input->post('alamat'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'level' => $this->input->post('type_user'),
+                                    'status' => $this->input->post('status'),
+                                    'photo' => $gambar,
+                                    'password' => $this->input->post('password')
+                                    
+                                );
+                        
+                            }else{
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'media_sosial' => $this->input->post('media_sosial'),
+                                    'alamat' => $this->input->post('alamat'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'level' => $this->input->post('type_user'),
+                                    'status' => $this->input->post('status'),
+                                    'photo' => $gambar
+                                    
+                                );
+                            }
+
+                                
+                            $where = array (
+                                'id' => $this->input->post('id')
+                            );
+
+
+                            // Update ke Database
+                          
+                            if( $this->Customer_model->update($data,$where)){
+                            $status_action = 'update';
+                            $this->session->set_flashdata('status_action', $status_action);
+
+                            redirect(base_url().'admin-area/customer');
+                            }
+                                
+                        // Jika Upload Gagal
+                        }else{
+                                echo "Upload gambar gagal";
+                        }       
+                    
+            //Jika tidak ada file di upload 
+            }else{
+
+                if($password != ''){
+                    $data = array(
+                        // 'id'=>$this->input->post('id'),
+                        'nama' => $this->input->post('nama'),
+                        'email' => $this->input->post('email'),
+                        'perusahaan' => $this->input->post('perusahaan'),
+                        'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                        'media_sosial' => $this->input->post('media_sosial'),
+                        'alamat' => $this->input->post('alamat'),
+                        'no_telp' => $this->input->post('no_telp'),
+                        'level' => $this->input->post('type_user'),
+                        'status' => $this->input->post('status'),
+                        'password' => $this->input->post('password')
+                        
+                    );
+                }else{
+                    $data = array(
+                        // 'id'=>$this->input->post('id'),
+                        'nama' => $this->input->post('nama'),
+                        'email' => $this->input->post('email'),
+                        'perusahaan' => $this->input->post('perusahaan'),
+                        'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                        'media_sosial' => $this->input->post('media_sosial'),
+                        'alamat' => $this->input->post('alamat'),
+                        'no_telp' => $this->input->post('no_telp'),
+                        'level' => $this->input->post('type_user'),
+                        'status' => $this->input->post('status')
+                        
+                    );
+                }
+
+                
+                $where = array (
+                    'id' => $this->input->post('id')
+                );
+
+
+                // Update ke Database
+                          
+                if( $this->Customer_model->update($data,$where)){
+                $status_action = 'update';
+                $this->session->set_flashdata('status_action', $status_action);
+
+                redirect(base_url().'admin-area/customer');
+                }
+                    
+            }
+
+        }
+    }
+
+    function delete_customer(){
+        $id    = $this->input->post("id");
+        $photo = $this->input->post("photo");
+
+        
+        $this->Customer_model->delete($id);
+        if($photo != ''){
+            unlink("./my-assets/image/customers/".$photo);
+
+        }
+        
+
+        echo "{}";
+    }
+
+
+// End Management Customer
 
 // Type User Managemen
     function type_user(){
@@ -823,13 +1163,23 @@ class Admin_area extends CI_Controller {
         );
 
 
-        // Upload ke Database
-        $this->Type_user_model->create($data);
+        
 
-        // Notif Succes
-        $status_action = 'save';
-        $this->session->set_flashdata('status_action', $status_action);
-        redirect(base_url().'admin-area/type-user');
+        // Notif 
+        if($this->Type_user_model->count() >= 5 ){
+            
+            $status_action = 'limit'; 
+            $this->session->set_flashdata('status_action',$status_action);
+            redirect(base_url().'admin-area/type-user'.'?action=add');
+   
+        }else{
+            // Upload ke Database
+            $this->Type_user_model->create($data);
+            $status_action = 'save';
+            $this->session->set_flashdata('status_action', $status_action);
+            redirect(base_url().'admin-area/type-user');
+        }
+        
 
     }
 

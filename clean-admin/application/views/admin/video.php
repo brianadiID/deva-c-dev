@@ -182,7 +182,7 @@
                                                     <p class="card-text"><small class="text-muted">Klik to edit*</small></p>
 
                                                     <div id="ubah2">
-                                                    <p class="card-text"><?php echo '<iframe class="embed-responsive-item" width="500" height="315" src="https://www.youtube.com/embed/AybX-OtH4t4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'; ?></p>
+                                                    <p class="card-text">"card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                                                     <textarea class='field-harga form-control editor' >This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</textarea> 
 
                                                     </div>
