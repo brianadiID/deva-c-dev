@@ -248,7 +248,7 @@
             
                     <div class="item_inner">
                         <div class="item_image">
-                            <a href=" <?php echo base_url().'detail-produk/id-produk/';?><?php echo $data_produk['id'];?>">
+                            <a href=" ">
                                 <img style="max-height: 170px;" src="<?php echo base_url()?>isshue-v1.1/my-assets/image/discount/discount1.png" alt="product-image">
                             </a>
                         </div>  
@@ -279,10 +279,10 @@
             </div>
                 <div class="row m0 slider_style">
                     <?php for($a=0;$a<4;$a++) { ?>
-                <div class="col-xl-3 col-lg-4 col-sm-6 single_product_item">
+                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 single_product_item">
                     <div class="item item_shadow">
                         <div class="item_image">
-                            <a href="http://isshue.bdtask.com/isshue-v1.5/product_details/88859177">
+                            <a href="">
                                                     <img src="http://portalsatu.com/upload2/files/2017/EKONOMI/Hari-Belanja-Diskon-Indonesia-2017-800x600.png" alt="product-image">
                                                 </a>
                         </div>
@@ -324,11 +324,11 @@
             </div>
                 <div class="row m0 slider_style">
                     <?php for($a=0;$a<4;$a++) { ?>
-                <div class="col-xl-3 col-lg-4 col-sm-6 single_product_item">
+                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 single_product_item">
                     <div class="item item_shadow">
                         <div class="item_image">
-                            <a href="http://isshue.bdtask.com/isshue-v1.5/product_details/88859177">
-                                                    <img src="http://isshue.bdtask.com/isshue-v1.1/my-assets/image/product/thumb/9fa69ddfcf2174e68564b4a9267e5b22.jpg" alt="product-image">
+                            <a href="">
+                                                    <img src="https://static4.tme.eu/products_pics/c/8/3/c83b7bd7183fecf8e8b0021737317dbd/prime_presentation/prime_presentation_pres_0000.jpg" alt="product-image">
                                                 </a>
                         </div>
                         <div class="item_info">
@@ -369,11 +369,11 @@
             </div>
                 <div class="row m0 slider_style">
                     <?php for($a=0;$a<4;$a++) { ?>
-                <div class="col-xl-3 col-lg-4 col-sm-6 single_product_item">
+                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 single_product_item">
                     <div class="item item_shadow">
                         <div class="item_image">
-                            <a href="http://isshue.bdtask.com/isshue-v1.5/product_details/88859177">
-                                                    <img src="http://isshue.bdtask.com/isshue-v1.1/my-assets/image/product/thumb/9fa69ddfcf2174e68564b4a9267e5b22.jpg" alt="product-image">
+                            <a href="">
+                                                    <img src="https://media1.qmadis.com/65574-thickbox_default/bloque-contacto-auxiliar-2na-frontal-ladn20-schneider.jpg" alt="product-image">
                                                 </a>
                         </div>
                         <div class="item_info">

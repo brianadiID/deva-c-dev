@@ -4,7 +4,7 @@
                 <button class="navbar-toggler navbar-toggler-right" id="open">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="<?php echo base_url()?>">
                     <img src="<?php echo base_url().'my-assets/image/logo/logo.png'?>">
                 </a>
 
@@ -16,7 +16,7 @@
                    
 
                    <!-- <div class="d-none d-sm-block">-->
-                        <form action="<?php echo base_url('katalog/search'); ?>" class="form-inline d-none d-sm-block" method="get" accept-charset="utf-8" style="width:74%; padding:18px;">
+                        <form action="<?php echo base_url('katalog/search'); ?>" class="form-inline d-none d-sm-block" method="get" accept-charset="utf-8" style="width:615px; padding:18px;">
                         <!--search-->
                        
                         <div class="form-group" style=" float:left; margin-right:15px; ">

@@ -275,20 +275,22 @@
     <div class="modal-content">
       <div class="modal-header text-center">
         <h5 class="modal-title" id="exampleModalLabel">coupon<?php echo $no; ?></h5>
+          
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        
+        <p> 50% OFF atau hingga 70% OFF Pay with Coupon </p><hr>
   
-      <input class="coupon"  type="text" value="Hello World<?php echo $no; ?>" id="<?php echo $no; ?>">
+      <input class="coupon"  type="text" value="CPN01X<?php echo $no; ?>" id="<?php echo $no; ?>">
        <button class="btn-circle" onclick="myFunction(<?php echo $no; ?>)"><i class="fa fa-clone" aria-hidden="true"></i></button>
           
       </div>
       <div class="modal-footer">
+          <p>Gunakan coupon ini saat checkout pembelian</p>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Save changes</button>
+        
       </div>
     </div>
   </div>

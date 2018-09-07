@@ -332,7 +332,9 @@
     <div class="container">
         <div class="row db coupon_inner">
             <h5>GRAND TOTAL :<b id="grandtotal"> <?php echo 'Rp.'.$total; ?> </b></h5>
-            
+            <div class="checkout-box" style="margin-top: 5px; margin-right:25px;">
+                <a href="<?php echo base_url().'customer/checkout'?>"><button class="btn btn-primary">Checkout</button></a>
+            </div>
         </div>
     </div>
 </section>

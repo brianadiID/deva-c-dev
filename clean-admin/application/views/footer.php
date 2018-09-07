@@ -129,6 +129,7 @@
                         success: function(data){
                             $('#detail_cart').html(data);
                             $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                            $('#count_cart_checkout').load("<?php echo base_url();?>home/load_count");
                             $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
                             
 

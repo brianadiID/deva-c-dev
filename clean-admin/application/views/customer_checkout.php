@@ -713,7 +713,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="desc-container">
-                                                <div class="desc-table">
+                                                <div class="desc-table"><p>SHIPPING &amp; BILLING ADDRESS</p>
                                                     <table>
                                                         <tbody>
                                                             <tr>
@@ -763,11 +763,11 @@
                                         </div>
                                          <div class="col-md-12">
                                             <div class="desc-container">
-                                                <div class="desc-table"><p>Rangkuman Pesanan</p>
+                                                <div class="desc-table"><p>ORDER SUMMARY</p>
                                                     <table> 
                                                         <tbody>
                                                             <tr>
-                                                                <td class="desc-label">Subtotal (x item)</td>
+                                                                <td class="desc-label">Subtotal (X item)</td>
                                                                 <td class="desc-val"><b><?php echo 'Rp.'.$total; ?></b></td>
                                                             </tr>
                                                             <tr>
@@ -819,7 +819,7 @@
                         </a>
                     </span>
                     <span class="submit btn btn-default bg_green">
-                        <a href="javascript:void(0)" class="btn" >Submit
+                        <a href="javascript:void(0)" class="btn" style="color:white;" >Submit
                              
                         </a>
                     </span> 
