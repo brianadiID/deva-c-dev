@@ -286,9 +286,11 @@
                             <td><?php echo $items['name']; ?></td>
                            
                             
-                            <td>
-                                <input type="text" name="1[qty]" value="<?php echo $items['qty']; ?>" class="text-center qty-cart" maxlength="3" size="5">
-                            <button type="submit" class="update_cart" data-id="<?php echo $items['rowid']?>" data-qty="<?php echo $items['qty']?>"><i class="fa fa-refresh" style="font-size:20px;padding: 0px;"></i></button></td>
+                            <td class="qty-cart">
+                            
+                                <input type="text" name="1[qty]" value="<?php echo $items['qty']; ?>" class="text-center " maxlength="3" size="5">
+                                <button type="submit" class="update_cart" data-id="<?php echo $items['rowid']?>" data-qty="<?php echo $items['qty']?>"><i class="fa fa-refresh" style="font-size:20px;padding: 0px;"></i></button>
+                            </td>
                             
                             <td>Rp. <?php echo number_format($items['price']); ?> </td>
                             <td>Rp. <?php echo number_format($items['price']*$items['qty']); ?></td>
@@ -561,7 +563,8 @@
            //Hapus Item Cart
                 $(document).on('click','.update_cart',function(){
                     var row_id=$(this).data("id"); //mengambil row_id dari artibut id
-                    var qty=$('.qty-cart').val(); //mengambil row_id dari artibut id
+                    var qty=$(this).parent('.qty-cart').find("input").val(); //mengambil qty
+                    // alert(qty);
                     $.ajax({
                         url : "<?php echo base_url();?>home/update_cart",
                         method : "POST",
