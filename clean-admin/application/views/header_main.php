@@ -21,7 +21,7 @@
                        
                         <div class="form-group" style=" float:left; margin-right:15px; ">
 
-                            <select  class="form-control" id="" name="kategori" >
+                            <select  class="form-control" id="" name="kategori" style="width:200px;" >
                                 
                                 <option value="0">All Categories</option>
 

@@ -13,7 +13,7 @@
                             function html_menu(&$strmenu="", $parent=0) {
                                $query = "SELECT * 
                                 FROM t_kategori WHERE id_parent ='$parent' 
-                                ORDER BY id";
+                                ORDER BY posisi";
                                
                               $konek =  mysqli_connect("localhost","root","","theklakklik");
                                $sql = mysqli_query($konek,$query);

@@ -292,7 +292,7 @@
 
                                                         <h5>Parent Kategori <span class="text-danger">*</span></h5>
                                                         <select  name="id_parent" class="select2 form-control custom-select" style="width: 100%;height: 38px !important; " required>
-                                                            <option value="">-- Select Option</option>
+                                                            <option value="0">-- Select Option</option>
 
                                                             <?php foreach ($data_kategori as $value): ?>
                                                                  <option value="<?php echo $value->id ?>"><?php echo $value->nama_kategori ?></option>
@@ -406,7 +406,7 @@
 
                                                         <h5>Parent Kategori <span class="text-danger">*</span></h5>
                                                         <select  name="id_parent" class="select2 form-control custom-select" style="width: 100%;height: 38px !important; " required>
-                                                            <option value="">-- Select Option</option>
+                                                            <option value="0">-- Select Option</option>
 
                                                             <?php foreach ($data_kategori as $value): ?>
                                                             <option value="<?php echo $value->id ?>" <?php if($value->id == $data_edit->id_parent) echo "selected"; ?>><?php echo $value->nama_kategori ?></option>

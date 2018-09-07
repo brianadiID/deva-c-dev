@@ -245,7 +245,7 @@
             </div>
                 <div class="row m0 slider_style">
                     <?php $no=1; for($a=0;$a<12;$a++) { ?>
-                <div class="col-xl-3 col-lg-4 col-sm-6 single_product_item text-center">
+                <div class="col-xl-3 col-lg-4 col-sm-6 col-6 single_product_item text-center">
                     <div class="item item_shadow ">
                         <div class="item_image">
                             
