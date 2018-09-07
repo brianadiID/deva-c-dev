@@ -14,24 +14,36 @@
                                $query = "SELECT * 
                                 FROM t_kategori WHERE id_parent ='$parent' 
                                 ORDER BY posisi";
+
+                                
                                
                               $konek =  mysqli_connect("localhost","root","","theklakklik");
                                $sql = mysqli_query($konek,$query);
 
+                               
 
-                            if (mysqli_num_rows($sql) > 0) {
+
+                            if (mysqli_num_rows($sql) > 0){
                                $strmenu .= '<ul>';
                             }
 
                             
 
+
                             while ($row = mysqli_fetch_assoc($sql)) {
 
+                            $query_cek = "SELECT * from t_kategori where id_parent = $row[id] ";
+                            $sql_cek = mysqli_query($konek,$query_cek);
 
-
-                              $strmenu .= '<li class="has-sub"  >'; 
+                            if (mysqli_num_rows($sql_cek) > 0){
+                                 $strmenu .= '<li class="has-sub">'; 
+                            }else{
+                              $strmenu .= '<li class="">'; 
+                            }
+                              
+                            
                              
-                              $strmenu .= sprintf("<a href='#' tabindex='999' title='%s'>%s<span class='caret'></span></a>", $row['id'], $row['nama_kategori'], $row['nama_kategori']);
+                              $strmenu .= sprintf("<a href='' tabindex='999' title='%s'>%s<span class='caret'></span></a>", $row['id'], $row['nama_kategori'], $row['nama_kategori']);
 
                              html_menu($strmenu, $row['id']);
                               $strmenu .= "</li>";
