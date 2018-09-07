@@ -54,5 +54,6 @@ class Customer extends CI_Controller {
         
         $this->load->view('Customer_cart',$data);
         
+        
     }
 }

@@ -183,5 +183,16 @@ class Home extends CI_Controller {
 		$this->cart->update($data);
 		echo $this->show_cart();
 	}
+
+	function update_cart(){ //fungsi untuk menghapus item cart
+		$data = array(
+			'rowid' => $this->input->post('row_id'), 
+			'qty' => $this->input->post('qty'), 
+		);
+		$this->cart->update($data);
+		// echo $this->show_cart();
+	}
+
+	
         
 }
