@@ -700,6 +700,16 @@ class Admin_area extends CI_Controller {
     }
 // End Video 
 
+// produk
+    
+    function produk(){
+         $data['action'] = $this->input->get('action');
+        $data['status_action'] = $this->session->flashdata('status_action');
+        $this->load->view('admin/produk',$data); 
+        
+    }
+    
+// end produk
 
 
 
