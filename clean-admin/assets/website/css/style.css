@@ -914,8 +914,8 @@ header .cart_area .cart-box {
         font-size: 14px; }
     header .cart_area .cart-box .cart-content .delete_box {
       position: absolute;
-      right: 0;
-      top: 0; }
+      right: 10px;
+      top: 34px;}
       header .cart_area .cart-box .cart-content .delete_box a {
         width: 20px;
         border: 0;

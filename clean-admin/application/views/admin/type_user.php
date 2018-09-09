@@ -208,7 +208,9 @@
                                                     <div class="form-group ">
                                                         <h5>Discount <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                        <input required data-validation-required-message="This field is required" id="posisi" type="text" value="" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
+                                                        <input id="tch1" type="number" value="0" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline"  data-bts-button-up-class="btn btn-secondary btn-outline"  required data-validation-required-message="This field is required">
+
+                                                      <!--   <input required data-validation-required-message="This field is required" id="posisi" type="text" value="" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline">  -->
                                                         </div>
                                                         <div class="form-control-feedback"></div>
                                                     </div>
@@ -419,7 +421,9 @@
                                                     <div class="form-group ">
                                                         <h5>Discount <span class="text-danger">*</span></h5>
                                                         <div class="controls">
-                                                        <input required data-validation-required-message="This field is required" id="posisi" type="text" value="<?php echo $edit_data->discount; ?>" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
+
+                                                        <input id="tch1" type="number" value="<?php echo $edit_data->discount; ?>" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline"  data-bts-button-up-class="btn btn-secondary btn-outline"  required data-validation-required-message="This field is required">
+                                                        <!-- <input required data-validation-required-message="This field is required" id="posisi" type="text" value="<?php echo $edit_data->discount; ?>" name="discount" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline">  -->
                                                         </div>
                                                         <div class="form-control-feedback"></div>
                                                     </div>
@@ -781,12 +785,10 @@
         if (vspinTrue) {
             $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
         }
-        $("input[name='tch1']").TouchSpin({
+        $("input[name='discount']").TouchSpin({
             min: 0,
             max: 100,
-            step: 0.1,
-            decimals: 2,
-            boostat: 5,
+            step: 1,
             maxboostedstep: 10,
             postfix: '%'
         });

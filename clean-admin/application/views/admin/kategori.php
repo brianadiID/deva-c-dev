@@ -447,13 +447,11 @@
 
                                                
                                                 
-
-
-                                                                                           
                                                 <div class="text-xs-right">
                                                     <button type="submit" class="btn btn-info">Submit</button>
                                                     <button type="reset" onclick="history.back();" class="btn btn-inverse">Back</button>
                                                 </div>
+                                                
 
                                             </form>
                                             <?php endforeach ?>

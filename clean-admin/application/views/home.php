@@ -197,7 +197,7 @@
            <?php foreach ($produk  as $data_produk ): ?>
             <div class="item">
             <center> 
-                <h6><?php echo $data_produk['nama_produk'] ?></h6> 
+                <h6><?php echo $data_produk['sku'] ?></h6> 
             </center><!--sku-->
                     <div class="item_inner">
                         <div class="item_image" data-produkid="<?php echo $data_produk['id'] ?>">
@@ -205,12 +205,13 @@
                             <img src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image">
                             </a>
                             <input type="hidden" name="qty" id="sst" value="1">
-                            <button type="button" data-qty='1' data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['nama_produk'] ?>" data-produkharga="<?php echo $data_produk['harga'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
+                            <button type="button" data-qty='1' data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $data_produk['harga'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
+                            
 
                             
                         </div>  
                         <div class="item_info">
-                            <h6 style="overflow: hidden;max-height: 49px;min-height: 49px;"><?php echo $data_produk['nama_produk'] ?><br/><!--sku-->
+                            <h6 style="overflow: hidden;max-height: 49px;min-height: 49px;"><?php echo $data_produk['sku'] ?><br/><!--sku-->
                             <?php echo limit_words($data_produk['short_deskripsi'],7); ?>
 
                             </h6>
@@ -228,7 +229,7 @@
                                 <form action="#" method="post">
                                     <input type="hidden" value="1">
                                     
-                                        
+                                        <button type="button" data-qty='1' data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $data_produk['harga'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
                                  
                                 </form>
                         </div>

@@ -18,9 +18,9 @@
                             <a class="has-arrow waves-effect waves-dark" href="s" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Products </span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="index-2">-- Add Product <i class="fa fa-circle-o text-success"></i></a></li>
-                                <li><a href="index2">-- Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li>
-                                <li><a href="index3">-- Manage Product <i class="fa fa-circle-o text-danger"></i></a></li>
+                                <li><a href="<?php echo base_url('admin-area/produk').'?action=add'; ?>">-- Add Product </a></li>
+                                <li><a href="index2">-- Import Product (CSV) </a></li>
+                                <li><a href="<?php echo base_url('admin-area/produk'); ?>">-- Manage Product <span class="badge badge-pill badge-secondary"><?php echo $this->Product_model->count(); ?></span></a></li>
                             </ul>
                         </li>
 
@@ -31,6 +31,15 @@
                                 <li><a href="<?php echo base_url('admin-area/type-user'); ?>?action=add">-- Add Type User <i class="fa fa-circle-o text-success"></i></a></li>
                               <!--   <li><a href="index2">Import Product (CSV) <i class="fa fa-circle-o text-info"></i></a></li> -->
                                 <li><a href="<?php echo base_url('admin-area/type-user'); ?>">-- Manage Type User <span class="badge badge-pill badge-secondary"><?php echo $this->Type_user_model->count(); ?></span></a></li>
+                            </ul>
+                        </li>
+
+                        <li> 
+                            <a class="has-arrow waves-effect waves-dark" href="s" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Coupon </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="<?php echo base_url('admin-area/coupon').'?action=add'; ?>">-- Add Coupon </a></li>
+                                <li><a href="<?php echo base_url('admin-area/coupon'); ?>">-- Manage Coupon <span class="badge badge-pill badge-secondary"><?php //echo $this->Coupon_model->count(); ?></span></a></li>
                             </ul>
                         </li>
                         

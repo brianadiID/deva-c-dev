@@ -60,7 +60,32 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <style type="text/css">
+            .desc {
+                position: relative;
+                width: 100%;
+                height: auto;
+            }
+            .desc article {
+                position: relative;
+                height: auto;
+                max-height: 150px;
+                overflow: hidden;
+                -webkit-transition: all .5s ease-in-out;
+                -moz-transition: all .5s ease-in-out;
+                transition: all .5s ease-in-out; 
+            }
+            .desc article:hover {
+                /*background: #dadada;*/
+            }
+            .desc article.expand {
+                max-height: 900px;
+            }
 
+            .hilang{
+                display: none;
+            }
+        </style>
      
     
     </head>
@@ -169,7 +194,7 @@
                         <div class="tab-pane active" id="product1" role="tabpanel">
                             <div class="easyzoom easyzoom--adjacent">
                                 <a href="<?php echo base_url()?>my-assets/image/product/<?php echo $data['gambar_produk']; ?>">
-                                    <img style="min-height: 333px;" src="<?php echo base_url()?>my-assets/image/product/<?php echo $data['gambar_produk']; ?>" alt="<?php echo $data['gambar_produk']; ?>">
+                                    <img style="min-height: 333px;" src="<?php echo base_url()?>my-assets/image/product/thumb/<?php echo $data['gambar_produk']; ?>" alt="<?php echo $data['gambar_produk']; ?>">
                                 </a>
                             </div>
                         </div>
@@ -190,7 +215,7 @@
 
 
                         
-                    <h2><?php echo $data['nama_produk']; ?></h2>
+                    <h2><?php echo $data['sku']; ?></h2>
                     <div class="product_cost">
                            <div class="previous">
                                 <del>
@@ -238,7 +263,7 @@
                         </button>
                         
                     </div> 
-                    <button type="button" data-produkid="<?php echo $data['id'] ?>" data-produknama="<?php echo $data['nama_produk'] ?>" data-produkharga="<?php echo $data['harga'] ?>" data-gambar="<?php echo $data['gambar_produk']; ?>" class="add_cart btn button_add_chart"><i class="fa fa-shopping-cart"></i>  Add to Chart/Queue</button>
+                    <button type="button" data-produkid="<?php echo $data['id'] ?>" data-produknama="<?php echo $data['sku'] ?>" data-produkharga="<?php echo $data['harga'] ?>" data-gambar="<?php echo $data['gambar_produk']; ?>" class="add_cart btn button_add_chart"><i class="fa fa-shopping-cart"></i>  Add to Chart/Queue</button>
                         
                     <input type="hidden" id="product_id" name="product_id" value="11121745">
                     
@@ -301,93 +326,95 @@
 <!--========== Product Review Area ==========-->
 <section class="product_review_area">
     <div class="container">
-        <div class="row m0 db product_review">
-            <!-- Nav tabs -->
-            <ul class="nav nav-pills" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#reviews" role="tab">Specifications</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#description" role="tab">Description</a>
-                </li>
-               <!--  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#tags" role="tab">Tag</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#specifications" role="tab">Specifications</a>
-                </li> -->
-            </ul>
+        <center><h3 style="border-top: solid green 4px;padding-top: 17px;width:  fit-content;">DESCRIPTION</h3></center>
+        <div class="row mt-5">
+            <div class="col-lg-5">
+                <p><b>SPESIFICATION</b></p>
+                <div class="desc">
+                    
+                    <article class="posts-by-cat_article-222">
+                        <?php echo $data['spesification']; ?>
+                    
+                    </article>
+                    <button type="button" class="btn desc-article-open">LIHAT LEBIH</button>
+                    <!-- <button type="button" class="btn desc-article-close">LIHAT SEBAGIAN</button> -->
 
-            <!-- Tab panes -->
-            <div class="tab-content">
-                <div class="tab-pane active" id="reviews" role="tabpanel">
-                    <div class="review_form row">
-                                                <div class="col-md-12 text-center " >
-                            <div class="row m0 db need_review">
-                                <p><span xss=removed>
-                                   <center><img src="https://www.researchgate.net/profile/M_Amin8/publication/280940452/figure/tbl2/AS:391748175056896@1470411451044/Antenna-Specification-Specification-Values.png">
-                                    </center>
-                                    </span>                               
-                                    <br>
-                                </p>
-                            </div>
-                        </div>
-                                               <!-- <div class="col-md-6">
-                            <div class="review_message">
-                                <h3>Review This Product</h3>
-                                <div class="star_part">
-                                    <span>    
-                                        <a class="star-1" href="javascript:void(0)" name="1">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                        <a class="star-2" href="javascript:void(0)" name="2">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                        <a class="star-3 active" href="javascript:void(0)" name="3">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                        <a class="star-4" href="javascript:void(0)" name="4">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                        <a class="star-5" href="javascript:void(0)" name="5">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                    </span>
-                                </div>
-                                <div class="row msg_part">
-                                    <div class="col-md-12">
-                                        <textarea class="form-control" placeholder="Your Message" id="review_msg"></textarea>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <a href="javascript:void(0)" class="review">Submit</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>-->
-                    </div>
                 </div>
-                <div class="tab-pane" id="description" role="tabpanel">
-                    <div class="row">
-                        <p><span xss=removed>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</span><br></p>                    </div>
+                <!-- <table class="mt-3" ">
+                    <tr>
+                        <td><small>PRODUCT NAME</small> </td>
+                        <td><small><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LK99OLZ</b></small></td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:  text-bottom;color: black;"><small>RATED VOLTAGE IN VOILT ELECTRICT </small></td>
+                        <td>   <small><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(888Vlt)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(888sVlt)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(K88Vlt)</b></small></td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:  text-bottom;color: black;"><small>RATED VOLTAGE IN VOILT ELECTRICT </small></td>
+                        <td>   <small><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(888Vlt : AC 2) 9A<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(888sVlt : AC 2) 9A<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(K88Vlt : AC 2) 9A)</b></small></td>
+                    </tr>
+                </table> -->
+                
+                
+            </div>
+            <div class="col-lg-7">
+                <p><b>RELATED DOCUMENT</b></p>
+                <table class="table mt-3 mb-5">
+                  <thead style="color:#838383;">
+                    <tr>
+                      <th scope="col"><small><b>Name</b></small></th>
+                      <th scope="col"><small><b>Last Update</b></small></th>
+                      <th scope="col"><small><b>Language</b></small></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><a href=""><small>Tesys Motor Control - Constructor - Catalouge 206.pdf</small></a></td>
+                      <td><small>25 Jan 2018</small></td>
+                      <td><small><b>IND (IN)</b></small> </td>
+                    </tr>
+                    <tr>
+                      <td><a href=""><small>Tesys Motor Control - Constructor - Catalouge 206.pdf</small></a></td>
+                      <td><small>03 Feb 2018</small></td>
+                      <td><small><b>IND (IN)</b></small></td>
+                    </tr>
+                
+                  </tbody>
+                </table>
+                
+                
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12">
+                <p><b>DESCRIPTION</b></p>
+                
+                <!-- <div class="desc">
+                    
+                    <article class="posts-by-cat_article-222">
+                    </article>
+
+                </div> -->
+                <?php echo $data['description']; ?>
+
+
+
+                <!-- <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p> -->
+                    
                 </div>
-                <div class="tab-pane" id="tags" role="tabpanel">
-                                        <a href="#" class="nav">gthd</a>
-                                        <a href="#" class="nav">hdhd</a>
-                                    </div>
-                <div class="tab-pane" id="specifications" role="tabpanel">
-                     <div class="row">
-                        <p><span xss=removed>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</span><br></p>                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -465,7 +492,7 @@
             <?php foreach ($related_produk as $related): ?>
                 <div class="item">
                 <center> 
-                    <h6><?php echo $related['nama_produk']; ?></h6> 
+                    <h6><?php echo $related['sku']; ?></h6> 
                 </center><!--sku-->
                         <div class="item_inner">
                             <div class="item_image">
@@ -474,7 +501,7 @@
                                 </a>
                             </div>  
                             <div class="item_info">
-                                <h6><?php echo $related['nama_produk']; ?><br/><!--sku-->
+                                <h6><?php echo $related['sku']; ?><br/><!--sku-->
                                 3P 4500A 400VAC<br/>
                                 SNI</h6>
 
@@ -565,9 +592,13 @@ echo "Rp " . number_format($angka,2,',','.');
             
 
 $('.add_cart').on('click', function () {
+
         var cart = $('.shopping-cart');
         var imgtodrag = $('.tab-content').find("img").eq(0);
         if (imgtodrag) {
+            // $('.preloader').html("<img src='<?php echo base_url(); ?>assets/website/image/loader.gif'>");
+
+
             var imgclone = imgtodrag.clone()
                 .offset({
                 top: imgtodrag.offset().top,
@@ -576,23 +607,22 @@ $('.add_cart').on('click', function () {
                 .css({
                 'opacity': '0.5',
                     'position': 'absolute',
-                    'height': '300px',
-                    'width': '300px',
+                    
                     'z-index': '99999'
             })
                 .appendTo($('body'))
                 .animate({
                 'top': cart.offset().top + 10,
                     'left': cart.offset().left + 10,
-                    'width': 75,
-                    'height': 75
+                    'width': 100,
+                    'height': 100
             }, 1000, 'easeInOutExpo');
             
             setTimeout(function () {
                 cart.effect("shake", {
                     times: 2
                 }, 200);
-            }, 1500);
+            }, 500);
 
             imgclone.animate({
                 'width': 0,
@@ -604,6 +634,16 @@ $('.add_cart').on('click', function () {
     });
         </script>
 
+        <script type="text/javascript">
+        $(".desc-article-open").click(function() {
+            $('.desc article').toggleClass("expand");
+            // $(this).hide();
+            // $('desc-article-close').css('display': '-webkit-box');
+
+        })
+
+       
+        </script>
 
     </body>
 

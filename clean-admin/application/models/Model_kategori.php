@@ -35,6 +35,12 @@ class Model_kategori extends CI_Model
 		$query = $this->db->get_where('t_kategori',$where);
 		return $query->result_array();
 	}
+
+	function get_data($id){
+		$this->db->where('id',$id);
+		$query = $this->db->get('t_kategori');
+		return $query->result();
+	}
     
 
 

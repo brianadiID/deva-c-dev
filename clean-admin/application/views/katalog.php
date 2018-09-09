@@ -162,10 +162,10 @@
                 
                 <div class="col-lg-9 offset-lg-3">
                 <div style="text-align: center;margin-top: 15px;margin-bottom: 50px;">
-                    <h2 style="font-weight: bold;">Katalog <?php echo $breadcumb; ?></h2>
+                    <h2 style="font-weight: bold;">List <?php echo $breadcumb; ?></h2>
                         <br>    
 
-                    <h6 style="color: #9E9E9E;">Produk ` <b><?Php echo $nama_produk;?></b> `ditemukan  <b><?Php echo $jumlah_hasil;?></b> Hasil.</h6>   
+                    <h6 style="color: #9E9E9E;">Produk ` <b><?Php echo $sku;?></b> `ditemukan  <b><?Php echo $jumlah_hasil;?></b> Hasil.</h6>   
 
                     <!-- <h6 style="color: #9E9E9E;">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h6>   --> 
                 </div>
@@ -184,11 +184,11 @@
                             <div class="item item_shadow">
                                 <div class="item_image">
                                       <a href=" <?php echo base_url().'detail_produk/id_produk/';?><?php echo $data_produk['id'];?>">
-                                       <img src="<?php echo base_url()?>/isshue-v1.1/my-assets/image/product/thumb/add026407e1947b8c9a40e7359de21a8.jpg" alt="product-image">
+                                       <img src="<?php echo base_url()?>my-assets/image/product/thumb/<?php echo $data_produk['gambar_produk'] ?>" alt="product-image">
                                     </a>
                                 </div>
                                 <div class="item_info">
-                                    <h6 style="font-weight: bold;"><?php echo $data_produk['nama_produk']; ?> </h6>
+                                    <h6 style="font-weight: bold;"><?php echo $data_produk['sku']; ?> </h6>
                                     <p style="color: #D5D5D5;text-align: center; font-size: small;margin-bottom: 8px; ">Manager Contractor - Sneicher Electrict (TeSys D) - DOL (Direct Online) - 3 Poles (3P) - Rated Power </p>
                                    
                                     

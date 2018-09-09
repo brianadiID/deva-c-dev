@@ -40,4 +40,9 @@ class Brand_model extends CI_Model
 		$query = $this->db->get_where('t_brand',$where);
 		return $query->result();
 	}
+	function get_where($id){
+		$this->db->where('id',$id);
+		$query = $this->db->get('t_brand');
+		return $query->result();
+	}
 }

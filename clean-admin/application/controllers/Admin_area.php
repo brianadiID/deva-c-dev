@@ -11,6 +11,8 @@ class Admin_area extends CI_Controller {
         $this->load->model('admin/Brand_model');
         $this->load->model('admin/Type_user_model');
         $this->load->model('admin/Customer_model');
+        $this->load->model('admin/Product_model');
+        $this->load->model('admin/Coupon_model');
         $this->load->library('upload');
         // cek login
         
@@ -703,12 +705,229 @@ class Admin_area extends CI_Controller {
 // produk
     
     function produk(){
-         $data['action'] = $this->input->get('action');
+        $data['data_kategori'] = $this->Category_model->read();
+        $data['data_brand'] = $this->Brand_model->read();
+        $data['data_produk'] = $this->Product_model->read();
+        // print_r($data['data_produk']);
+
+        $data['action'] = $this->input->get('action');
         $data['status_action'] = $this->session->flashdata('status_action');
-        $this->load->view('admin/produk',$data); 
+        
+         // Edit Data
+           if($this->input->get('id')){
+                $id = $this->input->get('id');
+
+                $data['data_produk_edit'] = $this->Product_model->get_data($id);
+
+                $this->load->view('admin/produk',$data); 
+
+           }else{
+                $this->load->view('admin/produk',$data);        
+           }
         
     }
     
+    function create_produk(){
+
+
+        $config['upload_path'] = './my-assets/image/product/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+
+        if(!empty($_FILES['gambar_produk']['name'])){
+         
+                    if ($this->upload->do_upload('gambar_produk')){
+                        $gbr = $this->upload->data();
+                        //Compress Image
+                        $config['image_library']='gd2';
+                        $config['source_image']='./my-assets/image/product/'.$gbr['file_name'];
+                        $config['create_thumb']= false;
+                        $config['maintain_ratio']= FALSE;
+                        $config['quality']= '80%';
+                        $config['width']= 300;
+                        $config['height']= 300;
+                        $config['new_image']= './my-assets/image/product/thumb/'.$gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+         
+                        $gambar=$gbr['file_name'];
+
+                        $data = array(
+                            'sku' => $this->input->post('sku'),
+                            'short_deskripsi' => $this->input->post('short'),
+                            'id_kategori' => $this->input->post('kategori'),
+                            'id_brand' => $this->input->post('brand'),
+                            'harga' => $this->input->post('harga'),
+                            'description' => $this->input->post('description'),
+                            'spesification' => $this->input->post('spesification'),
+                            'stok' => $this->input->post('stok'),
+                            'visible' => $this->input->post('visible'),
+                            'featured' => $this->input->post('featured'),
+                            'tags' => $this->input->post('tags'),
+                            'local_code'=> $this->input->post('local_code'),
+                            'gambar_produk' => $gambar
+
+                        );
+
+                        // Upload ke Database
+                        $this->Product_model->create($data);
+
+                        // Notif Succes
+                        $status_action = 'save';
+                        $this->session->set_flashdata('status_action', $status_action);
+                        redirect(base_url().'admin-area/produk');
+                        
+
+                    }
+                              
+                }else{
+                    // Buat data array to database
+                    $data = array(
+                        'sku' => $this->input->post('sku'),
+                        'short_deskripsi' => $this->input->post('short'),
+                        'id_kategori' => $this->input->post('kategori'),
+                        'id_brand' => $this->input->post('brand'),
+                        'harga' => $this->input->post('harga'),
+                        'description' => $this->input->post('description'),
+                        'spesification' => $this->input->post('spesification'),
+                        'stok' => $this->input->post('stok'),
+                        'visible' => $this->input->post('visible'),
+                        'featured' => $this->input->post('featured'),
+                        'tags' => $this->input->post('tags'),
+                        'local_code'=> $this->input->post('local_code')
+
+                    );   
+
+                    // Upload ke Database
+                    $this->Product_model->create($data);
+
+                    // Notif Succes
+                    $status_action = 'save';
+                    $this->session->set_flashdata('status_action', $status_action);
+                    redirect(base_url().'admin-area/produk');
+                }
+
+
+    }    
+
+    function update_produk(){
+        $config['upload_path'] = './my-assets/image/product/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $gambar_lama = $this->input->post('gambar_lama');
+        $id = $this->input->post('id');
+
+        $this->upload->initialize($config);
+
+        if(!empty($_FILES['gambar_produk']['name'])){
+         
+                    if ($this->upload->do_upload('gambar_produk')){
+                        $gbr = $this->upload->data();
+                        //Compress Image
+                        $config['image_library']='gd2';
+                        $config['source_image']='./my-assets/image/product/'.$gbr['file_name'];
+                        $config['create_thumb']= false;
+                        $config['maintain_ratio']= FALSE;
+                        $config['quality']= '80%';
+                        $config['width']= 300;
+                        $config['height']= 300;
+                        $config['new_image']= './my-assets/image/product/thumb/'.$gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+         
+                        $gambar=$gbr['file_name'];
+
+                        unlink("./my-assets/product/thumb/".$gambar_lama);
+                        unlink("./my-assets/product/".$gambar_lama);
+
+
+                        $data = array(
+                            'sku' => $this->input->post('sku'),
+                            'short_deskripsi' => $this->input->post('short'),
+                            'id_kategori' => $this->input->post('kategori'),
+                            'id_brand' => $this->input->post('brand'),
+                            'harga' => $this->input->post('harga'),
+                            'description' => $this->input->post('description'),
+                            'spesification' => $this->input->post('spesification'),
+                            'stok' => $this->input->post('stok'),
+                            'visible' => $this->input->post('visible'),
+                            'featured' => $this->input->post('featured'),
+                            'tags' => $this->input->post('tags'),
+                            'local_code'=> $this->input->post('local_code'),
+                            'gambar_produk' => $gambar
+
+                        );
+
+
+                        // Upload ke Database
+                        $this->Product_model->update($id,$data);
+
+                        // Notif Succes
+                        $status_action = 'update';
+                        $this->session->set_flashdata('status_action', $status_action);
+                        redirect(base_url().'admin-area/produk');
+                        
+
+                    }
+                              
+                }else{
+                    // Buat data array to database
+                    $data = array(
+                        'sku' => $this->input->post('sku'),
+                        'short_deskripsi' => $this->input->post('short'),
+                        'id_kategori' => $this->input->post('kategori'),
+                        'id_brand' => $this->input->post('brand'),
+                        'harga' => $this->input->post('harga'),
+                        'description' => $this->input->post('description'),
+                        'spesification' => $this->input->post('spesification'),
+                        'stok' => $this->input->post('stok'),
+                        'visible' => $this->input->post('visible'),
+                        'featured' => $this->input->post('featured'),
+                        'tags' => $this->input->post('tags'),
+                        'local_code'=> $this->input->post('local_code')
+
+                    );   
+
+                    // Upload ke Database
+                    $this->Product_model->update($id,$data);
+
+                    // Notif Succes
+                    $status_action = 'update';
+                    $this->session->set_flashdata('status_action', $status_action);
+                    redirect(base_url().'admin-area/produk');
+                }
+    }
+
+    function delete_produk(){
+        $id    = $this->input->post("id");
+        $photo = $this->input->post("photo");
+
+        if(file_exists("./my-assets/image/product/".$photo)){
+
+            if($photo != ''){
+            unlink("./my-assets/image/product/".$photo);
+            unlink("./my-assets/image/product/thumb/".$photo);
+            $this->Product_model->delete($id);
+
+            }else{
+                $this->Product_model->delete($id);
+            }
+            
+        }else{
+           
+                $this->Product_model->delete($id);
+            
+        }
+        
+
+        
+        
+
+        echo "{}";
+    }
 // end produk
 
 
@@ -1232,6 +1451,198 @@ class Admin_area extends CI_Controller {
     }
 
 // End Type User Managemen 
+
+
+// Coupon Management
+    function coupon(){
+        $data['action'] = $this->input->get('action');
+        $data['status_action'] = $this->session->flashdata('status_action');
+        $data['data_coupon'] = $this->Coupon_model->read();
+       
+
+
+       // Edit Data
+
+       if($this->input->get('id')){
+            $id = $this->input->get('id');
+          
+
+            $data['data_coupon_edit'] = $this->Coupon_model->get_data($id);
+         
+
+            // print_r($data['data_coupon_edit']);
+
+             $this->load->view('admin/coupon',$data);
+      
+
+       }else{
+       $this->load->view('admin/coupon',$data);
+                   
+       }
+
+    }
+
+
+    function create_coupon(){
+        
+
+        // ==============
+
+   
+
+        $config['upload_path'] = './my-assets/image/coupon/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload('gambar')){
+                        $gbr = $this->upload->data();
+                        //Compress Image
+                        $config['image_library']='gd2';
+                        $config['source_image']='./my-assets/image/coupon/'.$gbr['file_name'];
+                        $config['create_thumb']= FALSE;
+                        $config['maintain_ratio']= TRUE;
+                        $config['quality']= '50%';
+                        $config['width']= 600;
+                        // $config['height']= 400;
+                        $config['new_image']= './my-assets/image/coupon/'.$gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+         
+                        $gambar=$gbr['file_name'];
+
+                        $data = array (
+                            'judul_coupon' =>$this->input->post('judul_coupon'),
+                            'coupon_code' =>$this->input->post('code_coupon'),
+                            'discount' =>$this->input->post('discount'),
+                            'tanggal_aktif' =>date('Y-m-d', strtotime($this->input->post('waktu_aktif'))),
+                            'tanggal_selesai' =>date('Y-m-d', strtotime($this->input->post('waktu_berakhir'))),
+                            'status' =>$this->input->post('status'),
+                            'gambar' =>$gambar,
+                            'keterangan' =>$this->input->post('keterangan')
+                        );  
+
+                        // Upload ke Database
+                        $this->Coupon_model->create($data);
+
+                        // Notif Succes
+                        $status_action = 'save';
+                        $this->session->set_flashdata('status_action', $status_action);
+                        redirect(base_url().'admin-area/coupon');
+                        
+
+        }else{
+            echo "upload gambar gagal";
+        }
+    }
+
+    function update_coupon(){
+        $config['upload_path'] = './my-assets/image/coupon/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $gambar_lama = $this->input->post('gambar_lama');
+        $id = $this->input->post('id');
+
+        $this->upload->initialize($config);
+
+        if(!empty($_FILES['gambar_produk']['name'])){
+         
+                    if ($this->upload->do_upload('gambar_produk')){
+                        $gbr = $this->upload->data();
+                        //Compress Image
+                        $config['image_library']='gd2';
+                        $config['source_image']='./my-assets/image/coupon/'.$gbr['file_name'];
+                        $config['create_thumb']= false;
+                        $config['maintain_ratio']= FALSE;
+                        $config['quality']= '80%';
+                        $config['width']= 300;
+                        $config['height']= 300;
+                        $config['new_image']= './my-assets/image/product/coupon/'.$gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+         
+                        $gambar=$gbr['file_name'];
+
+                        // unlink("./my-assets/product/thumb/".$gambar_lama);
+                        unlink("./my-assets/coupon/".$gambar_lama);
+
+
+                        $data = array (
+                            'judul_coupon' =>$this->input->post('judul_coupon'),
+                            'coupon_code' =>$this->input->post('code_coupon'),
+                            'discount' =>$this->input->post('discount'),
+                            'tanggal_aktif' =>date('Y-m-d', strtotime($this->input->post('waktu_aktif'))),
+                            'tanggal_selesai' =>date('Y-m-d', strtotime($this->input->post('waktu_berakhir'))),
+                            'status' =>$this->input->post('status'),
+                            'gambar' =>$gambar,
+                            'keterangan' =>$this->input->post('keterangan')
+                        );  
+
+
+                        // Upload ke Database
+                        $this->Coupon_model->update($id,$data);
+
+                        // Notif Succes
+                        $status_action = 'update';
+                        $this->session->set_flashdata('status_action', $status_action);
+                        redirect(base_url().'admin-area/coupon');
+                        
+
+                    }
+                              
+                }else{
+                    // Buat data array to database
+                    $data = array (
+                            'judul_coupon' =>$this->input->post('judul_coupon'),
+                            'coupon_code' =>$this->input->post('code_coupon'),
+                            'discount' => $this->input->post('discount'),
+                            'tanggal_aktif' =>date('Y-m-d', strtotime($this->input->post('waktu_aktif'))),
+                            'tanggal_selesai' =>date('Y-m-d', strtotime($this->input->post('waktu_berakhir'))),
+                            'status' =>$this->input->post('status'),
+                            'keterangan' =>$this->input->post('keterangan')
+                        );  
+                    // Upload ke Database
+                    $this->Coupon_model->update($id,$data);
+
+                    // Notif Succes
+                    $status_action = 'update';
+                    $this->session->set_flashdata('status_action', $status_action);
+                    redirect(base_url().'admin-area/coupon');
+                }
+
+    }
+
+
+    function delete_coupon(){
+        $id    = $this->input->post("id");
+        $photo = $this->input->post("photo");
+
+        if(file_exists("./my-assets/image/coupon/".$photo)){
+
+            if($photo != ''){
+            unlink("./my-assets/image/coupon/".$photo);
+            // unlink("./my-assets/image/product/thumb/".$photo);
+            $this->Coupon_model->delete($id);
+
+            }else{
+                $this->Coupon_model->delete($id);
+            }
+            
+        }else{
+           
+                $this->Coupon_model->delete($id);
+            
+        }
+        
+
+        
+        
+
+        echo "{}";
+    }
+// End Coupon Management
 
 // Logout Action
 

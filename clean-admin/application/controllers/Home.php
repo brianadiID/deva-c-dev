@@ -7,6 +7,7 @@ class Home extends CI_Controller {
         $this->load->model('Crud_produk');
         $this->load->model('Model_kategori');
          $this->load->model('cart_model');
+         // $this->load->model('Product_model');
     }
 
 	public function index()
@@ -81,9 +82,27 @@ class Home extends CI_Controller {
 	function show_cart(){ //Fungsi untuk menampilkan Cart
 		$output = '';
 		$no = 0;
+
         $rows = count($this->cart->contents());
         $output .='<div class="cart-dropdown">';
 		foreach ($this->cart->contents() as $items) {
+
+			// $id_incart = $items['id'];
+		
+	        $cek_cart = $this->db->query("SELECT * from t_produk where id = $items[id] ")->num_rows();
+	        if($cek_cart == 0){
+	        	$data = array(
+					'rowid' => $items['rowid'], 
+					'qty' => 0, 
+				);
+				$this->cart->update($data);
+
+	        }
+
+
+
+			
+
 			$no++;
 			$output .='
             
@@ -94,7 +113,7 @@ class Home extends CI_Controller {
                     <div class="content">
                         <h4>'.$items['name'].'</h4>
                         <h6>Qty : '.$items['qty'].'</h6>
-                        <h6>Rp . '.number_format($items['price']).'</h6>
+                        <h6>Rp . '.number_format($items['price'])  .'</h6>
                     </div>
                     <div class="delete_box">
                         <a  id="'.$items['rowid'].'" class=" hapus_cart" name="7a10563a10f7c44814661c2a1d28fb4f">

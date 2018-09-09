@@ -8,7 +8,7 @@ class Crud_produk extends CI_Model
 	}
 
 	function create(){
-		$this->db->insert("t_produk",array("nama_produk"=>""));
+		$this->db->insert("t_produk",array("sku"=>""));
 		return $this->db->insert_id();
 	}
 
@@ -78,14 +78,14 @@ class Crud_produk extends CI_Model
 
 	function jumlah_data_search($value){  
 
-		$this->db->like('nama_produk',$value);
+		$this->db->like('sku',$value);
 		$query = $this->db->get('t_produk')->num_rows();
 		return $query;
 	} 
 
 	function jumlah_data_search_kategori($value,$kategori){  
 		$this->db->where('id_kategori', $kategori);
-		$this->db->like('nama_produk',$value);
+		$this->db->like('sku',$value);
 		$query = $this->db->get('t_produk')->num_rows();
 		return $query;
 	} 
@@ -112,26 +112,26 @@ class Crud_produk extends CI_Model
 
 
 
-	function data_search_nama_produk($number,$offset,$value){
+	function data_search_sku($number,$offset,$value){
 
 		if($offset == ''){
 			$offset = 0;
 		}	
-		return $query = $this->db->query("SELECT * FROM t_produk where nama_produk LIKE %$value% LIMIT $offset,$number")->result_array();   
+		return $query = $this->db->query("SELECT * FROM t_produk where sku LIKE %$value% LIMIT $offset,$number")->result_array();   
 
 	}
 
-	function data_search_nama_produk_like($number,$offset,$value){
+	function data_search_sku_like($number,$offset,$value){
 
-		$this->db->like('nama_produk',$value);
+		$this->db->like('sku',$value);
 		$query = $this->db->get('t_produk',$number,$offset)->result_array();
 		return $query;  
 
 	}
 
-	function data_search_nama_produk_like_where($number,$offset,$value,$kategori){
+	function data_search_sku_like_where($number,$offset,$value,$kategori){
 		$this->db->where('id_kategori', $kategori);
-		$this->db->like('nama_produk',$value);
+		$this->db->like('sku',$value);
 		$query = $this->db->get('t_produk',$number,$offset)->result_array();
 		return $query;  
 

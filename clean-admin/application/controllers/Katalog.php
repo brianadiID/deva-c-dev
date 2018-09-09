@@ -114,7 +114,7 @@ class Katalog extends CI_Controller {
             $config['per_page'] = 9;   
             $from = $this->uri->segment(4);
             $this->pagination->initialize($config);   
-            $data['produk'] = $this->Crud_produk->data_search_nama_produk_like($config['per_page'],$from,$value); 
+            $data['produk'] = $this->Crud_produk->data_search_sku_like($config['per_page'],$from,$value); 
             $data['breadcumb'] = "Produk di Semua Kategori";
 
         }else{
@@ -126,15 +126,21 @@ class Katalog extends CI_Controller {
             $config['per_page'] = 9;   
             $from = $this->uri->segment(4);
             $this->pagination->initialize($config);   
-            $data['produk'] = $this->Crud_produk->data_search_nama_produk_like_where($config['per_page'],$from,$value,$kategori_search);
-            $data['breadcumb'] = "Produk di Kategori ".$kategori_search ;
+            $data['produk'] = $this->Crud_produk->data_search_sku_like_where($config['per_page'],$from,$value,$kategori_search);
+
+            $data['kategori_nama'] = $this->Model_kategori->get_data($kategori_search);
+            foreach ($data['kategori_nama'] as $data_nama_kategori) {
+               
+            }
+
+            $data['breadcumb'] = "Produk di Kategori `".$data_nama_kategori->nama_kategori ."`";
 
         }  
         // End Pagination
 
         // Breadcumb / Navigation
                 
-                $data['nama_produk'] = $value;
+                $data['sku'] = $value;
                 $data['jumlah_hasil'] = $jumlah_data;
 
 

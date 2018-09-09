@@ -20,8 +20,44 @@
                         <!--search-->
                        
                         <div class="form-group" style=" float:left; margin-right:15px; ">
+                            <?php 
+                           
+                               
+                          function build_category_tree(&$output, $preselected, $parent=0, $indent=""){
 
-                            <select  class="form-control" id="" name="kategori" style="width:200px;" >
+                            $query = "SELECT id, nama_kategori FROM t_kategori WHERE id_parent = $parent  ";
+
+                                
+                               
+                            $konek =  mysqli_connect("localhost","root","","theklakklik");
+                            $sqls = mysqli_query($konek,$query);
+
+                            
+
+                              while ($row = mysqli_fetch_assoc($sqls)) {
+                                $selected = ($row["id"] == $preselected) ? "selected=\"selected\"" : "";
+                                 
+                                if($row["id"] != $parent){
+                                 
+                                 $output .= "<option value=\"" . $row["id"] . "\" " . $selected . ">" . $indent . $row["nama_kategori"] . "</option>";
+                                  build_category_tree($output, $preselected, $row["id"], $indent . "&nbsp;&nbsp");
+                                }
+                              }
+
+                            }
+                            ?>
+
+                            <?php 
+                            build_category_tree($rowategories, 0); 
+                            // if you want to preselect a value and start from some subcategory
+                            // build_category_tree($rowategories, 5, 2); 
+                            ?>
+                            <select  class="form-control" id="" name="kategori" style="width:200px;">
+                              <option value="0">SEMUA KATEGORI</option> 
+                              <?php echo $rowategories ?>
+                            </select>
+
+                            <!-- <select  class="form-control" id="" name="kategori" style="width:200px;" >
                                 
                                 <option value="0">All Categories</option>
 
@@ -31,7 +67,7 @@
 
                                     <?php endforeach ?>   
                             </select>
-
+ -->
 
 
                         </div>

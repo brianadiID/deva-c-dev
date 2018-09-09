@@ -7,6 +7,10 @@
                         <div class="dropdown-toggle menu_part" >
                         <span>CATEGORIES</span><!--<i class="fa fa-chevron-down"></i>-->
                         </div>
+
+                        <style type="text/css">
+                          
+                        </style>
          
                         <div id='cssmenu'>
                           <?php 
@@ -37,13 +41,15 @@
 
                             if (mysqli_num_rows($sql_cek) > 0){
                                  $strmenu .= '<li class="has-sub">'; 
+                                 $strmenu .= sprintf("<a href='' style='font-weight:bold;' tabindex='999' title='%s'>%s<span class='caret'></span></a>", $row['id'], $row['nama_kategori'], $row['nama_kategori']);
                             }else{
-                              $strmenu .= '<li class="">'; 
+                              $strmenu .= '<li class="nosub">'; 
+                              $strmenu .= sprintf("<a  href='' tabindex='999' title='%s'>%s<span class='caret'></span></a>", $row['id'], $row['nama_kategori'], $row['nama_kategori']);
                             }
                               
                             
                              
-                              $strmenu .= sprintf("<a href='' tabindex='999' title='%s'>%s<span class='caret'></span></a>", $row['id'], $row['nama_kategori'], $row['nama_kategori']);
+                            
 
                              html_menu($strmenu, $row['id']);
                               $strmenu .= "</li>";
