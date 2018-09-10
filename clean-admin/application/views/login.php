@@ -275,7 +275,7 @@
      <div class="container">
         <h1 class="m-4" style="font-size: 1.55rem;">Selamat datang di Theklakklik! Silahkan login.</h1>
         </div>
-   <form>
+   <form >
     <div class="container p-5" style="background:white;">
         <div class="row">
             <div class="col-lg-6">
@@ -392,6 +392,36 @@
         <!-- Simple Share js -->
         <script src="<?php echo base_url().'assets/website/js/jquery.simpleSocialShare.min.js'?>"></script>
 
+        
+        
+        <!--cek pass-->
+        
+        <script> 
+                 $(document).ready(function() {
+              $('#frm-login').validate({
+                rules: {
+                  pass2: {
+                    equalTo: "#pass1"
+                  }
+                },
+                messages: {
+                  pass2: {
+                    equalTo: "<p>Password yang Anda Masukan Tidak Sama</p>"
+                  }
+                }
+              });
+            });
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <!-- Custom scripts for this template -->
         <script src="<?php echo base_url().'assets/website/js/theme.js'?>"></script>
 

@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12">
-                                <input class="form-control" type="password" value="<?php echo set_value('password'); ?>"" placeholder="Password" name="password" > 
+                                <input class="form-control" type="password" value="<?php echo set_value('password'); ?>" placeholder="Password" name="password" > 
                                 <div class="form_error">
                                   <?php echo form_error('password');?>
                                 </div>

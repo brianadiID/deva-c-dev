@@ -1,4 +1,9 @@
-
+<!--cek password-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
+<style type="text/css">
+			.error {color:red; }
+		</style>
+<!---->
 
 
 <div class="header_main">
@@ -251,7 +256,7 @@
                                 </button>
                               </div>
                               <div class="modal-body">
-                                  <form class="" action="<?php echo base_url('customer/register'); ?>" method="post" enctype="multipart/form-data" novalidate>
+                                  <form class="" id="f-register" action="<?php echo base_url('customer/register'); ?>" method="post" enctype="multipart/form-data" novalidate>
                                 <div class="form-group">
                                   <input type="text" class="form-control" id="##" name="nama" placeholder="Nama">
                                 </div>
@@ -259,10 +264,10 @@
                                   <input type="text" class="form-control" id="##" name="email" placeholder="Email">
                                 </div>
                                   <div class="form-group">
-                                  <input type="password" class="form-control" id="##" name="password" placeholder="Password">
+                                  <input type="password" class="form-control" name="pass1" id="pass1"  required="" placeholder="Password">
                                 </div>
                                   <div class="form-group">
-                                  <input type="password" class="form-control" id="##" name="#####" placeholder="Ulangi password">
+                                  <input type="password" class="form-control" name="pass2" id="pswd2" required="" placeholder="Ulangi password">
                                 </div>
                                   <div class="form-group">
                                   <input type="text" class="form-control" id="##" name="perusahaan" placeholder="Perusahaan">
@@ -270,11 +275,17 @@
                                   <div class="form-group">
                                   <input type="text" class="form-control" id="##" name="no_telp" placeholder="No Telp">
                                   <input type="hidden" class="form-control" id="##" name="type_user" value="0" >
-                                  <input type="hidden" class="form-control" id="##" name="status" value="0" >
+                                  <input type="hidden" class="form-control" id="##" name="status" value="1" >
                                 </div>
                                   <div class="form-group">
                                       <div class="row">
-                                    <div class="col-1"><input style="width: 22px;" type="checkbox" class="form-control" id="##" name="#####" ></div>
+                                    <div class="col-1">
+                                        
+                                        <input style="width: 22px;" type="checkbox" class="form-control" id="##" name="#####" >
+                                        
+                                        
+                                          
+                                          </div>
                                     <div class="col" style="padding-top: 5px;"><label class="black"> By Sign up i agree with <b>Terms And Condition</b></label></div>
                                     
                                       
@@ -301,8 +312,26 @@
                 </div>
 
 
-                <html>
 
+        <!--cek pass-->
+        
+        <script> 
+                 $(document).ready(function() {
+              $('#f-register').validate({
+                rules: {
+                  pass2: {
+                    equalTo: "#pass1"
+                  }
+                },
+                messages: {
+                  pass2: {
+                    equalTo: "<p>Password yang Anda Masukan Tidak Sama</p>"
+                  }
+                }
+              });
+            });
+        </script>
+        
   
   <script>
     function onSuccess(googleUser) {
