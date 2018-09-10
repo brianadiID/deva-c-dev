@@ -74,7 +74,11 @@ class Customer extends CI_Controller {
                         // Upload ke Database
                         $this->Customer_model->create($data);
                         //redirect
-        redirect(base_url());
+        redirect(base_url().'customer/login');
                         
+    }
+     function login(){
+        $this->load->view('login');
+        
     }
 }
