@@ -1,4 +1,4 @@
-<!--cek password-->
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
 <style type="text/css">
 			.error {color:red; }
@@ -7,14 +7,11 @@
 
 
 <div class="header_main">
+=======
+ <div class="header_main">
+>>>>>>> parent of 5c6f030... see comment
         <div class="container">
-            <div class="cart_area hidden-lg-up">
-            
-            </div>    
-            
-            
             <nav class="navbar navbar-toggleable-md row m0 navbar-light">
-                
                 <button class="navbar-toggler navbar-toggler-right" id="open">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -101,30 +98,6 @@
                                 overflow: scroll;
                                 overflow-x: hidden;
                                      }
-                        
-                        .modal-header{
-                                color: white;
-                                background: #22DF00;
-                                padding-left: 33%;
-                        }
-                        .modal-body{
-                            padding: 50px;
-                        }
-                        .w100{
-                            width: 100%;
-                        }
-                        
-                        .abcRioButtonBlue{
-                            background-color: #f3322c;
-                            border: none;
-                            color: #fff;
-                            margin-top: 25px;
-                            width:100%;
-                        }
-                        .black{
-                            color:black;
-                        }
-                        
                     
                     </style>
                     <style>
@@ -176,51 +149,48 @@
                     <div class="cart_area hidden-md-down">
                         <!--<a href="#" class="account_btn" data-toggle="modal" data-target="#login_box"><i class="fa fa-user-o"></i>Login<br>Register</a>-->
                         
-                        <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modallogin" role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
+                        <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#login_box" role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
                             <i class="fa fa-user-o"></i>
                             <span class="cart-text">Login </span>
+                           
+                          
                         </a>
                         
                         
-                        
-                        <!---->
-                        <!-- Button trigger modal -->
-                       
-                        
-                        
-                        
-                        
-                        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-                        
-                    </div>
-                    <!-- Modal login -->
-                        <div class="modal fade" id="modallogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Login to Theklakklik</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="form-group">
-                                  <input type="text" class="form-control" id="email" name="email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                  <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col">
-                                            <button type="button" class="btn btn-success w100">Login</button>
-                                        </div>
-                                        <div class="col">
-                                            
-                                            
-                                            <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button" data-dismiss="modallogin" class="btn btn-danger w100">Register</button></a>
-                                        </div>
+                        <div class="modal fade" id="login_box" >
+                            <div class="modal-dialog">
+                                <a class="hiddenanchor" id="toregister"></a>
+                                <a class="hiddenanchor" id="tologin"></a>
+                                <div id="login_inner">
+                                    <div id="login" class="animate form">
+                                        <h2 class="box_heading">Login</h2>
+
+                                        <form action="http://isshue.bdtask.com/isshue-v1.5/do_login" method="post">
+
+                                            <div class="input_area"> 
+                                                <label for="email" class="uname" data-icon="u" >
+                                                    <i class="fa fa-envelope"></i>
+                                                </label>
+                                                <input type="email" placeholder="Email" name="email" required id="email" value="">
+                                            </div>
+
+                                            <div class="input_area"> 
+                                                <label for="password" class="youpasswd" data-icon="p"> <i class="fa fa-lock"></i></label>
+                                               <input type="password" placeholder="Password" name="password" required>
+                                            </div>
+                                             <div class="forgetpw"> 
+                                                <a href="#">I have forgot my password</a>
+                                            </div> 
+                                            <div class="login_btn"> 
+                                                <input type="submit" value="Login">
+                                            </div>
+                                            <div class="change_link">
+                                                No a member yet ?                                                <a href="#toregister" class="to_register">Sign Up</a>
+                                            </div>
+
+                                        </form>
                                     </div>
+<<<<<<< HEAD
                                 </div>  
                                   <div style="width: 100%;
                                               height: 20px; border-bottom: 1px solid black;
@@ -301,17 +271,44 @@
                                             
                                             <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button"  data-dismiss="modal" aria-label="Close" class="btn btn-primary w100">Sudah Punya Akun?</button></a>
                                         </div>
+=======
+
+                                    <div id="register" class="animate form">
+                                        <h2 class="box_heading">Sign Up</h2> 
+                                        <form action="http://isshue.bdtask.com/isshue-v1.5/user_signup" method="post"> 
+                                            <div class="input_area"> 
+                                                <label for="usernamesignup" class="uname" data-icon="u"><i class="fa fa-user"></i></label>
+                                                <input type="text" name="first_name" placeholder="First Name" required>
+                                            </div>
+                                            <div class="input_area"> 
+                                                <label for="emailsignup" class="youmail" data-icon="e" ><i class="fa fa-user"></i></label>
+                                                <input type="text" name="last_name" placeholder="Last Name" required>
+                                            </div>
+                                            <div class="input_area"> 
+                                                <label for="passwordsignup" class="youpasswd" data-icon="p"><i class="fa fa-envelope"></i></label>
+                                                <input type="email" name="email" placeholder="Email" required>
+                                            </div>
+                                            <div class="input_area"> 
+                                                <label for="password" class="youpasswd" data-icon="p"><i class="fa fa-lock"></i></label>
+                                                <input type="password" name="password" placeholder="Password" required>
+                                            </div>
+                                            <div class="login_btn"> 
+                                                <input type="submit" value="Sign Up"> 
+                                            </div>
+                                            <div class="change_link">  
+                                                Already a member ?                                                <a href="#tologin" class="to_register">Login</a>
+                                            </div>
+                                        </form>
+>>>>>>> parent of 5c6f030... see comment
                                     </div>
-                                      </div> </form>
-                              </div>
-                              
+                                </div>
                             </div>
-                          </div>
-                        </div>
-                        <!--./-->
+                        </div>  
+                    </div>
                 </div>
 
 
+<<<<<<< HEAD
 
         <!--cek pass-->
         
@@ -359,6 +356,8 @@
                 
                 
                 
+=======
+>>>>>>> parent of 5c6f030... see comment
                  <!--========= Mobile Menu =========-->
                 <div class="mobilemenu">
                     <div id="mySidenav" class="sidenav">
