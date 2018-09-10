@@ -270,7 +270,7 @@
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
-                                <label for="exampleFormControlSelect1">Nomor Telepon</label>
+                                <label for="exampleFormControlSelect1">Kurir</label>
                                 <select id="kurir" class="form-control" name="kurir">
                                     <option value="jne">JNE</option>
                                     <option value="tiki">TIKI</option>
@@ -307,9 +307,25 @@
                                 <input id="berat" type="text" class="form-control" name="berat" value="500" />
 
                             </div>
+                            <div class="col-lg-6 col-12">
+                            <button type="button" class="btn btn-default" id="cek" style="width: 90%;border-radius: 25px;height: 20px;">CEK ONGKIR</button>
+
+                                
+
+                            </div>
+
+                            <div class="col-lg-6">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">Nomor Telepon</label>
+                                <select id="kurir" class="form-control" name="kurir">
+                                    <option value="jne">JNE</option>
+                                    <option value="tiki">TIKI</option>
+                                    <option value="pos">POS INDONESIA</option>
+                                </select>
+                              </div>
+                          </div>
                         </div>
 
-                        <div id="ongkir"></div>
                          
                           
                         </form>
@@ -319,6 +335,7 @@
                 </div>
                 <div class="col-lg-4 col-12">
                     <div style="margin-top: 12px;min-height: 500px;background:#fff;padding: 40px;">
+                        <div id="ongkir"></div>
                     </div>
                     
                 </div>
@@ -594,14 +611,14 @@
  
         $("#cek").click(function(){
             //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
-            var asal = $('#asal').val();
-            var kab = $('#kabupaten').val();
+            var asal = 154;
+            var kab = $('#kota').val();
             var kurir = $('#kurir').val();
             var berat = $('#berat').val();
  
             $.ajax({
                 type : 'POST',
-                url : 'http://localhost/rajaongkir/cek_ongkir.php',
+                url : '<?php echo base_url(); ?>shipping/cek_ongkir',
                 data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
                     success: function (data) {
  
