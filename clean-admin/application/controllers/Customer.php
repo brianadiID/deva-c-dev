@@ -6,6 +6,7 @@ class Customer extends CI_Controller {
         parent::__construct();
         $this->load->model('Crud_produk');
         $this->load->model('Model_kategori');
+           $this->load->model('admin/Customer_model');
     }
 
 	public function index()
@@ -56,7 +57,7 @@ class Customer extends CI_Controller {
         
         
     }
-<<<<<<< HEAD
+
     
     function register(){
          $data = array(
@@ -81,6 +82,5 @@ class Customer extends CI_Controller {
         $this->load->view('login');
         
     }
-=======
->>>>>>> parent of 5c6f030... see comment
+
 }
