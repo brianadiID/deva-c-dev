@@ -208,8 +208,11 @@
                 <div class="row db m0 product_info">
                     <ol class="breadcrumb m0 p0">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="../category_product/2BWYSR8D7XL4ORD.html">COMPUTING & GAMING</a></li>
-                        <li class="breadcrumb-item active">Mackbook</li>
+                        <li class="breadcrumb-item"><a href="../2BWYSR8D7XL4ORD.html">
+                            <?php foreach ($kategori_detail as $kategori_detail ): ?>
+                            <?php echo $kategori_detail['nama_kategori'];?>
+                            <?php endforeach ?></a></li>
+                        <li class="breadcrumb-item active"><?php echo $data['sku']; ?></li>
                     </ol>
 
 
@@ -270,9 +273,7 @@
                     <div class=""  style="padding-top: 34px;">
                         <span class="share-title"><b> Category : </b> <i class="color-gray">
 
-                        <?php foreach ($kategori_detail as $kategori_detail ): ?>
                             <?php echo $kategori_detail['nama_kategori'];?>
-                        <?php endforeach ?>
                             
                         </i> </span>
                     
@@ -480,7 +481,7 @@
         });
     });
 </script>
-        <style>
+<style>
         .slider_style .item .item_info{
             padding-bottom: 0px;
             }
@@ -506,7 +507,7 @@
                         <div class="item_inner">
                             <div class="item_image">
                                 <a href="<?php echo base_url().'detail_produk/id_produk/';?><?php echo $related['id']; ?>">
-                                    <img src="https://www.coleka.com/media/item/201707/13/pop-marvel-new-item.jpg" alt="product-image">
+                                    <img src="<?php echo base_url().'my-assets/image/product/thumb/'.$related['gambar_produk'];?>" alt="product-image">
                                 </a>
                             </div>  
                             <div class="item_info">
@@ -651,6 +652,83 @@ $('.add_cart').on('click', function () {
         })
 
        
+        </script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.add_cart_related').click(function(){
+                    var produk_id    = $(this).data("produkid");
+                    var produk_nama  = $(this).data("produknama");
+                    var produk_harga = $(this).data("produkharga");
+                    var gambar       = $(this).data("gambar");
+                  
+                    var qty          = $('#sst2').val();
+
+
+                   
+                    $.ajax({
+                        url : "<?php echo base_url();?>home/add_to_cart",
+                        method : "POST",
+                        data : {produk_id: produk_id, produk_nama: produk_nama, produk_harga: produk_harga, gambar:gambar,qty:qty},
+                        success: function(data){
+                            $('#detail_cart').html(data);
+                            $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                            $('#count_cart_checkout').load("<?php echo base_url();?>home/load_count");
+                            $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                            
+
+                        }
+                    });
+                });
+
+             
+
+            });
+        </script>
+
+        <script type="text/javascript">
+            
+
+$('.add_cart_related').on('click', function () {
+        var cart = $('.shopping-cart');
+        var id = $('data-produkid');
+        var imgtodrag = $('.item_image').find("img").eq(0);
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+            })
+                .css({
+                'opacity': '0.5',
+                    'position': 'absolute',
+                    'height': '150px',
+                    'width': '150px',
+                    'z-index': '99999'
+            })
+                .appendTo($('body'))
+                .animate({
+                'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+            }, 1000, 'easeInOutExpo');
+            
+            setTimeout(function () {
+                cart.effect("shake", {
+                    times: 2
+                }, 200);
+            }, 1500);
+
+            imgclone.animate({
+                'width': 0,
+                    'height': 0
+            }, function () {
+                $(this).detach()
+            });
+        }
+    });
         </script>
 
     </body>
