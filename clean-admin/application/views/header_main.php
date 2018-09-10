@@ -1,6 +1,15 @@
- <div class="header_main">
+
+
+
+<div class="header_main">
         <div class="container">
+            <div class="cart_area hidden-lg-up">
+            
+            </div>    
+            
+            
             <nav class="navbar navbar-toggleable-md row m0 navbar-light">
+                
                 <button class="navbar-toggler navbar-toggler-right" id="open">
                     <i class="fa fa-bars"></i>
                 </button>
@@ -87,6 +96,30 @@
                                 overflow: scroll;
                                 overflow-x: hidden;
                                      }
+                        
+                        .modal-header{
+                                color: white;
+                                background: #22DF00;
+                                padding-left: 33%;
+                        }
+                        .modal-body{
+                            padding: 50px;
+                        }
+                        .w100{
+                            width: 100%;
+                        }
+                        
+                        .abcRioButtonBlue{
+                            background-color: #f3322c;
+                            border: none;
+                            color: #fff;
+                            margin-top: 25px;
+                            width:100%;
+                        }
+                        .black{
+                            color:black;
+                        }
+                        
                     
                     </style>
                     <style>
@@ -138,82 +171,165 @@
                     <div class="cart_area hidden-md-down">
                         <!--<a href="#" class="account_btn" data-toggle="modal" data-target="#login_box"><i class="fa fa-user-o"></i>Login<br>Register</a>-->
                         
-                        <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#login_box" role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
+                        <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modallogin" role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
                             <i class="fa fa-user-o"></i>
                             <span class="cart-text">Login </span>
-                           
-                          
                         </a>
                         
                         
-                        <div class="modal fade" id="login_box" >
-                            <div class="modal-dialog">
-                                <a class="hiddenanchor" id="toregister"></a>
-                                <a class="hiddenanchor" id="tologin"></a>
-                                <div id="login_inner">
-                                    <div id="login" class="animate form">
-                                        <h2 class="box_heading">Login</h2>
-
-                                        <form action="http://isshue.bdtask.com/isshue-v1.5/do_login" method="post">
-
-                                            <div class="input_area"> 
-                                                <label for="email" class="uname" data-icon="u" >
-                                                    <i class="fa fa-envelope"></i>
-                                                </label>
-                                                <input type="email" placeholder="Email" name="email" required id="email" value="">
-                                            </div>
-
-                                            <div class="input_area"> 
-                                                <label for="password" class="youpasswd" data-icon="p"> <i class="fa fa-lock"></i></label>
-                                               <input type="password" placeholder="Password" name="password" required>
-                                            </div>
-                                             <div class="forgetpw"> 
-                                                <a href="#">I have forgot my password</a>
-                                            </div> 
-                                            <div class="login_btn"> 
-                                                <input type="submit" value="Login">
-                                            </div>
-                                            <div class="change_link">
-                                                No a member yet ?                                                <a href="#toregister" class="to_register">Sign Up</a>
-                                            </div>
-
-                                        </form>
-                                    </div>
-
-                                    <div id="register" class="animate form">
-                                        <h2 class="box_heading">Sign Up</h2> 
-                                        <form action="http://isshue.bdtask.com/isshue-v1.5/user_signup" method="post"> 
-                                            <div class="input_area"> 
-                                                <label for="usernamesignup" class="uname" data-icon="u"><i class="fa fa-user"></i></label>
-                                                <input type="text" name="first_name" placeholder="First Name" required>
-                                            </div>
-                                            <div class="input_area"> 
-                                                <label for="emailsignup" class="youmail" data-icon="e" ><i class="fa fa-user"></i></label>
-                                                <input type="text" name="last_name" placeholder="Last Name" required>
-                                            </div>
-                                            <div class="input_area"> 
-                                                <label for="passwordsignup" class="youpasswd" data-icon="p"><i class="fa fa-envelope"></i></label>
-                                                <input type="email" name="email" placeholder="Email" required>
-                                            </div>
-                                            <div class="input_area"> 
-                                                <label for="password" class="youpasswd" data-icon="p"><i class="fa fa-lock"></i></label>
-                                                <input type="password" name="password" placeholder="Password" required>
-                                            </div>
-                                            <div class="login_btn"> 
-                                                <input type="submit" value="Sign Up"> 
-                                            </div>
-                                            <div class="change_link">  
-                                                Already a member ?                                                <a href="#tologin" class="to_register">Login</a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
+                        
+                        <!---->
+                        <!-- Button trigger modal -->
+                       
+                        
+                        
+                        
+                        
+                        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+                        
                     </div>
+                    <!-- Modal login -->
+                        <div class="modal fade" id="modallogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Login to Theklakklik</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                  <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="button" class="btn btn-success w100">Login</button>
+                                        </div>
+                                        <div class="col">
+                                            
+                                            
+                                            <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button" data-dismiss="modallogin" class="btn btn-danger w100">Register</button></a>
+                                        </div>
+                                    </div>
+                                </div>  
+                                  <div style="width: 100%;
+                                              height: 20px; border-bottom: 1px solid black;
+                                              text-align: center">
+                                      <span style="    font-size: 22px;
+                                                        background-color: #ffffff;
+                                                        padding: 0 10px;
+                                                        color:black;">
+                                        Or Log in with <!--Padding is optional-->
+                                      </span>
+                                 </div>
+                                  <div class="form-group">
+                                    <div class="w100" id="my-signin2"></div>
+                                   </div>   
+                                  <a href="">Lupa password?</a>
+                              </div>
+                              <!--<div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                              </div>-->
+                            </div>
+                          </div>
+                        </div>
+                        <!--./-->
+                    <!-- Modal register -->
+                        <div class="modal fade" id="modalregister" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Register to Theklakklik</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  <form class="" action="<?php echo base_url('customer/register'); ?>" method="post" enctype="multipart/form-data" novalidate>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="##" name="nama" placeholder="Nama">
+                                </div>
+                                  <div class="form-group">
+                                  <input type="text" class="form-control" id="##" name="email" placeholder="Email">
+                                </div>
+                                  <div class="form-group">
+                                  <input type="password" class="form-control" id="##" name="password" placeholder="Password">
+                                </div>
+                                  <div class="form-group">
+                                  <input type="password" class="form-control" id="##" name="#####" placeholder="Ulangi password">
+                                </div>
+                                  <div class="form-group">
+                                  <input type="text" class="form-control" id="##" name="perusahaan" placeholder="Perusahaan">
+                                </div>
+                                  <div class="form-group">
+                                  <input type="text" class="form-control" id="##" name="no_telp" placeholder="No Telp">
+                                  <input type="hidden" class="form-control" id="##" name="type_user" value="0" >
+                                  <input type="hidden" class="form-control" id="##" name="status" value="0" >
+                                </div>
+                                  <div class="form-group">
+                                      <div class="row">
+                                    <div class="col-1"><input style="width: 22px;" type="checkbox" class="form-control" id="##" name="#####" ></div>
+                                    <div class="col" style="padding-top: 5px;"><label class="black"> By Sign up i agree with <b>Terms And Condition</b></label></div>
+                                    
+                                      
+                                      </div>
+                                </div>
+                                  <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-success w100">Register</button>
+                                        </div>
+                                        <div class="col">
+                                            
+                                            
+                                            <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button"  data-dismiss="modal" aria-label="Close" class="btn btn-primary w100">Sudah Punya Akun?</button></a>
+                                        </div>
+                                    </div>
+                                      </div> </form>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <!--./-->
                 </div>
 
 
+                <html>
+
+  
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width':350,
+        'height': 50,
+          
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+                
+                
+                
                  <!--========= Mobile Menu =========-->
                 <div class="mobilemenu">
                     <div id="mySidenav" class="sidenav">

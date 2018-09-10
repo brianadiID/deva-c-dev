@@ -6,6 +6,7 @@ class Customer extends CI_Controller {
         parent::__construct();
         $this->load->model('Crud_produk');
         $this->load->model('Model_kategori');
+         $this->load->model('admin/Customer_model');
     }
 
 	public function index()
@@ -55,5 +56,25 @@ class Customer extends CI_Controller {
         $this->load->view('Customer_cart',$data);
         
         
+    }
+    
+    function register(){
+         $data = array(
+                        'nama' => $this->input->post('nama'),
+                        'email' => $this->input->post('email'),
+                        'password' => md5($this->input->post('nama')),
+                        'perusahaan' => $this->input->post('perusahaan'),
+                        'level' => $this->input->post('type_user'),
+                        'status' => $this->input->post('status'),  
+                        'no_telp' => $this->input->post('no_telp')
+                        
+
+                        );   
+
+                        // Upload ke Database
+                        $this->Customer_model->create($data);
+                        //redirect
+        redirect(base_url());
+                        
     }
 }

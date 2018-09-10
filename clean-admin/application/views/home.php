@@ -195,17 +195,17 @@
             
             <div class="owl-carousel product_slider slider_style">
            <?php foreach ($produk  as $data_produk ): ?>
-            <div class="item">
+            <div class="item" style="    height:400px;">
             <center> 
                 <h6><?php echo $data_produk['sku'] ?></h6> 
             </center><!--sku-->
                     <div class="item_inner">
                         <div class="item_image" data-produkid="<?php echo $data_produk['id'] ?>">
                             <a href=" <?php echo base_url().'detail-produk/id-produk/';?><?php echo $data_produk['id'];?>">
-                            <img src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image">
+                            <img src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image" style=" max-height:212px;">
                             </a>
                             <input type="hidden" name="qty" id="sst" value="1">
-                            <button type="button" data-qty='1' data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $data_produk['harga'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
+                            
                             
 
                             
@@ -228,9 +228,11 @@
                         <div class="addtocard">
                                 <form action="#" method="post">
                                     <input type="hidden" value="1">
-                                    
+                                    <div class="item_image">
+                                        <img style="width:0px;top: -260px;" src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image">
+                                        
                                         <button type="button" data-qty='1' data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $data_produk['harga'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
-                                 
+                                    </div>
                                 </form>
                         </div>
                         </div>

