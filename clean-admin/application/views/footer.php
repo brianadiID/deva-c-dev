@@ -159,8 +159,11 @@
 
                 // Load shopping cart
                  $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                 $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
                  $('#count_cart').load("<?php echo base_url();?>home/load_count");
                  $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                 $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
+                 $('#total').load("<?php echo base_url();?>home/load_total");
                 
                 //Hapus Item Cart
                 $(document).on('click','.hapus_cart',function(){
@@ -172,9 +175,11 @@
                         success :function(){
                             // $('#detail_cart').html(data);
                             $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                            $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
 
                             $('#count_cart').load("<?php echo base_url();?>home/load_count");
                              $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                             $('#total').load("<?php echo base_url();?>home/load_total");
 
                         }
                     });

@@ -1,5 +1,5 @@
 <?php 
-	class Shipping extends CI_Controller{
+	class Checkout extends CI_Controller{
 		function __construct(){
         parent::__construct();
         $this->load->model('Crud_produk');
@@ -215,7 +215,7 @@
 		}
 
 
-		function checkout(){
+		function shipping(){
 		$data['province'] = $this->get_province();
 		$data['city'] = $this->get_city();
 		// $data['cost'] = $this->get_cost();
@@ -227,5 +227,16 @@
         
         $this->load->view('customer_checkout',$data);
         
+    	}
+
+    	function review_order(){
+    	$data['province'] = $this->get_province();
+		$data['city'] = $this->get_city();
+
+         
+        $data['cart']=$this->cart->contents();
+        $data['total']=number_format($this->cart->total());
+        	$this->load->view('review_order',$data);
+
     	}
 	}

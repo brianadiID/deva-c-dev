@@ -481,6 +481,7 @@
         });
     });
 </script>
+<<<<<<< HEAD
 <style>
         .slider_style .item .item_info{
             padding-bottom: 0px;
@@ -492,6 +493,8 @@
                     color: white;
             }
         </style>
+=======
+>>>>>>> parent of 5c6f030... see comment
 
 <!--========== Electronics Product Area ==========-->
 <section class="product_area wow fadeInUp">
@@ -502,8 +505,10 @@
             </div>
             <div class="owl-carousel product_slider slider_style">
             <?php foreach ($related_produk as $related): ?>
-                <div class="item" style="    border-radius: 15px;">
-               <!--sku-->
+                <div class="item">
+                <center> 
+                    <h6><?php echo $related['sku']; ?></h6> 
+                </center><!--sku-->
                         <div class="item_inner">
                             <div class="item_image">
                                 <a href="<?php echo base_url().'detail_produk/id_produk/';?><?php echo $related['id']; ?>">
@@ -511,8 +516,9 @@
                                 </a>
                             </div>  
                             <div class="item_info">
-                                <h6><?php echo $related['sku']; ?><!--sku-->
-                                </h6>
+                                <h6><?php echo $related['sku']; ?><br/><!--sku-->
+                                3P 4500A 400VAC<br/>
+                                SNI</h6>
 
 
 
@@ -529,7 +535,7 @@
                                         <form action="#" method="post">
                                             <input type="hidden" value="1">
                                             <a  href="product_details/56121385.html" style="font-size:15px;">
-                                                <button class="cart_button_gray button_add_chart btn-related"><i class="fa fa-shopping-cart"></i>  Beli</button>
+                                                <button class="cart_button_gray button_add_chart"><i class="fa fa-shopping-cart"></i>  Beli</button>
                                             </a>
                                         </form>
                                     </div>

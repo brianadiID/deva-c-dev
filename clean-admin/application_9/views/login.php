@@ -1,4 +1,4 @@
-
+<!--Default-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,7 @@
                 <meta name="author" content="BDTASK">
         <meta name="description" content="">
 
-        <title>Home</title>
+        <title>Login Page</title>
    
         <!-- Favicons --> 
         <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
@@ -55,16 +55,118 @@
 
         <!-- jquery-ui.min.js -->
         <script src="<?php echo base_url().'assets/website/vendor/jquery-ui/jquery-ui.min.js'?>" type="text/javascript"></script>
-        <!-- Addon -->
-        <!--<link rel="stylesheet" href="<?php echo base_url()?>assets/styles.css">-->
-        <!-- <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
-      <!--  <script src="<?php echo base_url()?>assets/script.js"></script>-->
+        
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+
+        <style type="text/css">
+            .slider_area .slider_inner.home2_slider{
+                margin-left: 0px; 
+            }
+            
+            .slider_style .owl-nav{
+                top:60px;
+               
+            }
+            .discount{
+                background-color:#20C507;
+                padding: 10px;
+                    
+                
+            }
+            .shadow {
+               -moz-box-shadow:    inset 0 0 10px #000000;
+               -webkit-box-shadow: inset 0 0 10px #000000;
+               box-shadow:         inset 0 0 10px #000000;
+            }
+            .pading-diskon{
+                background: #20C50E;
+                padding-left:41px;
+                padding-right:41px;
+            }
+            .slider_style .owl-nav .owl-prev {
+    border-radius: 50px;
+    left: 22rem;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #000;
+    margin: 0px 1095px;
+    transition: all 300ms linear 0s;
+    margin-left: -50px;
+            }
+            
+            .slider_style .owl-nav {
+    text-align: center;
+    top: 91px;
+    position: absolute;
+    right: -37px;
+                
+            }
+            .btn-kanan{
+                float: right;
+                height: 50px;
+            }
+            .btn-kanan:hover{
+                color:white;
+                background: black;
+            }
+            th{
+                background: #928d8d;
+                color: white;
+                text-align: center;
+            }
+            
+            .bg_red{
+              color: white;
+              background: red;
+            }
+            .bg_blue{
+              color: white;
+              background: blue;
+            }
+            .bg_yellow{
+              color: white;
+              background: yellow;
+            }
+            .bg_green{
+              color: white;
+              background: green;
+            }
+            .center{
+                    text-align: center;
+            }
+            
+            td{
+                padding: 35px;
+               border-bottom: 2px #b7b7b7 solid;
+            }
+            .radius{
+                border-radius: 50px;
+            }
+            
+            .table td, .table th{
+                vertical-align: middle;
+            }
+            
+            .max200{
+                
+                max-height:200px; 
+                
+            }
+            body{
+                background: #eff0f5;
+            }
+            
+            
+            
+        </style>
 
      
     
@@ -84,9 +186,7 @@
    <?php      $this->load->view('header_main');             ?> 
     
 
-    <!-- header bottom start -->
-<?php   $this->load->view('header');             ?> 
-    <!-- header bottom end -->
+   
 </header>
 <!--===== End Header Area =======-->
 
@@ -132,8 +232,8 @@
     </script>
 
 <!-- Product delete from cart by ajax -->
-<!-- <script type="text/javascript">
-    $('body').on('click', '.delete_cart_items', function() {
+<script type="text/javascript">
+    $('body').on('click', '.delete_cart_item', function() {
         var row_id  = $(this).attr('name');
         $.ajax({
             type: "post",
@@ -148,209 +248,100 @@
             }
         });
     });  
-</script>    -->        
-
-
-
- <!--========= Slider Area =======-->
-<section class="slider_area">
-    <div class="container">
+</script>           
+<style>
+    .box{
+        -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    height: 40px;
+    line-height: 38px \0;
+    padding: 0 35px 0 10px;
+    margin-bottom: 2px;
+    outline: none;
+    }
+    .c-login{
+        width: 100%;
+        height: 20px;
+        border-bottom: 1px solid black;
+        text-align: center;
+    }
+    
+        </style>
+ <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
+<!-- Content  -->
+     <div class="container">
+        <h1 class="m-4" style="font-size: 1.55rem;">Selamat datang di Theklakklik! Silahkan login.</h1>
+        </div>
+   <form >
+    <div class="container p-5" style="background:white;">
         <div class="row">
-            <div class="col-lg-9 offset-lg-3">
-                <div class="slider_inner home2_slider">
-                    <div class="owl-carousel main_slider">
-                                                <div class="item">
-                            <a href="bdtask.html" target="_blank">
-                                <img src="isshue-v1.1/my-assets/image/category/5fdf47c34c451273a40465dfce109c64.jpg"  alt="sliderImage">
-                            </a>
-                        </div>
-                                                <div class="item">
-                            <a href="bdtask.html" target="_blank">
-                                <img src="isshue-v1.1/my-assets/image/category/502bb75cae8a320dff057650900c7b8c.jpg"  alt="sliderImage">
-                            </a>
-                        </div>
-                                                <div class="item">
-                            <a href="http://www.styledunea.com/" target="_blank">
-                                <img src="isshue-v1.1/my-assets/image/category/7569c369997b5f0bf46e5416aab1e93c.jpg"  alt="sliderImage">
-                            </a>
-                        </div>
-                                            </div>    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!--======= End Slider Area =======-->
-<!--contentt-->
-
- 
-<!--========== Featured Product Area 1 ==========-->
-<section class="product_area wow fadeInUp">
-    <div class="container">
-        <div class="row db m0 product_inner">
-            <div class="heading">
-                <h2 class="bg_gray">Produk Populer</h2>
-            </div>
-            
-            
-            <div class="owl-carousel product_slider slider_style">
-           <?php foreach ($produk  as $data_produk ): ?>
-            <div class="item" style="    height:400px;">
-            <center> 
-                <h6><?php echo $data_produk['sku'] ?></h6> 
-            </center><!--sku-->
-                    <div class="item_inner">
-                        <div class="item_image" data-produkid="<?php echo $data_produk['id'] ?>">
-                            <a href=" <?php echo base_url().'detail-produk/id-produk/';?><?php echo $data_produk['id'];?>">
-                            <img src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image" style=" max-height:212px;">
-                            </a>
-                            <input type="hidden" name="qty" id="sst" value="1">
-                            
-                            
-
-                            
-                        </div>  
-                        <div class="item_info">
-                            <h6 style="overflow: hidden;max-height: 49px;min-height: 49px;"><?php echo $data_produk['sku'] ?><br/><!--sku-->
-                            <?php echo limit_words($data_produk['short_deskripsi'],7); ?>
-
-                            </h6>
-                            
-
-                            
-                            <div class="product_cost">
-                                <p class="current">
-
-                                   <?php  rupiah($data_produk['harga']); ?> </p>
-                               <!-- <p class="previous">
-                                    RP.274.000 </p>   Untuk diskon coret harga   -->
-                            </div>
-                        <div class="addtocard">
-                                <form action="#" method="post">
-                                    <input type="hidden" value="1">
-                                    <div class="item_image">
-                                        <img style="width:0px;top: -260px;" src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image">
-                                        
-                                        <button type="button" data-qty='1' data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $data_produk['harga'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
-                                    </div>
-                                </form>
-                        </div>
-                        </div>
-                   
-                        
-                    </div>
-                </div>
-               
-           <?php endforeach ?>
+            <div class="col-lg-6">
+                
+                  <div class="form-group">
+                    <label for="formGroupExampleInput">Masukan Email</label>
+                    <input type="text" class="form-control box" id="formGroupExampleInput" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Kata sandi</label>
+                    <input type="password" class="form-control box" id="formGroupExampleInput2" placeholder="Password">
+                  </div>
+                    <a href="#" style="float:right;">Lupa Kata sandi?</a>
              
-
-
-
-                            </div>
-        </div>
-    </div>
-</section>
-
-<!--========== End Featured Product Area ==========-->
-        
-<!--========== Featured flash sale==========-->
-<section class="product_area wow fadeInUp">
-    <div class="container">
-        <div class="row db m0 product_inner">
-            
-            <div class="heading">
-                <h2 class="bg_gray">Flash Sale</h2>
-                <style type="">
-                .countdowns{
-                    background: #d3232a;
-                    padding: 6px;
-                    border-radius: 2px;
-                    color: #fff;
-                    width: 40px;
-                }
-                </style>
-
-                <ul class="list-inline">
-                        <li class="list-inline-item">Berakhir Dalam </li>
-                        <li class="list-inline-item countdowns"><p id="jam"></p></li><span style="color:#000">:</span>
-                        <li class="list-inline-item countdowns "><p id="menit"></p></li><span style="color:#000">:</span>
-                        <li class="list-inline-item countdowns"><p id="detik"></p></li>
-                        <h1 id="demo"></h1>
-                </ul>
-               
             </div>
-            <div class="owl-carousel product_slider slider_style">
-                                   <?php $a=10;
-                
-                for($d=0;$d<$a;$d++){
-                
-                ?>
-                               <div class="item">
-                                  <center> <h6>LCD09M7</h6> </center>
-                    <div class="item_inner">
-                        <div class="item_image">
-                            <a href="product_details/56121385.html">
-                                <img src="isshue-v1.1/my-assets/image/product/thumb/add026407e1947b8c9a40e7359de21a8.jpg" alt="product-image">
-                            </a>
-                        </div>
-                        <div class="item_info">
-                            <h6>LCD09M7<br/>
-                            3P 4500A 400VAC<br/>
-                            SNI</h6>
-                            
-
-                            
-                            <div class="product_cost">
-                                <p class="current">
-
-                                   RP.174.000 </p>
-                                <p class="previous"> 
-                                    RP.274.000 </p><!--diskon coret harga-->
-                            </div>
-                        <div class="addtocard">
-                                <form action="#" method="post">
-                                    <input type="hidden" value="1">
-                                    <a  href="product_details/56121385.html" style="font-size:15px;">
-                                        <button type="button" class="cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
-                                    </a>
-                                </form>
-                            </div>
-                        </div>
-                   
-                        
-                    </div>
+                                <div class="col-lg-5 p-4">
+                                    <div class="form-group">
+                                     
+                                                <button type="button" class="btn btn-success w100">Login</button>
+                                                                    
+                                    </div>
+                                    <div class="form-group">
+                                     
+                                                <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button" data-dismiss="modallogin" class="btn btn-primary w100">Register</button></a>
+                                        
+                                    </div>
+                                    <div class="c-login">
+                                        <span style="font-size: 22px;background-color: #ffffff;padding: 0 10px;color:black;">
+                                                                        Or Log in with <!--Padding is optional-->
+                                                                      </span>
+                                    </div>
+                                    <div class="form-group">
+                                        
+                                        <div class=" ">
+                                        <div class="w100" id="my-signin3"></div>
+                                        </div> 
+                                        
+                                    </div>
+                                    
+                                </div>
                 </div>
-                <?php } ?>
-                
-                            </div>
-        </div>
-    </div>
-</section>
-
-<!--========== End Featured Product Area ==========-->
-
-
-
-<!--========== Overview Area ==========-->
-<section class="overview_area wow fadeInUp">
-    <div class="container">
-    <div class="row">
+          </div>
+     </form>
+        <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin3', {
+        'scope': 'profile email',
+        'width':350,
+        'height': 50,
+          
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+   
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>     
         
-        
-            <div class="col-md-6 col-xs-12 order-2 order-md-1" ><iframe width="100%" height="315" src="https://www.youtube.com/embed/xLCn88bfW1o" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-        
-        <div class="col-md-6 col-xs-12 order-1 order-md-2" ><iframe width="100%" height="315"
-src="https://www.youtube.com/embed/tgbNymZ7vqY">
-</iframe></div>
-           
-        
-    </div>    
-    </div>
-</section>
-<!--========== End Overview Area ==========-->
-
- 
-
 <!--=========== footer Area ===========-->
  
  <?php      $this->load->view('footer');         
@@ -401,13 +392,38 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
         <!-- Simple Share js -->
         <script src="<?php echo base_url().'assets/website/js/jquery.simpleSocialShare.min.js'?>"></script>
 
+        
+        
+        <!--cek pass-->
+        
+        <script> 
+                 $(document).ready(function() {
+              $('#frm-login').validate({
+                rules: {
+                  pass2: {
+                    equalTo: "#pass1"
+                  }
+                },
+                messages: {
+                  pass2: {
+                    equalTo: "<p>Password yang Anda Masukan Tidak Sama</p>"
+                  }
+                }
+              });
+            });
+        </script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <!-- Custom scripts for this template -->
         <script src="<?php echo base_url().'assets/website/js/theme.js'?>"></script>
-
-       
-
-
-
 
         <script type="text/javascript">
 
@@ -550,7 +566,7 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
         
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Sep 7, 2018 16:00:00").getTime();
+var countDownDate = new Date("Aug 24, 2018 15:37:25").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -568,27 +584,8 @@ var x = setInterval(function() {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
     // Output the result in an element with id="demo"
-    if( hours < 10 ){
-        document.getElementById("jam").innerHTML   =  '0' + hours ;
-    }else{
-        document.getElementById("jam").innerHTML   =   hours ;
-
-    }
-
-    if( minutes < 10 ){
-        document.getElementById("menit").innerHTML   =  '0' + minutes ;
-    }else{
-        document.getElementById("menit").innerHTML   =   minutes ;
-    }
-
-    if( seconds < 10 ){
-        document.getElementById("detik").innerHTML   =  '0' + seconds ;
-    }else{
-        document.getElementById("detik").innerHTML =  seconds ;
-    }
-    
-
-    
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
     
     // If the count down is over, write some text 
     if (distance < 0) {
@@ -598,49 +595,17 @@ var x = setInterval(function() {
 }, 1000);
 </script>
         
-        <script type="text/javascript">
-            
-
-$('.add_cart').on('click', function () {
-        var cart = $('.shopping-cart');
-        var id = $('data-produkid');
-        var imgtodrag = $(this).parent('.item_image').find("img").eq(0);
-        if (imgtodrag) {
-            var imgclone = imgtodrag.clone()
-                .offset({
-                top: imgtodrag.offset().top,
-                left: imgtodrag.offset().left
-            })
-                .css({
-                'opacity': '0.5',
-                    'position': 'absolute',
-                    'height': '150px',
-                    'width': '150px',
-                    'z-index': '99999'
-            })
-                .appendTo($('body'))
-                .animate({
-                'top': cart.offset().top + 10,
-                    'left': cart.offset().left + 10,
-                    'width': 75,
-                    'height': 75
-            }, 1000, 'easeInOutExpo');
-            
-            setTimeout(function () {
-                cart.effect("shake", {
-                    times: 2
-                }, 200);
-            }, 1500);
-
-            imgclone.animate({
-                'width': 0,
-                    'height': 0
-            }, function () {
-                $(this).detach()
-            });
-        }
-    });
+        <script>
+            $('.discount').owlCarousel({
+                margin:10,
+                loop:true,
+                autoWidth:true,
+                items:4,
+                 nav: true  ,
+             navText : ["<",">"],})
         </script>
+        
+        
     </body>
 
 

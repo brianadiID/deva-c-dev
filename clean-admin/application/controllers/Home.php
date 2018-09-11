@@ -46,39 +46,7 @@ class Home extends CI_Controller {
 		echo $this->show_cart(); //tampilkan cart setelah added
 	}
 
-	 // <li class="cart-content">
-  //                               <div class="img-box">
-  //                                   <img src="http://isshue.bdtask.com/isshue-v1.1/my-assets/image/product/thumb/8a7a5d6c97762597179846e0c9661468.jpg" alt="Awesome Image">
-  //                               </div>
-  //                               <div class="content">
-  //                                   <h4>Print Buttoneds</h4>
-  //                                   <h6>$ 790.00</h6>
-  //                               </div>
-
-  //                               <div class="delete_box">
-  //                                   <a href="#" class="delete_cart_item" name="7a10563a10f7c44814661c2a1d28fb4f">
-  //                                       <i class="fa fa-trash"></i>
-  //                                   </a>
-  //                               </div>
-  //                           </li>
-
-  //                           <li class="cart-footer clearfix">
-  //                               <div class="total-price">
-  //                                   <h4>Total Price: <span>$ 1,580.00</span></h4>
-  //                               </div>
-  //                               <div class="checkout-box">
-  //                                   <a href="http://isshue.bdtask.com/isshue-v1.5/checkout">Checkout</a>
-  //                               </div>
-  //                               <!-- View cart -->
-  //                               <div class="checkout-box" style="margin-top: 5px">
-  //                                   <a href="http://isshue.bdtask.com/isshue-v1.5/view_cart">View Cart</a>
-  //                               </div>
-  //                           </li>
-
-
-					// <td>'.$items['qty'].'</td>
-					// <td>'.number_format($items['subtotal']).'</td>
-
+	
 	function show_cart(){ //Fungsi untuk menampilkan Cart
 		$output = '';
 		$no = 0;
@@ -138,7 +106,7 @@ class Home extends CI_Controller {
                 <h4>Total Price: <span>Rp '.number_format($this->cart->total()).'</span></h4>
             </div>
             <div class="checkout-box">
-            <a href="'.base_url().'customer/cart">View Cart</a>
+            <a href="'.base_url().'cart">View Cart</a>
                
             </div>
             <!-- View cart -->
@@ -155,6 +123,94 @@ class Home extends CI_Controller {
 		return $output;
 		}
 	}
+
+
+	function show_review_order(){ //Fungsi untuk menampilkan Cart
+		$output = '';
+		$no = 0;
+
+        $rows = count($this->cart->contents());
+		foreach ($this->cart->contents() as $items) {
+
+			// $id_incart = $items['id'];
+		
+	        $cek_cart = $this->db->query("SELECT * from t_produk where id = $items[id] ")->num_rows();
+	        if($cek_cart == 0){
+	        	$data = array(
+					'rowid' => $items['rowid'], 
+					'qty' => 0, 
+				);
+				$this->cart->update($data);
+
+	        }
+
+
+
+			
+
+			$no++;
+			$output .='
+            
+				<tr>
+					<td>
+						 <div class="img-wrap">
+	                        <img style="width: 80px;height: 80px;" src="'.base_url('my-assets/image/product/').$items['gbr'].'" alt="">
+	                        
+	                    </div>
+	                    <div class="content">
+                            <a href="" style="font-size: 14px;color: #212121;">'.$items['name'].'</a>
+                            <br>
+                            <a href="" style="font-size: 12px;line-height: 16px;color: #757575;">Phillips</a>
+                            <br>
+                            <div class="delete_box">
+		                        <a  id="'.$items['rowid'].'" class=" hapus_cart" name="7a10563a10f7c44814661c2a1d28fb4f">
+		                            <i class="fa fa-trash"></i>
+		                        </a>
+		                    </div>
+                            
+                        </div>
+					</td>
+
+					<td>
+						<div class="cart-item-middle">
+	                        <p class="current-price">'.number_format($items['price'])  .'</p>
+	                        <p class="origin-price">'.number_format($items['price'])  .'</p>
+	                        <p class="promotion-ratio">-15%</p>
+	                    </div>
+					</td>
+
+					<td>
+                                <p class="current-price">'.number_format($items['price']*$items['qty'])  .'</p>
+
+					</td>
+				
+                 	<td>
+                 		<div class="form-group">
+                            <input style="width: 133px;" class="text-center" value="'.$items['qty'].'" type="number" max="2" name="">
+                        </div>
+                 	</td>
+                    
+                </tr>
+
+
+
+			
+					
+			';
+		}
+
+        if($rows > 0 ){
+
+		return $output;
+		}
+
+	}
+
+
+	function show_total(){
+		return number_format($this->cart->total());
+	}
+
 
 
     
@@ -181,11 +237,19 @@ class Home extends CI_Controller {
 	}
 
 
+	function load_total(){
+		echo $this->show_total();
+	}
 
 	function load_cart(){ //load data cart
 		echo $this->show_cart();
 		
 	}
+	function load_review_order(){ //load data cart
+		echo $this->show_review_order();
+		
+	}
+
     function load_count(){ //load data cart
 		echo $this->count_cart();
 	}

