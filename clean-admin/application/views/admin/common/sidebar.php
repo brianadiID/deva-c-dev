@@ -101,6 +101,18 @@
                             </a>
                             
                         </li>
+                        
+                        <li> 
+                            <a class=" waves-effect waves-dark" href="<?php echo base_url('admin-area/konfirmasi'); ?>" aria-expanded="false"><i class="fa fa-money"></i><span class="hide-menu">Konfirmasi Transfer </span>
+                            </a>
+                            
+                        </li> 
+                        
+                        <li> 
+                            <a class=" waves-effect waves-dark" href="<?php echo base_url('admin-area/inventori '); ?>" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Inventori</span>
+                            </a>
+                            
+                        </li>
 
 
 

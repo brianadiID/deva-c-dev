@@ -15,8 +15,9 @@
                             <div class="connectus">
                                 <a href="#"><i class="fa fa-phone"></i> CALL US : +88-01922-296392</a>
                             </div>
+                            
                             <div class="connectus">
-                                <a href="#"><i class="fa fa-phone"></i> Mon - Fri (09-00 - 17.00) Sat (09.00 - 14.00)</a>
+                             <a  href="#" data-toggle="modal" data-target="#modalkonfirmasi" class="go_btn"><i class="fa fa-money"></i>Konfirmasi Transfer</a>
                             </div>
                         </div>
                     </div>
@@ -46,9 +47,63 @@
                             <ul class="login_option hidden-lg-up" style="color:white;">
                                 <li><a  href="#" data-toggle="modal" data-target="#modallogin" class="go_btn">login</a></li>
                                 <li><a  href="#" data-toggle="modal" data-target="#modalregister" class="go_btn">Register</a></li>
+                                <li><a  href="#" data-toggle="modal" data-target="#modalkonfirmasi" class="go_btn"><i class="fa fa-money"></i>Konfirmasi Transfer</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
+
+
+<!--modals konfirmasi transfer-->
+<div class="modal fade" id="modalkonfirmasi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header" style="padding-left:20%;">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi Pembayaran Disini</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                  <form class="" action="<?php echo base_url('customer/konfirmasi'); ?>" method="post" enctype="multipart/form-data" novalidate>
+                                <div class="form-group">
+                                  <input type="text" class="form-control" id="##" name="nama_rekening" placeholder="Nama Rekening">
+                                </div>
+                                  <div class="form-group">
+                                  <input type="number" class="form-control" id="##" name="no_rekening" placeholder="Nomor Rekening">
+                                </div>
+                                   <div class="form-group">
+                                  <input type="text" class="form-control" id="##" name="nama_bank" placeholder="Nama Bank">
+                                </div>
+                                  
+                                  
+                                  <div class="form-group">
+                                  <input type="number" class="form-control" id="##" name="jum_transfer" placeholder="Jumlah Transfer">
+                                </div>
+                                      
+                                
+                                  <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit" class="btn btn-primary w100">Konfirmasi</button>
+                                        </div>
+                                       <!-- <div class="col">
+                                            
+                                            
+                                            <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button"  data-dismiss="modal" aria-label="Close" class="btn btn-primary w100">Sudah Punya Akun?</button></a>
+                                        </div>-->
+                                    </div>
+                                      </div> </form>
+                              </div>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <!--./-->
+<!---->

@@ -13,6 +13,7 @@ class Admin_area extends CI_Controller {
         $this->load->model('admin/Customer_model');
         $this->load->model('admin/Product_model');
         $this->load->model('admin/Coupon_model');
+        $this->load->model('admin/Konfirmasi');
         $this->load->library('upload');
         // cek login
         
@@ -1652,6 +1653,36 @@ class Admin_area extends CI_Controller {
         redirect(base_url().'klik-here?message=logout');
     }
 
+    
+    
+//konfirmasi
+    function delete_konfirmasi(){
+        $id    = $this->input->post("id");
+       
+        $this->Konfirmasi->delete($id);
+      
+
+        echo "{}";
+    }
+    // Konfirmasi pembayaran
+    function konfirmasi()
+    {
+        
+        $data['data_konfirmasi'] = $this->Konfirmasi->read();
+
+        $this->load->view('admin/konfirmasi',$data);
+    }
+// End konfirmasi
+    
+    // inventori
+    function inventori()
+    {
+        $data['data_inventori'] = $this->Product_model->read();
+        
+
+        $this->load->view('admin/inventori',$data);
+    }
+// End inventori
     
 
     

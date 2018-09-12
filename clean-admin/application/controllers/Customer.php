@@ -8,6 +8,7 @@ class Customer extends CI_Controller {
         $this->load->model('Model_kategori');
         $this->load->model('Login');
          $this->load->model('admin/Customer_model');
+           $this->load->model('Konfirmasi');
     }
 
 	public function index()
@@ -25,7 +26,21 @@ class Customer extends CI_Controller {
 		$this->load->view('Customer');
 	}
     
-   
+function konfirmasi(){
+         $data = array(
+                        'nama_rekening' => $this->input->post('nama_rekening'),
+                        'no_rekening' => $this->input->post('no_rekening'),
+                        'nama_bank' => $this->input->post('nama_bank'),
+                        'jum_transfer' => $this->input->post('jum_transfer')
+
+                        );   
+
+                        // Upload ke Database
+                        $this->Konfirmasi->create($data);
+                        //redirect
+        redirect(base_url());
+                        
+    }
     
     function order(){
         
