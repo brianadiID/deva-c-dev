@@ -220,22 +220,52 @@
                         
                     <h2><?php echo $data['sku']; ?></h2>
                     <div class="product_cost">
-                           <div class="previous">
-                                <del>
-                                                   <?php rupiah($data['harga']); ?>
-                                </del>
 
-                                <input type="hidden" id="discount" name="discount" value="-390">
-                            </div>
-                            <div class="current">
-                                <p>
-                                   <?php rupiah($data['harga']); ?>
-                                       
-                                </p>
 
-                                <input type="hidden" id="price" name="price" value="<?php echo $data['harga']; ?>">
-                            </div>
-                            
+                                <?php if ( $this->session->userdata('customer_level')>0){?>
+
+                                <div class="current">
+                                    <p>
+                                <?php 
+                                $id_type = $this->session->userdata('customer_level');
+                                $data_discount = $this->db->query("SELECT * from t_type_customer where id = $id_type")->result();
+                                foreach ($data_discount as $discount) {
+                                   
+                                }
+
+                                $discount = $discount->discount;
+                                $price_normal = $data['harga'];
+
+                                $fix_price = $price_normal - ($price_normal * ($discount/100));
+                                
+                                rupiah($fix_price); 
+                                ?>  
+                                  </p> 
+                                </div>
+
+                                <div class="previous">
+                                     <del>
+                                         <?php  rupiah($data['harga']); ?>  
+                                        
+                                     </del>
+                                </div> 
+
+                                <?php }else{?>
+
+                                    <div class="current">
+                                    <p>
+                                    <?php $fix_price = $data['harga'];
+                                    rupiah($data['harga']); ?>
+                                    </p>
+
+                                   
+                                    </div>
+
+
+                                <?php } ?>
+
+
+
                         </div>
                     <input type="hidden" name="name" id="name" value="Mackbook">
                     
@@ -266,7 +296,7 @@
                         </button>
                         
                     </div> 
-                    <button type="button" data-produkid="<?php echo $data['id'] ?>" data-produknama="<?php echo $data['sku'] ?>" data-produkharga="<?php echo $data['harga'] ?>" data-gambar="<?php echo $data['gambar_produk']; ?>" class="add_cart btn button_add_chart"><i class="fa fa-shopping-cart"></i>  Add to Chart/Queue</button>
+                    <button type="button" data-produkid="<?php echo $data['id'] ?>" data-produknama="<?php echo $data['sku'] ?>" data-produkharga="<?php echo $fix_price ?>" data-gambar="<?php echo $data['gambar_produk']; ?>" class="add_cart btn button_add_chart"><i class="fa fa-shopping-cart"></i>  Add to Chart/Queue</button>
                         
                     <input type="hidden" id="product_id" name="product_id" value="11121745">
                     

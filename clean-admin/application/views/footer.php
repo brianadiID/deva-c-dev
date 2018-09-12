@@ -117,6 +117,7 @@
                     var produk_nama  = $(this).data("produknama");
                     var produk_harga = $(this).data("produkharga");
                     var gambar       = $(this).data("gambar");
+                    var produk_harga_origin = $(this).data("price-origin");
                   
                     var qty          = $('#sst').val();
 
@@ -125,7 +126,7 @@
                     $.ajax({
                         url : "<?php echo base_url();?>home/add_to_cart",
                         method : "POST",
-                        data : {produk_id: produk_id, produk_nama: produk_nama, produk_harga: produk_harga, gambar:gambar,qty:qty},
+                        data : {produk_id: produk_id, produk_nama: produk_nama, produk_harga: produk_harga, gambar:gambar,qty:qty,produk_harga_origin:produk_harga_origin},
                         success: function(data){
                             $('#detail_cart').html(data);
                             $('#count_cart').load("<?php echo base_url();?>home/load_count");
@@ -163,7 +164,7 @@
                  $('#count_cart').load("<?php echo base_url();?>home/load_count");
                  $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
                  $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
-                 $('#total').load("<?php echo base_url();?>home/load_total");
+                 $('.total').load("<?php echo base_url();?>home/load_total");
                 
                 //Hapus Item Cart
                 $(document).on('click','.hapus_cart',function(){
@@ -179,7 +180,7 @@
 
                             $('#count_cart').load("<?php echo base_url();?>home/load_count");
                              $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
-                             $('#total').load("<?php echo base_url();?>home/load_total");
+                             $('.total').load("<?php echo base_url();?>home/load_total");
 
                         }
                     });
@@ -188,6 +189,8 @@
             });
         </script>
         <!-- End Add to cart -->
+
+      
 
 <script>
    $(document).ready(function() {

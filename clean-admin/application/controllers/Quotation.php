@@ -1,5 +1,5 @@
 <?php 
-	class Checkout extends CI_Controller{
+	class Quotation extends CI_Controller{
 		function __construct(){
         parent::__construct();
         $this->load->model('Crud_produk');
@@ -12,6 +12,8 @@
     }
 		private $api_key = 'e9692dde5713ba259ac5412bda799507';
 		public function index(){
+			
+			$this->load->view('quotation');
 			
 		}
 

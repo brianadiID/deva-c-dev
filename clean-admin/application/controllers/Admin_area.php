@@ -1066,6 +1066,7 @@ class Admin_area extends CI_Controller {
         $email_old  = $this->input->post('email_old');
         $email      = $this->input->post('email');
         $gambar_lama= $this->input->post('gambar_lama');
+        $password = $this->input->post('password');
         
         $config['upload_path'] = './my-assets/image/customers/'; //path folder
         $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
@@ -1111,7 +1112,7 @@ class Admin_area extends CI_Controller {
                                     'level' => $this->input->post('type_user'),
                                     'status' => $this->input->post('status'),
                                     'photo' => $gambar,
-                                    'password' => md5($this->input->post('password'))
+                                    'password' => md5($password)
                                 );
 
                             }else{
@@ -1166,7 +1167,7 @@ class Admin_area extends CI_Controller {
                                     'no_telp' => $this->input->post('no_telp'),
                                     'level' => $this->input->post('type_user'),
                                     'status' => $this->input->post('status'),
-                                    'password' => md5($this->input->post('password'))
+                                    'password' => md5($password)
                                 );
                         }else{
                             $data = array(
@@ -1246,7 +1247,7 @@ class Admin_area extends CI_Controller {
                                     'level' => $this->input->post('type_user'),
                                     'status' => $this->input->post('status'),
                                     'photo' => $gambar,
-                                    'password' => $this->input->post('password')
+                                    'password' => md5($password)
                                     
                                 );
                         
@@ -1302,8 +1303,7 @@ class Admin_area extends CI_Controller {
                         'no_telp' => $this->input->post('no_telp'),
                         'level' => $this->input->post('type_user'),
                         'status' => $this->input->post('status'),
-                        'password' => $this->input->post('password')
-                        
+                        'password' => md5($password)
                     );
                 }else{
                     $data = array(

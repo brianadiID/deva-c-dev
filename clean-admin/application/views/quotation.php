@@ -11,7 +11,7 @@
                 <meta name="author" content="BDTASK">
         <meta name="description" content="">
 
-        <title>Klak Klik : Review Order</title>
+        <title>Klak Klik : Quotation</title>
    
         <!-- Favicons --> 
         <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
@@ -366,7 +366,7 @@
                     <div style="margin-top: 12px;min-height: 500px;background:#fff;position: sticky;top: 80px;">
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
-                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        <button class="btn-confirm" >BUAT PENAWARAN</button>
                         </div>
                     </div>
 
@@ -462,7 +462,7 @@
 
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
-                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        <button class="btn-confirm" >BUAT PENAWARAN</button>
                         </div>
                     </div>
                         

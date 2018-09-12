@@ -38,7 +38,8 @@ class Home extends CI_Controller {
 		$data = array(
 			'id' => $this->input->post('produk_id'), 
 			'name' => $this->input->post('produk_nama'), 
-			'price' => $this->input->post('produk_harga'), 
+			'price' => $this->input->post('produk_harga'),
+			'price_before' => $this->input->post('produk_harga_origin'), 
 			'qty' => $this->input->post('qty') , 
 			'gbr' => $this->input->post('gambar'),
 		);
@@ -65,7 +66,11 @@ class Home extends CI_Controller {
 				);
 				$this->cart->update($data);
 
+
+
 	        }
+
+	       
 
 
 
@@ -111,11 +116,11 @@ class Home extends CI_Controller {
             </div>
             <!-- View cart -->
             <div class="checkout-box" style="margin-top: 5px; margin-right:25px;">
-                 <a href="'.base_url().'customer/checkout">Checkout</a>
+                 <a href="'.base_url().'checkout/shipping">Checkout</a>
             </div>
             <!-- quotation -->
             <div class="checkout-box">
-                <a href="#">Request Quotation</a>
+                <a href="'.base_url().'quotation">Request Quotation</a>
             </div>
         </li>
 
@@ -128,6 +133,17 @@ class Home extends CI_Controller {
 	function show_review_order(){ //Fungsi untuk menampilkan Cart
 		$output = '';
 		$no = 0;
+
+        if ($this->session->userdata('customer_level')>0) {
+        	 $id_type = $this->session->userdata('customer_level');
+	        $data_discount = $this->db->query("SELECT * from t_type_customer where id = $id_type")->result();
+	        foreach ($data_discount as $discount) {
+	           $discount_amount =$discount->discount;
+	        }
+        }else{
+        	$discount_amount= 0;
+        }
+       
 
         $rows = count($this->cart->contents());
 		foreach ($this->cart->contents() as $items) {
@@ -174,8 +190,8 @@ class Home extends CI_Controller {
 					<td>
 						<div class="cart-item-middle">
 	                        <p class="current-price">'.number_format($items['price'])  .'</p>
-	                        <p class="origin-price">'.number_format($items['price'])  .'</p>
-	                        <p class="promotion-ratio">-15%</p>
+	                        <p class="origin-price">'.number_format($items['price_before'])  .'</p>
+	                        <p class="promotion-ratio">'.$discount_amount.'%</p>
 	                    </div>
 					</td>
 
@@ -186,7 +202,8 @@ class Home extends CI_Controller {
 				
                  	<td>
                  		<div class="form-group">
-                            <input style="width: 133px;" class="text-center" value="'.$items['qty'].'" type="number" max="2" name="">
+                 		
+                            <input style="width: 133px;" class="text-center zzk" id="'.$items['rowid'].'"  value="'.$items['qty'].'" type="number" max="10" name="">
                         </div>
                  	</td>
                     
@@ -274,6 +291,8 @@ class Home extends CI_Controller {
 		);
 		$this->cart->update($data);
 		// echo $this->show_cart();
+		echo $this->show_review_order();
+
 	}
 
 	

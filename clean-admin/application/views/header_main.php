@@ -170,11 +170,19 @@
                     
                     <div class="cart_area hidden-md-down">
                         <!--<a href="#" class="account_btn" data-toggle="modal" data-target="#login_box"><i class="fa fa-user-o"></i>Login<br>Register</a>-->
-                        
+                        <?php if ($this->session->userdata('customer_login_session')!= 'uu2cep1i') { ?>
+                         
                         <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#modallogin" role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
                             <i class="fa fa-user-o"></i>
                             <span class="cart-text">Login </span>
                         </a>
+
+                        <?php }else{ ?>
+                          <a href="<?php echo base_url('customer/logout') ?>"  role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
+                            <i class="fa fa-user-o"></i>
+                            <span class="cart-text"><?php echo $this->session->userdata('customer_nama_user'); ?> </span>
+                        </a>
+                        <?php } ?>
                         
                         
                         
@@ -199,16 +207,24 @@
                                 </button>
                               </div>
                               <div class="modal-body">
+
+                                <form method="post" action="<?php echo base_url(); ?>customer/create_login">
                                 <div class="form-group">
-                                  <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+                                  <input type="text" class="form-control" id="email" value="<?php echo set_value('email'); ?>" name="email" placeholder="Email">
+                                  <div class="form_error">
+                                    <?php echo form_error('email');?>
+                                  </div>
                                 </div>
                                 <div class="form-group">
                                   <input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+                                  <div class="form_error">
+                                    <?php echo form_error('email');?>
+                                  </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <button type="button" class="btn btn-success w100">Login</button>
+                                            <button type="submit" class="btn btn-success w100">Login</button>
                                         </div>
                                         <div class="col">
                                             
@@ -216,7 +232,8 @@
                                             <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button" data-dismiss="modallogin" class="btn btn-danger w100">Register</button></a>
                                         </div>
                                     </div>
-                                </div>  
+                                </div> 
+                                </form> 
                                   <div style="width: 100%;
                                               height: 20px; border-bottom: 1px solid black;
                                               text-align: center">

