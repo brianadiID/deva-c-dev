@@ -53,10 +53,24 @@
 				}else{
 					$type = 'Kab.';
 				}
+
+
+                $region =   explode("-",$this->session->userdata('customer_kode_pos'));
+                $city_customer = $region[1];
+                $city_rajaogkir = $type.' '.$data['rajaongkir']['results'][$i]['city_name'] ;
+
+                if($city_customer == $city_rajaogkir){
+                 $selected =  'selected';   
+
+                }else{
+                	$selected ='';
+                }
+                                    
+                                        
 			    echo "
                                 
 
-			    <option value='".$data['rajaongkir']['results'][$i]['city_id']."'>".$type.' '.$data['rajaongkir']['results'][$i]['city_name']."</option>";
+			    <option value='".$data['rajaongkir']['results'][$i]['city_id']."' ".$selected.">".$type.' '.$data['rajaongkir']['results'][$i]['city_name']."</option>";
 			}
 		}
 
@@ -247,15 +261,12 @@
     		'$berat' => $this->input->post('berat'),
     		'$jenis_pengiriman' => $this->input->post('jenis-pengiriman'),
     		'$kode_pos' => $this->input->post('kode-pos')
-
-
-    		
     		
     		);
 
     		
-	        $this->session->set_flashdata('data_shipping', $data);
-	        redirect(base_url().'checkout/payment_method');
+	        // $this->session->set_flashdata('data_shipping', $data);
+	        // redirect(base_url().'checkout/payment_method');
 
     	}
 
@@ -269,6 +280,21 @@
     				echo '<span>'.$ongkir.'</span>';	
 
     		}
+
+    	}
+
+    	function coupon_validate(){
+    		$coupon = $this->input->post('coupon');
+    	
+    		$data = $this->db->query("SELECT * from t_coupon where coupon_code = '$coupon' ")->result();
+    		foreach ($data as $coupon_discount) {
+    			
+    				
+    				
+    				echo $coupon_discount->discount;	
+
+    		}
+    		
 
     	}
 

