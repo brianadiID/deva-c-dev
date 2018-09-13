@@ -1,47 +1,24 @@
-
-
-
 <div class="header_main">
-        <div class="container">
-            <div class="cart_area hidden-lg-up">
-            
-            </div>    
-            
-            
-            <nav class="navbar navbar-toggleable-md row m0 navbar-light">
-                
-                <button class="navbar-toggler navbar-toggler-right" id="open">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="<?php echo base_url()?>">
-                    <img src="<?php echo base_url().'my-assets/image/logo/logo.png'?>">
-                </a>
-
-
-
-
-
-                <div class="navbar-collapse justify-content-end " id="navbarNavDropdown">
-                   
-
-                   <!-- <div class="d-none d-sm-block">-->
-                        <form action="<?php echo base_url('katalog/search'); ?>" class="form-inline d-none d-sm-block" method="get" accept-charset="utf-8" style="width:615px; padding:18px;">
-                        <!--search-->
-                       
-                        <div class="form-group" style=" float:left; margin-right:15px; ">
-                            <?php 
-                           
-                               
-                          function build_category_tree(&$output, $preselected, $parent=0, $indent=""){
-
-                            $query = "SELECT id, nama_kategori FROM t_kategori WHERE id_parent = $parent  ";
-
-                                
-                               
-                            $konek =  mysqli_connect("localhost","root","","theklakklik");
-                            $sqls = mysqli_query($konek,$query);
-
-                            
+  <div class="container">
+    <div class="cart_area hidden-lg-up">
+    </div>    
+    <nav class="navbar navbar-toggleable-md row m0 navbar-light">
+      <button class="navbar-toggler navbar-toggler-right" id="open">
+        <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="<?php echo base_url()?>">
+        <img src="<?php echo base_url().'my-assets/image/logo/logo.png'?>">
+      </a>
+      <div class="navbar-collapse justify-content-end " id="navbarNavDropdown">
+      <!-- <div class="d-none d-sm-block">-->
+        <form action="<?php echo base_url('katalog/search'); ?>" class="form-inline d-none d-sm-block" method="get" accept-charset="utf-8" style="width:615px; padding:18px;">
+          <!--search-->
+          <div class="form-group" style=" float:left; margin-right:15px; ">
+          <?php 
+            function build_category_tree(&$output, $preselected, $parent=0, $indent=""){
+              $query = "SELECT id, nama_kategori FROM t_kategori WHERE id_parent = $parent  ";
+              $konek =  mysqli_connect("localhost","sitedeva_rohimam","Together1!","sitedeva_rohimam");
+              $sqls = mysqli_query($konek,$query);
 
                               while ($row = mysqli_fetch_assoc($sqls)) {
                                 $selected = ($row["id"] == $preselected) ? "selected=\"selected\"" : "";
@@ -193,7 +170,7 @@
                         
                         
                         
-                        <meta name="google-signin-client_id" content="841317113324-fd83opj4q6l9g0ljm1u2siqsep5ui5lp.apps.googleusercontent.com">
+                        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
                         
                     </div>
                     <!-- Modal login -->
@@ -247,7 +224,7 @@
                                   <div class="form-group">
                                     <div class="w100" id="my-signin2"></div>
                                    </div>   
-                                  <a href="">Lupa password?</a>
+                                  <a href="<?php echo base_url(); ?>customer/forgot_password">Lupa password?</a>
                               </div>
                               <!--<div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

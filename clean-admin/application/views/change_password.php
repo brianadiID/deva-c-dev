@@ -3,18 +3,15 @@
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="BDTASK">
+    <meta name="description" content="">
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                <meta name="author" content="BDTASK">
-        <meta name="description" content="">
-
-        <title>Login Page</title>
-   
-        <!-- Favicons --> 
-        <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
-        
-        <!-- Bootstrap core CSS -->
+    <title>Change Password Page</title>
+    <!-- Favicons --> 
+    <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
+    <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <!-- Bootstrap core CSS -->
         <link href="<?php echo base_url().'assets/website/vendor/bootstrap/css/bootstrap.min.css'?>" rel="stylesheet">  
@@ -88,24 +85,23 @@
                 padding-right:41px;
             }
             .slider_style .owl-nav .owl-prev {
-    border-radius: 50px;
-    left: 22rem;
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border: 1px solid #000;
-    margin: 0px 1095px;
-    transition: all 300ms linear 0s;
-    margin-left: -50px;
+                border-radius: 50px;
+                left: 22rem;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                border: 1px solid #000;
+                margin: 0px 1095px;
+                transition: all 300ms linear 0s;
+                margin-left: -50px;
             }
             
             .slider_style .owl-nav {
-    text-align: center;
-    top: 91px;
-    position: absolute;
-    right: -37px;
-                
+                text-align: center;
+                top: 91px;
+                position: absolute;
+                right: -37px;
             }
             .btn-kanan{
                 float: right;
@@ -162,31 +158,23 @@
                 background: #eff0f5;
             }
             
-            
-            
-        </style>
-
-     
-    
-    </head>
-
-    <body>
-        <!--==== Preloader =======-->
-        <div class="preloader"></div>
-
-        <!--========== Header Top Area ==========-->
-       <?php      $this->load->view('header_top');             ?> 
-        <!--========== End Header Top Area ==========-->
         
-        <!--====== Header Area ======-->
-<header>
-    <!-- Main Header Area -->
-   <?php      $this->load->view('header_main');             ?> 
+        </style>  
+</head>
+<body>
+    <!--==== Preloader =======-->
+    <div class="preloader"></div>
     
-
-   
-</header>
-<!--===== End Header Area =======-->
+    <!--========== Header Top Area ==========-->
+    <?php      $this->load->view('header_top');             ?> 
+    <!--========== End Header Top Area ==========-->
+    
+    <!--====== Header Area ======-->
+    <header>
+    <!-- Main Header Area -->
+    <?php      $this->load->view('header_main');             ?> 
+    </header>
+    <!--===== End Header Area =======-->
 
     <style type="text/css">
         input.loading {
@@ -194,14 +182,11 @@
         }
     </style>
 
-    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">
-        
+    <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">    
         //Product search by product name
         $('body').on('keyup', '#product_name', function() {
-
             var product_name = $('#product_name').val();
             var category_id  = $('#select_category').val();
-
             //Product name check
             if (product_name == 0) {
                 $('.search_results').html(' ');
@@ -229,36 +214,37 @@
         });
     </script>
 
-<!-- Product delete from cart by ajax -->
-<script type="text/javascript">
-    $('body').on('click', '.delete_cart_item', function() {
-        var row_id  = $(this).attr('name');
-        $.ajax({
-            type: "post",
-            async: true,
-            url: 'http://isshue.bdtask.com/isshue-v1.5/website/Home/delete_cart/',
-            data: {row_id:row_id},
-            success: function(data) {
-                $("#tab_up_cart").load(location.href+" #tab_up_cart>*","");
-            },
-            error: function() {
-                alert('Request Failed, Please check your code and try again!');
-            }
-        });
-    });  
-</script>           
-<style>
+    <!-- Product delete from cart by ajax -->
+    <script type="text/javascript">
+        $('body').on('click', '.delete_cart_item', function() {
+            var row_id  = $(this).attr('name');
+            $.ajax({
+                type: "post",
+                async: true,
+                url: 'http://isshue.bdtask.com/isshue-v1.5/website/Home/delete_cart/',
+                data: {row_id:row_id},
+                success: function(data) {
+                    $("#tab_up_cart").load(location.href+" #tab_up_cart>*","");
+                },
+                error: function() {
+                    alert('Request Failed, Please check your code and try again!');
+                }
+            });
+        });  
+    </script>           
+
+    <style>
     .box{
         -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    border: 1px solid #ddd;
-    font-size: 14px;
-    height: 40px;
-    line-height: 38px \0;
-    padding: 0 35px 0 10px;
-    margin-bottom: 2px;
-    outline: none;
+        box-sizing: border-box;
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        height: 40px;
+        line-height: 38px \0;
+        padding: 0 35px 0 10px;
+        margin-bottom: 2px;
+        outline: none;
     }
     .c-login{
         width: 100%;
@@ -266,105 +252,70 @@
         border-bottom: 1px solid black;
         text-align: center;
     }
+    </style>
+    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     
-        </style>
- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-<!-- Content  -->
-     <div class="container">
-        <h1 class="m-4" style="font-size: 1.55rem;">Selamat datang di Theklakklik! Silahkan login.</h1>
-        </div>
-    <form method="post" action="<?php echo base_url(); ?>customer/create_login">
-   
-    <div class="container p-5" style="background:white;">
-        <div class="row">
-            <div class="col-lg-6">
-                
+    <!-- Content  -->
+    <div class="container">
+        <h1 class="m-4" style="font-size: 1.55rem;">Change Password Page</h1>
+    </div>
+    <form method="post" action="<?php echo base_url(); ?>customer/change_password">
+        <div class="container p-5" style="background:white;">
+            <div class="row">
+                <div class="col-lg-12">                
                   <div class="form-group">
-                    <label for="formGroupExampleInput">Masukan Email</label>
-                    <input type="text" class="form-control box" id="formGroupExampleInput" name="email" placeholder="Email">
-                  </div>
-                  <div class="form-group">
-                    <label for="formGroupExampleInput2">Kata sandi</label>
+                    <label for="formGroupExampleInput2">New Password</label>
                     <input type="password" name="password" class="form-control box" id="formGroupExampleInput2" placeholder="Password">
+                    <input type="hidden" name="email" class="form-control box" id="formGroupExampleInput1" value="<?php echo $email; ?>">
+                    <input type="hidden" name="hash" class="form-control box" id="formGroupExampleInput1" value="<?php echo $hash; ?>">
                   </div>
-                    <a href="<?php echo base_url(); ?>customer/forgot_password" style="float:right;">Lupa Kata sandi?</a>
-             
-            </div>
-                                <div class="col-lg-5 p-4">
-                                    <div class="form-group">
-                                     
-                                                <button type="submit" class="btn btn-success w100">Login</button>
-                                                                    
-                                    </div>
-                                    <div class="form-group">
-                                     
-                                                <a href="#" data-toggle="modal" data-target="#modalregister"><button type="button" data-dismiss="modallogin" class="btn btn-primary w100">Register</button></a>
-                                        
-                                    </div>
-                                    <div class="c-login">
-                                        <span style="font-size: 22px;background-color: #ffffff;padding: 0 10px;color:black;">
-                                                                        Or Log in with <!--Padding is optional-->
-                                                                      </span>
-                                    </div>
-                                    <div class="form-group">
-                                        
-                                        <div class=" ">
-                                        <div class="w100" id="my-signin3"></div>
-                                        </div> 
-                                        
-                                    </div>
-                                    
-                                </div>
+                  <div class="form-group">
+                    <label for="formGroupExampleInput2">Confirm New Password</label>
+                    <input type="password" name="cpassword" class="form-control box" id="formGroupExampleInput3" placeholder="Confirm Password">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success w100">Change Password</button>
+                  </div>
                 </div>
-          </div>
+            </div>
+        </div>
      </form>
-        <script>
-    function onSuccess(googleUser) {
-      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    }
-    function onFailure(error) {
-      console.log(error);
-    }
-    function renderButton() {
-      gapi.signin2.render('my-signin3', {
-        'scope': 'profile email',
-        'width':350,
-        'height': 50,
-          
-        'longtitle': true,
-        'theme': 'dark',
-        'onsuccess': onSuccess,
-        'onfailure': onFailure
-      });
-    }
-  </script>
+    <script>
+        function onSuccess(googleUser) {
+          console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+        }
+        function onFailure(error) {
+          console.log(error);
+        }
+        function renderButton() {
+          gapi.signin2.render('my-signin3', {
+            'scope': 'profile email',
+            'width':350,
+            'height': 50,
+              
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure
+          });
+        }
+    </script>
    
-  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>     
-        
-<!--=========== footer Area ===========-->
- 
- <?php      $this->load->view('footer');         
-
-        function rupiah($angka){
-    
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>             
+    <!--=========== footer Area ===========-->
+    <?php      $this->load->view('footer');         
+        function rupiah($angka){    
             echo "Rp " . number_format($angka,2,',','.');
                 // return $hasil_rupiah;
-         
         } 
-
-  
         function limit_words($string, $word_limit){
             $words = explode(" ",$string);
             return implode(" ",array_splice($words,0,$word_limit));
         }
    ?>  
-        
-<!--=========== ./footer Area ===========-->
+    <!--=========== End ./footer Area ===========-->
 
-
-
-
-        <!-- Bootstrap  -->
+    <!-- Bootstrap  -->
         <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="<?php echo base_url().'assets/website/vendor/bootstrap/js/tether.min.js'?>" type="text/javascript"></script>
         <script src="<?php echo base_url().'assets/website/vendor/bootstrap/js/bootstrap.min.js'?>" type="text/javascript"></script>
 
