@@ -47,4 +47,16 @@ class Product_model extends CI_Model
 		$query = $this->db->get('t_produk');
 		return $query->result();
 	}
+
+	function load_stock($id){
+		$this->db->where('id',$id);
+		$query = $this->db->get('t_produk');
+		return $query->result();
+	}
+
+	function update_stock($id,$data){
+		$this->db->where('id',$id);   
+		$query = $this->db->update("t_produk",$data);
+		return $query;
+	}
 }

@@ -30,6 +30,11 @@ class Konfirmasi extends CI_Model
 		$query = $this->db->update("t_konfirmasi",$data);
 		return $query;
 	}
+    function update_status($data,$where){
+		$this->db->where($where);   
+		$query = $this->db->update("t_order",$data);
+		return $query;
+	}
 
 	function delete($id){
 		$this->db->where("id",$id);

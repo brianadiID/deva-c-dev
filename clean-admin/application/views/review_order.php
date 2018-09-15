@@ -309,47 +309,7 @@
                                 </thead>
                                 <tbody id="data_cart">
 
-                                   <!--  <?php for($i=0;$i<5;$i++){ ?>
-                                    <tr>
-                                        <td>
-                                            <div class="img-wrap">
-                                                <img style="width: 80px;height: 80px;" src="http://localhost/github/deva-c-dev/clean-admin/my-assets/image/product/2b0d227bdf983a8d005ef0b20378615a.JPG" alt="">
-                                                
-                                            </div>
-
-                                            <div class="content">
-                                                <a href="" style="font-size: 14px;color: #212121;">XGP500-VAC</a>
-                                                <br>
-                                                <a href="" style="font-size: 12px;line-height: 16px;color: #757575;">Phillips</a>
-                                                <br>
-                                                <a class="action" href="http://localhost/github/deva-c-dev/clean-admin/customer/cart" id="e369853df766fa44e1ed0ff613f563bd" class="hapus_cart" name="7a10563a10f7c44814661c2a1d28fb4f">
-                                                    <i class="fa fa-trash"></i>
-                                                </a>
-                                                
-                                            </div>
-                                            
-
-
-
-
-                                        </td>
-                                        <td>
-                                            <div class="cart-item-middle">
-                                                <p class="current-price">Rp469.000</p>
-                                                <p class="origin-price">Rp549.000</p>
-                                                <p class="promotion-ratio">-15%</p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <p class="current-price">Rp469.000</p>
-                                        </td>
-                                        <td>
-                                            <div class="form-group">
-                                                <input style="width: 133px;" class="text-center" type="number" max="2" name="">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <?php } ?> -->
+                                 
 
                                     
                                 </tbody>
@@ -366,9 +326,10 @@
                     <div style="margin-top: 12px;min-height: 500px;background:#fff;position: sticky;top: 80px;">
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
-                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        <a href="<?php echo base_url().'checkout/shipping' ?>"><button class="btn-confirm" >BUAT PESANAN</button></a>
                         </div>
                     </div>
+                        
 
                     <div class="col-lg-12">
                         <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">
@@ -388,9 +349,9 @@
                             
                         </div>
 
-                       <!--  -->
+                       <!--  Coupon Insert-->
 
-                        <div class="row-detail-checkout">
+                        <!-- <div class="row-detail-checkout">
                             <div class="detail-subtotal">
                                 Diskon
                                 
@@ -416,7 +377,7 @@
 
                             </div>
 
-                        </div>
+                        </div> -->
 
                         <style type="text/css">
                             .checkout-order-total{
@@ -462,7 +423,7 @@
 
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
-                        <button class="btn-confirm" >BUAT PESANAN</button>
+                        <a href="<?php echo base_url().'checkout/shipping' ?>"><button class="btn-confirm" >BUAT PESANAN</button></a>
                         </div>
                     </div>
                         

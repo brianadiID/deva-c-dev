@@ -296,7 +296,7 @@
                         </button>
                         
                     </div> 
-                    <button type="button" data-produkid="<?php echo $data['id'] ?>" data-produknama="<?php echo $data['sku'] ?>" data-produkharga="<?php echo $fix_price ?>" data-gambar="<?php echo $data['gambar_produk']; ?>" class="add_cart btn button_add_chart"><i class="fa fa-shopping-cart"></i>  Add to Chart/Queue</button>
+                    <button type="button" data-brand='<?php echo $data['id_brand']; ?>' data-kategori="<?php echo $data['id_kategori'] ?>" data-price-origin="<?php echo $data['harga'] ?>" data-produkid="<?php echo $data['id'] ?>" data-produknama="<?php echo $data['sku'] ?>" data-produkharga="<?php echo $fix_price ?>" data-gambar="<?php echo $data['gambar_produk']; ?>" class="add_cart btn button_add_chart"><i class="fa fa-shopping-cart"></i>  Add to Chart/Queue</button>
                         
                     <input type="hidden" id="product_id" name="product_id" value="11121745">
                     

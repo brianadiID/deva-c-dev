@@ -40,4 +40,10 @@ class Customer_model extends CI_Model
 		$query = $this->db->get_where('t_customer',$where);
 		return $query->result();
 	}
+
+	function get_data_customer($where){
+		$this->db->where('id',$where);
+		$query = $this->db->get('t_customer');
+		return $query->result();
+	}
 }

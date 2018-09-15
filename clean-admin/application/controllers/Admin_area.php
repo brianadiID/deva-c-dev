@@ -13,8 +13,12 @@ class Admin_area extends CI_Controller {
         $this->load->model('admin/Customer_model');
         $this->load->model('admin/Product_model');
         $this->load->model('admin/Coupon_model');
-        $this->load->model('admin/Konfirmasi');
+        $this->load->model('Order_model');
+        $this->load->model('Quotation_model');
+        $this->load->model('Detail_order_model');
         $this->load->library('upload');
+        $this->load->model('admin/Konfirmasi');
+        $this->load->model('admin/Slider');
         // cek login
         
         if($this->session->userdata('login_session') != "allowed"){
@@ -98,7 +102,7 @@ class Admin_area extends CI_Controller {
                         $config['quality']= '50%';
                         $config['width']= 600;
                         // $config['height']= 400;
-                        $config['new_image']= './my-assets/image/admin/'.$gbr['file_name'];
+                        $config['new_image'] = './my-assets/image/admin/'.$gbr['file_name'];
                         $this->load->library('image_lib', $config);
                         $this->image_lib->resize();
          
@@ -1645,15 +1649,224 @@ class Admin_area extends CI_Controller {
     }
 // End Coupon Management
 
+
+// Order 
+    function order(){
+        $data['action'] = $this->input->get('action');
+        $data['status_action'] = $this->session->flashdata('status_action');
+        $data['order'] = $this->Order_model->read();
+
+        // Edit Data
+
+       if($this->input->get('id')){
+            $id = $this->input->get('id');
+          
+
+            $data['data_edit'] = $this->Order_model->get_data($id);
+         
+
+            // print_r($data['data_coupon_edit']);
+
+             $this->load->view('admin/order',$data);
+      
+
+       }elseif($this->input->get('no_order')){
+
+            $no_order = $this->input->get('no_order');
+
+            $data['detail_order'] = $this->Order_model->get_order_detail($no_order);
+            $data['data_order'] = $this->Order_model->get_data_order($no_order);
+
+
+            $data['customer'] = $this->Customer_model->get_data_customer($data['data_order'][0]->id_customer);
+
+      
+            $this->load->view('admin/order',$data);
+
+
+        }else{
+       $this->load->view('admin/order',$data);
+                   
+       }
+    }
+
+
+    function update_order(){
+        $status_order           = $this->input->post('status');
+        $no_order               = $this->input->post('no_order');
+     
+
+        $data = array(
+            'status_order' => $status_order
+        );
+
+        $where = array(
+            'no_order' => $no_order
+        );
+
+
+       
+        // Update ke Database
+        if($this->Order_model->update($data,$where)){
+
+            $get_detail_order = $this->Detail_order_model->load_qty($no_order);
+            foreach ($get_detail_order as $order_detail) {
+
+                $get_stock = $this->Product_model->load_stock($order_detail->id_produk);
+                // print_r($get_stock);
+                foreach ($get_stock as $stock ) {
+                    
+                }
+
+                if($status_order == 4){
+                   $stock_now = $stock->stok+$order_detail->qty; 
+               }elseif($status_order == 1){
+                   $stock_now = $stock->stok; 
+               }elseif ($status_order == 2) {
+                   $stock_now = $stock->stok-$order_detail->qty;
+               }elseif ($status_order == 3) {
+                   $stock_now = $stock->stok; 
+
+               }else{
+                   $stock_now = $stock->stok; 
+               }
+
+                
+                $id_produk_min = $order_detail->id_produk;
+
+                $data['stok_now'] = array(
+                    'stok'=>$stock_now
+                );
+
+                $this->Product_model->update_stock($id_produk_min,$data['stok_now']);
+
+                // echo 'Stok Sekarang di Produk : '.$order_detail->id_produk.'<-ID'.$order_detail->sku.'-'.$stock->stok.'-'.$order_detail->qty.'='.$stock_now;
+                // echo "<br>";
+                
+            }
+
+
+            $status_action = 'update';
+            $this->session->set_flashdata('status_action', $status_action);
+            
+            redirect(base_url().'admin-area/order');
+        }
+    }
+// End Order
+
+
+// Quotation
+     function quotation(){
+        $data['action'] = $this->input->get('action');
+        $data['status_action'] = $this->session->flashdata('status_action');
+        $data['order'] = $this->Quotation_model->read();
+
+        // Edit Data
+
+       if($this->input->get('id')){
+            $id = $this->input->get('id');
+          
+
+            $data['data_edit'] = $this->Quotation_model->get_data($id);
+         
+
+            // print_r($data['data_coupon_edit']);
+
+             $this->load->view('admin/quotation',$data);
+      
+
+       }else{
+       $this->load->view('admin/quotation',$data);
+                   
+       }
+    }
+
+
+    function update_quotation(){
+
+        $status_order           = $this->input->post('status');
+        $no_order               = $this->input->post('no_order');
+     
+
+        $data = array(
+            'status_order' => $status_order
+        );
+
+        $where = array(
+            'no_order' => $no_order
+        );
+
+
+       
+        // Update ke Database
+        if($this->Quotation_model->update($data,$where)){
+
+            if($status_order == 1){
+                $data_quotation = $this->Quotation_model->get_where($no_order);
+
+                $data = array (
+                'no_order' => $data_quotation[0]->no_order,
+                'id_customer' => $data_quotation[0]->id_customer,
+                'tanggal_order' => $data_quotation[0]->tanggal_order,
+                'perusahaan' => $data_quotation[0]->perusahaan,
+                'alamat_pengiriman' => $data_quotation[0]->alamat_pengiriman,
+                'no_telp' => $data_quotation[0]->no_telp,
+                'kurir' => $data_quotation[0]->kurir,
+                'kode_pos' => $data_quotation[0]->kode_pos,
+                'status_order' => 0,
+                'payment_method' =>$data_quotation[0]->payment_method,
+                'coupon' => $data_quotation[0]->coupon,
+                'total_bayar' => $data_quotation[0]->total_bayar 
+
+
+            );
+
+
+            $this->Order_model->create($data);
+
+            $data_quotation_detail = $this->Quotation_model->get_quotation_detail($no_order);
+
+            foreach ($data_quotation_detail as $detail_quotation) {
+               $data['quotation_detail'] = array(
+                        'no_order' => $no_order,
+                        'id_produk' => $detail_quotation->id_produk,
+                        'sku' => $detail_quotation->sku,
+                        'qty' => $detail_quotation->qty,
+                        'price'=> $detail_quotation->price,
+                        'price_discount' => $detail_quotation->price_discount,
+                        'sub_total' => $detail_quotation->sub_total
+                    );
+
+                $this->Order_model->create_order_detail($data['quotation_detail']);
+
+            }
+
+
+            }
+
+            
+
+
+            $status_action = 'update';
+            $this->session->set_flashdata('status_action', $status_action);
+            
+            redirect(base_url().'admin-area/quotation');
+        }
+
+    }
+// End Quotation
+
 // Logout Action
 
 
     function logout(){
-        $this->session->sess_destroy();
+        $this->session->unset_userdata('login_session');
         redirect(base_url().'klik-here?message=logout');
     }
 
     
+    
+    /*nyo*/
     
 //konfirmasi
     function delete_konfirmasi(){
@@ -1664,16 +1877,61 @@ class Admin_area extends CI_Controller {
 
         echo "{}";
     }
+    
+    function update_konfirmasi(){
+        
+//        status_order
+             
+        $data= array('status_order' => $this->input->post('status'));
+        $data2= array('status' => $this->input->post('status'));
+        
+        
+            $where = array (
+               'no_order' => $this->input->post('id_order')
+             );
+        $where2 = array (
+               'id' => $this->input->post('id')
+             );
+
+        // Update ke Database
+                          
+         $this->Konfirmasi->update_status($data,$where);
+         $this->Konfirmasi->update($data2,$where2);
+         redirect('admin-area/konfirmasi');
+    }
     // Konfirmasi pembayaran
     function konfirmasi()
     {
-        
+        $data['action'] = $this->input->get('action');
+        $data['no_order'] = $this->input->get('no_order');
         $data['data_konfirmasi'] = $this->Konfirmasi->read();
+                // Edit Data
+       if($this->input->get('id')){
+            $id = $this->input->get('id');
+            $where = array (
+                'id' => $id
+            );
 
-        $this->load->view('admin/konfirmasi',$data);
+            $data['data_konfirmasi'] = $this->Konfirmasi->get_data($where);
+
+            $this->load->view('admin/konfirmasi',$data); 
+           
+
+       }else{
+            $this->load->view('admin/konfirmasi',$data);        
+       }
+
+      
     }
 // End konfirmasi
-    
+     function delete_slider(){
+        $id    = $this->input->post("id");
+       
+        $this->Slider->delete($id);
+      
+
+        echo "{}";
+    }
     // inventori
     function inventori()
     {
@@ -1683,6 +1941,96 @@ class Admin_area extends CI_Controller {
         $this->load->view('admin/inventori',$data);
     }
 // End inventori
+    /*slider*/
+    
+    function slider(){
+        $data['action'] = $this->input->get('action');
+        
+        $data['data_slider'] = $this->Slider->read();
+        
+         if($this->input->get('id')){
+            $id = $this->input->get('id');
+            $where = array (
+                'id' => $id
+            );
+
+            $data['data_slider'] = $this->Slider->get_data($where);
+
+            $this->load->view('admin/slider',$data); 
+           
+
+       }else{
+            $this->load->view('admin/slider',$data);        
+       }
+
+        
+    }
+    function add_slider(){
+        
+
+        // ==============
+
+   
+
+        $config['upload_path'] = './my-assets/image/slider/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+
+        if ($this->upload->do_upload('gambar')){
+                        $gbr = $this->upload->data();
+                        //Compress Image
+                        $config['image_library']='gd2';
+                        $config['source_image']= './my-assets/image/slider/'.$gbr['file_name'];
+                        $config['create_thumb']= FALSE;
+                        $config['maintain_ratio']= TRUE;
+                        $config['quality']= '100%';
+                      /*  $config['width']= 600;
+                        $config['height']= 400;*/
+                        $config['new_image']= './my-assets/image/slider/'.$gbr['file_name'];
+                        $this->load->library('image_lib', $config);
+                        $this->image_lib->resize();
+         
+                        $gambar=$gbr['file_name'];
+                        
+                         $data = array(
+                        'gambar' => $gambar,
+                        'link_url' => $this->input->post('link')
+
+                        );   
+
+            
+                      
+
+                        // Upload ke Database
+                        $this->Slider->create($data);
+
+                        // Notif Succes
+                        
+                        redirect('admin-area/slider');
+                        
+
+        }else{
+            echo "upload gambar gagal";
+                           
+            
+        }
+    }
+    
+    
+     function laporan()
+    {
+           $data['action'] = $this->input->get('action');
+        $data['data_inventori'] = $this->Product_model->read();
+        $data['laporan_top'] = $this->Detail_order_model->top_customer();
+        $data['stok'] = $this->Detail_order_model->stok();
+        $data['produk'] = $this->Detail_order_model->top_product();
+//        $data['laporan_top_nama'] = $this->Detail_order_model->top_customer_nama();
+       
+
+        $this->load->view('admin/laporan',$data);
+    }
     
 
     

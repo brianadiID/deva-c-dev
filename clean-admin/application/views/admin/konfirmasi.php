@@ -82,6 +82,9 @@
     .editor{
     display: none;
 }
+     .footer{
+             margin-left: 22px;
+     }
 
 </style>
 </head>
@@ -159,7 +162,89 @@
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== --> 
 
+                            
+<?php if($action == 'edit') { ?> 
+                <div class="row">
+                  <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" >Edit konfirmasi</h4>
+                            <h6 class="card-subtitle">Edit Data</h6>
+                        <form class="m-t-40" action="<?php echo base_url('admin-area/update-konfirmasi'); ?>" method="post" enctype="multipart/form-data" novalidate>    
                             <div class="row">
+                                
+                            <?php foreach($data_konfirmasi as $data_konfirmasi): ?> 
+                         <div class="col">
+                           <div class="form-group" >
+                               <h5>id</h5><div class="controls">
+                            <input  readonly  type="text" class="form-control form-control-line" value="<?php echo $data_konfirmasi->id; ?>">
+                               </div> </div>
+                                
+                                <div class="form-group" > 
+                                <h5>nama rekening</h5><div class="controls">
+                            <input  readonly type="text" class="form-control form-control-line" value="<?php echo $data_konfirmasi->nama_rekening; ?>">
+                                    </div></div>
+                                
+                                <div class="form-group" > 
+                                <h5>no rekening</h5><div class="controls">
+                            <input  readonly type="text" class="form-control form-control-line" value="<?php echo $data_konfirmasi->no_rekening; ?>">
+                                    </div> </div>
+                             
+                             <div class="form-group" > 
+                                <h5>Status</h5><div class="controls">
+                                    <input type="checkbox" name="status" value="1"  class="js-switch" data-color="#009efb" <?php if($data_konfirmasi->status == 1 ) echo 'checked' ;?>  />
+                                    
+                           <input type="hidden" name="id_order" value="<?php echo $this->input->get('id_order'); ?>">
+                           <input type="hidden" name="id" value="<?php echo $this->input->get('id'); ?>">
+                                    </div></div> 
+                             
+                             <div class="form-group" > 
+                                <h5>Simpan Perubahan</h5><div class="controls">
+                                   
+                                    <button type="submit" class="btn waves-effect waves-light btn-block btn-info">Simpan</button>
+                           
+                                    </div></div> 
+                                
+                         </div>
+                         <div class="col">      
+                                <div class="form-group" > 
+                                <h5>jumlah transfer</h5><div class="controls">
+                            <input readonly  type="text" class="form-control form-control-line" value="<?php echo $data_konfirmasi->jum_transfer; ?>">
+                                    </div></div>
+                                
+                                <div class="form-group" >  
+                                <h5>no order</h5><div class="controls">
+                            <input  readonly type="text" class="form-control form-control-line" value="<?php echo $data_konfirmasi->no_order; ?>">
+                                    </div> </div>
+                                
+                                
+                                <div class="form-group" > 
+                                <h5>nama bank</h5><div class="controls">
+                            <input  readonly type="text" class="form-control form-control-line" value="<?php echo $data_konfirmasi->nama_bank; ?>">
+                                    </div></div>
+                             
+                                <div class="form-group">
+                                    <h5>Gambar Bukti transfer</h5>
+                                    <div class="controls">
+                                        <img src="<?php echo base_url() ?>my-assets/image/konfirmasi/<?php echo $data_konfirmasi->gambar ; ?>" alt="<?php echo $data_konfirmasi->gambar ; ?>"  class="">
+                                    
+                                    </div>
+                                
+                                </div>
+                        </div>  
+                                
+                                <?php endforeach ?>
+                            
+                            </div>
+                            </form>
+                          
+                        </div>
+                       </div>
+                      </div>              
+                                
+<?php } ?>                                
+<?php if($action=='') { ?>                                 
+                                
                                 <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
@@ -175,26 +260,43 @@
                                             <table id="tabelKu" class="nowrap table table-bordered table-striped ">
                                                 <thead>
                                                     <tr >
-                                                        <th>ID</th>
+                                                        
+                                                        <th>Gambar</th>
+                                                        <th>No Order</th>
                                                         <th>Nama Rekening</th>
                                                         <th>No Rekening</th>
                                                         <th>Bank</th>
                                                         <th>Jumlah Transfer</th>
+                                                        
+                                                        <th>status</th>
                                                         <th scope="col">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php $no=1; foreach ($data_konfirmasi as $data_konfirmasi): ?>
+                                                <?php $no=1; foreach ($data_konfirmasi as $data_konfirmasi):
+                                                    
+                                                    if($data_konfirmasi->status == '1' ){ $status="
+                                                                                        <span class='badge badge-info badge-pill'>Terverifikasi</span>";
+                                                                                        
+                                                                                        }
+                                                    else{$status="
+                                                                                        <span class='badge badge-danger  badge-pill'>Belum terverifikasi</span>";}
+                                                    
+                                                    ?>
                                                     <tr data-id="<?php echo $data_konfirmasi->id ;?>" role="row">
 
-                                                        <td><?php echo $data_konfirmasi->id ; ?></td>
+                                                       
+                                                        <td><img src="<?php echo base_url() ?>my-assets/image/konfirmasi/<?php echo $data_konfirmasi->gambar ; ?>" alt="<?php echo $data_konfirmasi->gambar ; ?>" width="40" class="img-circle"></td>
+                                                        <td><?php echo $data_konfirmasi->no_order ; ?></td>
                                                         <td><?php echo $data_konfirmasi->nama_rekening ; ?></td>
                                                         <td><?php echo $data_konfirmasi->no_rekening ; ?></td>
                                                         <td><?php echo $data_konfirmasi->nama_bank ; ?></td>
-                                                        <td><?php echo $data_konfirmasi->jum_transfer ; ?></td>                                                  
+                                                       
+                                                        <td><?php echo $data_konfirmasi->jum_transfer ; ?></td>    
+                                                         <td><?php echo $status; ?></td>
                                                         <td>
 
-                                                            <a href="?action=edit&id=<?php echo $data_konfirmasi->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
+                                                            <a href="?action=edit&id_order=<?php echo $data_konfirmasi->no_order ;?>&id=<?php echo $data_konfirmasi->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
 
                                                             <button type="button" data-id="<?php echo $data_konfirmasi->id ;?>" data-name="<?php echo $data_konfirmasi->nama_rekening ;?>"  class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-konfirmasi" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
 
@@ -220,7 +322,7 @@
                             </div>
 
               
-
+<?php } ?>
 
          
           

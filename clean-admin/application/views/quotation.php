@@ -362,7 +362,212 @@
                     </div>
                     
                 </div>
+
                 <div class="col-lg-4 col-12">
+                    <div style="margin-top: 12px;min-height: 500px;background:#fff;">
+                    <div class="col-lg-12 col-12">
+                        <div class="form-group">
+                        <button class="btn-confirm" >BUAT PENAWARAN</button>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <style type="text/css">
+                            .checkout-address-inner {
+                                padding-bottom: 16px;
+                            }
+
+                            .address-hat {
+                                    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;
+                            }
+                            .address-title-container {
+                                position: relative;
+                                margin-bottom: 8px;
+                            }
+
+                            .address-title-container .address-title {
+                                font-size: 14px;
+                                line-height: 16px;
+                                color: #757575;
+                            }
+                            .address-edit {
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                                font-size: 14px;
+                                color: #0cb5ba;
+                                cursor: pointer;
+                            }
+                             .address-name {
+                                font-size: 14px;
+                                line-height: 16px;
+                                word-wrap: break-word;
+                                margin-bottom: 8px;
+                                color: #212121;
+                            }
+                            .address-info-item {
+                                font-size: 14px;
+                                line-height: 16px;
+                                word-wrap: break-word;
+                                color: #757575;
+                            }
+                        </style>
+                        <div class="checkout-address-inner" >
+                            <div>
+                                <div class="address-hat">Pengiriman dan Penagihan
+                                </div>
+                                    <?php foreach ($data_customer as $customer_data ): ?>
+                                        
+                                    <?php endforeach ?>
+                                        <div class="address-title-container">
+                                            <span class="address-title">Pengiriman Ke :</span>
+                                            <a href="<?php echo base_url(); ?>checkout/shipping" class="address-edit">UBAH</a>
+                                           
+                                        </div>
+                                        <div class="address-name" id="perusahaan"><?php echo $customer_data->perusahaan; ?></div>
+
+                                        <div class="address-name"><?php echo $customer_data->nama; ?></div>
+                                        <div class="address-info-item address-value" id="alamat"><?php echo $customer_data->alamat; ?></div>
+
+                                        <div class="address-info-item address-value" id="provinsi_kota" ><?php echo $customer_data->provinsi; ?>,<?php echo $customer_data->kota; ?>,<?php echo $customer_data->kecamatan_kelurahan; ?>,<?php echo $customer_data->kode_pos; ?> </div>
+                                        <div class="address-info-item address-value" id="no_telp"><?php echo $customer_data->no_telp;?></div>
+
+                                        <div class="address-title-container">
+                                           
+                                        </div>
+
+                                
+                                
+                            </div>
+                        </div>
+
+                        <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">
+                        Rangkuman Pemesanan
+                        </div>
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Subtotal ( <span class="cart-text" id="count_cart_tops" style="color:#7e7979"></span>)
+                                
+                            </div>
+
+                             <div class="detail-cost-subtotal">
+                                <input type="hidden" id='total_before' value="<?php echo $this->cart->total(); ?>">
+                                Rp<span class="cart-text total" id="total" style=""></span>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Jenis Pengiriman Pengiriman
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                <span id="kurir">Klak Klik Express</span>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Biaya Pengiriman
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                <input type="hidden" id="kode_pos" value="<?php echo $customer_data->kode_pos ;?>" name="">
+                                Rp<span id="jumlah_ongkir"></span>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="detail-subtotal">
+                                Diskon
+                                
+                            </div>
+
+                            <div class="detail-cost-subtotal">
+                                <span id="discount-coupon">0</span>%
+                            </div>
+                            
+                        </div>
+
+                        <div class="row-detail-checkout">
+                            <div class="coupon-input">
+                                <div class="form-group">
+                                <input id="coupon" type="text" value="" class="form-control" name="" placeholder="Masukkan Kupon" />
+                                </div>
+
+                            </div>
+                            <div class="submit-coupon">
+                                <div class="form-group">
+                                <button class="btn btn-primary" style="width: 100%;border-radius: 2px; " id="apply-coupon">GUNAKAN</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <style type="text/css">
+                            .checkout-order-total{
+                                margin-top: 10px;
+                            }
+                            .checkout-order-total-row{
+                                display: table;
+                                width: 100%;
+                                margin-bottom: 16px;
+                            }
+                            .checkout-order-total-title{
+                                display: table-cell;
+                                font-size: 14px;
+                                color: #202020;
+                                line-height: 16px;
+                            }
+                            .checkout-order-total-fee{
+                                display: table-cell;
+                                font-size: 18px;
+                                color: #f57224;
+                                text-align: right;
+                            }
+
+
+
+                        </style>
+
+                        <div  class="checkout-order-total">
+                            <div class="checkout-order-total-row">
+                                <div class="checkout-order-total-title">
+                                    Total
+                                </div>
+                                <div class="checkout-order-total-fee">
+                                    <input type="hidden" value="" id="total_all" name="total">
+                                    
+                                    Rp<span class="cart-text " id="total_main" style=""></span>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                   
+
+                    <div class="col-lg-12 col-12">
+                        <div class="form-group">
+                        <button class="btn-confirm" id="create_order" >BUAT PENAWARAN</button>
+                        </div>
+                    </div>
+                        
+                    </div>
+                    
+                </div>
+
+
+
+                <!-- OL RIGHT BAR -->
+                <div class="col-lg-4 col-12" style="display: none;">
                     <div style="margin-top: 12px;min-height: 500px;background:#fff;position: sticky;top: 80px;">
                     <div class="col-lg-12 col-12">
                         <div class="form-group">
@@ -556,44 +761,295 @@
 
     <script>
         $(document).ready(function(){
-
+          
+             
             //Hapus Item Cart
-                $(document).on('change','.zzk',function(){
-                    var row_id=$(this).attr("id"); //mengambil row_id dari artibut id
-                    var qty=$(this).val(); //mengambil qty
-                    // alert(qty);
-                    if(qty <= 0){
-                        alert('Ooops something went wrong.');
-                    return false;
-                    }else{
-                        $.ajax({
-                        url : "<?php echo base_url();?>home/update_cart",
-                        method : "POST",
-                        data : {row_id : row_id,qty : qty}
-                        ,
-                        beforeSend: function(){
-                            $('.preloader').html("<img src='<?php echo base_url();?>assets/website/image/loader.gif'>");
-                        },
-                        success :function(){
-                             // location.reload();
+                $(document).on('ready','.zzk',function(){
+                   
 
-                             $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
-                             $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
-                             $('#count_cart').load("<?php echo base_url();?>home/load_count");
-                             $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
-                             $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
-                             $('.total').load("<?php echo base_url();?>home/load_total");
+             $('.zzk').attr('disabled','disabled');
+                    
+             
+                   
 
-              
-                        }
-                    });
-                    }
+
+
+                    
                     
                 });
 
         });
  
    </script>
+
+
+<!--    <script type="text/javascript">
+     
+            $(document).ready(function(){
+                $('#provinsi').change(function(){
+         
+                    //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+                    var prov = $('#provinsi').val();
+         
+                    $.ajax({
+                        type : 'GET',
+                        url : '<?php echo base_url(); ?>checkout/cek_city',
+                        data :  'prov_id=' + prov,
+                            success: function (data) {
+         
+                            //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                            $("#kota").html(data);
+                        }
+                    });
+                });
+
+
+         
+                $("#cek").click(function(){
+                    //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+                    var asal = 501;
+                    var kab = $('#kota').val();
+                    var kurir = $('#kurir').val();
+                    var berat = $('#berat').val();
+         
+                    $.ajax({
+                        type : 'POST',
+                        url : '<?php echo base_url(); ?>checkout/cek_ongkir',
+                        data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+                            success: function (data) {
+         
+                            //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                            $("#ongkir").html(data);
+                        }
+                    });
+                });
+            });
+        </script> -->
+
+      <!--   <script type="text/javascript">
+            $(document).ready(function(){
+          
+              
+                     var discount1 = $('.type-users').find(':selected').data('discount');
+                     var keterangan1 = $('.type-users').find(':selected').data('keterangan');
+                    // alert(keterangan);\
+                    $("#detail_discount").css("font-weight", "bold");
+                    $("#detail_keterangan").css("font-weight", "bold");
+                    $( '#detail_discount' ).html(discount1+'%').fadeIn(1000);
+                    $( '#detail_keterangan' ).html(keterangan1 ).fadeIn(1000);
+
+                
+
+                $('#kurir').change(function(){
+              
+                     var kurir = $(this).find(':selected').val();
+                    // alert(kurir);
+                     if(kurir == 'kke'){
+                        $('#jenis-pengiriman').attr('disabled',true);
+                     }else{
+                        $('#jenis-pengiriman').attr('disabled',false);
+
+                     }
+                     
+                    // // alert(keterangan);\
+                    // $("#detail_discount").css("font-weight", "bold");
+                    // $("#detail_keterangan").css("font-weight", "bold");
+                    // $( '#detail_discount' ).html(discount+'%').fadeIn(1000);
+                    // $( '#detail_keterangan' ).html(keterangan ).fadeIn(1000);
+
+                });
+            });
+        </script> -->
+
+         <!-- Input Coupon -->
+        <script>
+            $(document).ready(function(){
+
+
+
+                    $(document).on('click','#apply-coupon',function(){
+
+                        var coupon=$('#coupon').val(); 
+                    
+                      
+                       
+
+                            $.ajax({
+                            url : "<?php echo base_url();?>checkout/coupon_validate",
+                            method : "POST",
+                            data : {coupon : coupon}
+                            ,
+                           
+                            success :function(data){
+
+                                if (data > 0) {
+                                    $('#coupon').prop('disabled', true);
+
+                                }
+
+                                if(data == ''){
+                                    $("#discount-coupon").html(0);
+                                }else{
+                                    $("#discount-coupon").html(data);
+
+
+                                }
+                                 // location.reload();
+                                     var discount =$('#discount-coupon').text(); //mengambil Disc
+                                     var total = $('#total_before').val();
+                                     var ongkir = $('#jumlah_ongkir').text();
+                                
+                                    var total_after = parseInt(total) - (parseInt(total) * (parseInt(discount)/100) ) + parseInt(ongkir) ;
+                                    // var total_afters = number( total_after, 3, ',' );
+                                    var number_string = total_after.toString(),
+                                        sisa    = number_string.length % 3,
+                                        rupiah  = number_string.substr(0, sisa),
+                                        ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+                                            
+                                    if (ribuan) {
+                                        separator = sisa ? ',' : '';
+                                        rupiah += separator + ribuan.join(',');
+                                    }
+
+                                    $('#total_main').text(rupiah);
+                                    $('#total_all').val(total_after);
+                                    $('#total_main_int').val(total_after);
+
+
+
+                                
+
+                                 // $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                                
+
+                  
+                            },
+                        error: function() {
+                            alert('Request Failed, Please check your code and try again!');
+                        }
+                        });
+                        
+                    });
+
+                 
+
+            });
+
+ 
+        </script>
+        <!-- End Input Coupon -->
+
+        <script>
+            $(document).ready(function(){
+                   $('.zzk').attr('disabled','disabled');
+                    var kode_pos=$('#kode_pos').val(); //mengambil Kodepos
+                    var berat=$('#berat').val(); //mengambil Kodepos
+                    $.ajax({
+                    url : "<?php echo base_url();?>checkout/cek_ongkir_lokal",
+                    method : "POST",
+                    data : {kode_pos : kode_pos,berat:berat}
+                    ,
+                   
+                    success :function(data){
+                         // location.reload();
+                        $("#jumlah_ongkir").html(data);
+                        var discount =$('#discount-coupon').text(); //mengambil Disc
+                        var total = $('#total_before').val();
+                        var ongkir = $('#jumlah_ongkir').text();
+                        var total_after = parseInt(total) - (parseInt(total) * (parseInt(discount)/100) ) + parseInt(ongkir) ;
+                        // var total_afters = number( total_after, 3, ',' );
+                        
+
+                        var number_string = total_after.toString(),
+                            sisa    = number_string.length % 3,
+                            rupiah  = number_string.substr(0, sisa),
+                            ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+                                
+                        if (ribuan) {
+                            separator = sisa ? ',' : '';
+                            rupiah += separator + ribuan.join(',');
+                        }
+
+                        $('#total_main').text(rupiah);
+                        $('#total_all').val(total_after);
+
+                        
+
+                         // $('#detail_cart').load("<?php echo base_url();?>home/load_cart");
+                         // $('#data_cart').load("<?php echo base_url();?>home/load_review_order");
+                         // $('#count_cart').load("<?php echo base_url();?>home/load_count");
+                         // $('#count_cart_top').load("<?php echo base_url();?>home/load_count_top");
+                         // $('#count_cart_tops').load("<?php echo base_url();?>home/load_count_top");
+                         // $('.total').load("<?php echo base_url();?>home/load_total");
+
+          
+                    },
+                error: function() {
+                    alert('Request Failed, Please check your code and try again!');
+                }
+                });
+
+                 // UPDATE SHIPPING zzz
+                $('#create_order').click(function(){
+                    $(this).attr('disabled',true);
+                    // var nama_lengkap = $('#nama_lengkap').val(); 
+                    var alamat = $('#alamat').text();
+                    // var kecamatan = $('#kecamatan_kelurahan').val();
+                    var provinsi = $('#provinsi_kota').text();
+                    var perusahaan = $('#perusahaan').text();
+                    // var metode_pembayaran = $('#metode_pembayaran').find(':selected').val();
+                    var no_telp = $('#no_telp').text();
+                    var kurir = $('#kurir').text();
+           
+                    var kode_pos = $('#kode_pos').val();
+                    // var total_main = $('#total_main').text();
+                    var total_all = $('#total_all').val();
+                    var jumlah_ongkir = $('#jumlah_ongkir').text();
+                    var coupon = $('#coupon').val();
+
+
+
+
+                    // alert(perusahaan);
+
+                    // alert(coupon);
+
+                    $.ajax({
+                        type : 'GET',
+                        url : '<?php echo base_url(); ?>quotation/save_quotation',
+                        data :  {
+                             
+                            alamat : alamat,
+                           
+                            provinsi_kota : provinsi,
+                            perusahaan : perusahaan,
+                            no_telp : no_telp,
+                            kurir : kurir,
+                            kode_pos : kode_pos,
+                            // metode_pembayaran :metode_pembayaran,
+                            coupon:coupon,
+                            total_all : total_all
+                            // jumlah_ongkir : jumlah_ongkir
+                            },
+                            success: function (data) {
+         
+                            $("body").html(data);
+                        }
+                    });
+
+
+                    
+                    // alert(kurir);
+                    
+                       
+
+                });
+
+
+            });
+ 
+        </script>
+
 
 
         

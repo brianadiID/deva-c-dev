@@ -14,7 +14,9 @@ class User_Authentication extends CI_Controller
     public function index(){
         //redirect to profile page if user already logged in
         if($this->session->userdata('loggedIn') == true){
-            redirect('user_authentication/profile/');
+           
+            
+            redirect(base_url());
         }
         
         if(isset($_GET['code'])){
@@ -35,6 +37,26 @@ class User_Authentication extends CI_Controller
             $userData['profile_url']    = !empty($gpInfo['link'])?$gpInfo['link']:'';
             $userData['picture_url']    = !empty($gpInfo['picture'])?$gpInfo['picture']:'';
             
+             $data['userData'] = $this->session->userdata('userData');
+               $session = array(
+                    'customer_id' => $userData['oauth_uid'],
+                    'customer_nama_user'=> $userData['first_name'].' '.$userData['last_name'],
+                    'customer_email_user' => $userData['email'],
+                    'customer_login_session'=> 'uu2cep1i',
+                    'customer_test_session' => 'Ada Session Kok',
+                    'customer_level'         => '0',
+                    'customer_photo'         => $userData['picture_url'],
+                    'customer_perusahaan'    => '',
+                    'customer_alamat'        =>'',
+                    'kecamatan_kelurahan'   =>'',
+                    'customer_kode_pos'        =>'',
+                    'customer_no_telp'       => ''
+
+                    );
+
+                $this->session->set_userdata($session);
+            
+            
             //insert or update user data to the database
             $userID = $this->user->checkUser($userData);
             
@@ -43,7 +65,7 @@ class User_Authentication extends CI_Controller
             $this->session->set_userdata('userData', $userData);
             
             //redirect to profile page
-            redirect('user_authentication/profile/');
+            redirect(base_url());
         } 
         
         //google login url
@@ -62,8 +84,9 @@ class User_Authentication extends CI_Controller
         //get user info from session
         $data['userData'] = $this->session->userdata('userData');
         
+         
         //load user profile view
-        $this->load->view('user_authentication/profile',$data);
+        $this->load->view(base_url(),$data);
     }
     
     public function logout(){

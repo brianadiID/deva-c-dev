@@ -13,7 +13,7 @@
                                 <a href="#"><i class="fa fa-envelope-o"></i> Email : <span class="__cf_email__" data-cfemail="7614120217051d36111b171f1a5815191b">[email&#160;protected]</span></a>
                             </div>
                             <div class="connectus">
-                                <a href="#"><i class="fa fa-phone"></i> CALL US : +88-01922-296392</a>
+                                <a href="<?php echo base_url().'user_authentication/logout'; ?>">Logout Google</a>
                             </div>
                             
                             <div class="connectus">
@@ -80,18 +80,25 @@
                                 </div>
                                    <div class="form-group">
                                   <input type="text" class="form-control" id="##" name="nama_bank" placeholder="Nama Bank">
+                                </div> 
+                                      <div class="form-group">
+                                  <input type="text" class="form-control" id="##" name="no_order" placeholder="Nomor Order">
                                 </div>
+                                     
                                   
                                   
                                   <div class="form-group">
                                   <input type="number" class="form-control" id="##" name="jum_transfer" placeholder="Jumlah Transfer">
                                 </div>
-                                      
+                                <div class="form-group">
+                                        <h5>Masukan bukti transfer</h5>
+                                      <input type="file" name="gambar" class="form-control" required = 'required'>
+                                      </div>       
                                 
                                   <div class="form-group">
                                     <div class="row">
                                         <div class="col">
-                                            <button type="submit" class="btn btn-primary w100">Konfirmasi</button>
+                                            <button type="submit" id="submit-register"  class="btn btn-primary w100">Konfirmasi</button>
                                         </div>
                                        <!-- <div class="col">
                                             
@@ -107,3 +114,8 @@
                         </div>
                         <!--./-->
 <!---->
+<script>
+
+   
+
+</script>

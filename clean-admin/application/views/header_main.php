@@ -193,7 +193,7 @@
                         
                         
                         
-                        <meta name="google-signin-client_id" content="841317113324-fd83opj4q6l9g0ljm1u2siqsep5ui5lp.apps.googleusercontent.com">
+                        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
                         
                     </div>
                     <!-- Modal login -->

@@ -118,7 +118,8 @@
                     var produk_harga = $(this).data("produkharga");
                     var gambar       = $(this).data("gambar");
                     var produk_harga_origin = $(this).data("price-origin");
-                  
+                    var brand = $(this).data("brand");
+                    var kategori = $(this).data('kategori');
                     var qty          = $('#sst').val();
 
 
@@ -126,7 +127,7 @@
                     $.ajax({
                         url : "<?php echo base_url();?>home/add_to_cart",
                         method : "POST",
-                        data : {produk_id: produk_id, produk_nama: produk_nama, produk_harga: produk_harga, gambar:gambar,qty:qty,produk_harga_origin:produk_harga_origin},
+                        data : {produk_id: produk_id, produk_nama: produk_nama, produk_harga: produk_harga, gambar:gambar,qty:qty,produk_harga_origin:produk_harga_origin,id_brand:brand,kategori:kategori},
                         success: function(data){
                             $('#detail_cart').html(data);
                             $('#count_cart').load("<?php echo base_url();?>home/load_count");

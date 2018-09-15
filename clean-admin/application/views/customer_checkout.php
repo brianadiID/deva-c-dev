@@ -244,18 +244,21 @@
                     
                     <div style="margin-top: 12px;background:#fff;padding: 40px;">
                         <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Informasi Pengiriman</div>
-                        <form method="post" action="<?php echo base_url() ;?>checkout/update_shipping">
+                        <?php foreach ($data_customer as $customer_data): ?>
+                            
+                        <?php endforeach ?>
+                        <form method="post" action="">
                         <div class="row">
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Nama Lengkap</label>
-                                <input type="text" name="nama-lengkap" value="<?php echo $this->session->userdata('customer_nama_user'); ?>" class="form-control" id="exampleFormControlInput1" placeholder="Nama Lengkap">
+                                <input type="text" name="nama-lengkap" value="<?php echo $customer_data->nama; ?>" class="form-control" id="nama_lengkap" placeholder="Nama Lengkap">
                               </div>
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlInput1">Alamat</label>
-                                <input type="text" class="form-control" name="alamat" value="<?php echo $this->session->userdata('customer_alamat'); ?>" id="exampleFormControlInput1" placeholder="Silahkan Masukkan Alamat Anda ">
+                                <input type="text" class="form-control" name="alamat" value="<?php echo $customer_data->alamat; ?>" id="alamat" placeholder="Silahkan Masukkan Alamat Anda ">
                               </div>
                           </div>
                         </div>
@@ -263,7 +266,7 @@
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Kelurahan/Kecamatan</label>
-                                <input type="text" class="form-control" value="<?php echo $this->session->userdata('kecamatan_kelurahan'); ?>" name="kelurahan-kecamatan" id="exampleFormControlInput1" placeholder="Masukkan Kelurahan/Kecamatan Anda">
+                                <input type="text" class="form-control" value="<?php echo $customer_data->kecamatan_kelurahan; ?>" name="kelurahan-kecamatan" id="kecamatan_kelurahan" placeholder="Masukkan Kelurahan/Kecamatan Anda">
                               </div>
                           </div>
                           <div class="col-lg-6">
@@ -276,11 +279,10 @@
                                     <option value="<?php echo $prov->province_id ?>" data-namaprovinsi="<?php echo $prov->province ?>"
 
                                         <?php 
-                                            $region =   explode("-",$this->session->userdata('customer_kode_pos'));
-                                            $provinsi_customer = $region[0];
+                                        
                                             $provinsi_rajaogkir = $prov->province ;
 
-                                            if($provinsi_customer == $provinsi_rajaogkir){
+                                            if($customer_data->provinsi == $provinsi_rajaogkir){
                                              echo 'selected';   
                                             }?>
                                          
@@ -300,7 +302,7 @@
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Nama Perusahaan</label>
-                                <input name="perusahaan" type="text" value="<?php echo $this->session->userdata('customer_perusahaan') ?>" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nama Perusahaan Anda">
+                                <input name="perusahaan" type="text" value="<?php echo $customer_data->perusahaan; ?>" class="form-control" id="perusahaan" placeholder="Masukkan Nama Perusahaan Anda">
                               </div>
                           </div>
                           <div class="col-lg-6">
@@ -320,14 +322,13 @@
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Nomor Telepon</label>
-                                <input name="no-telp" type="text" value="<?php echo $this->session->userdata('customer_no_telp') ?>" class="form-control" id="exampleFormControlInput1" placeholder="Masukkan Nomor Telepon Anda">
+                                <input name="no-telp" type="text" value="<?php echo $customer_data->no_telp; ?>" class="form-control" id="no_telp" placeholder="Masukkan Nomor Telepon Anda">
                               </div>
                           </div>
                           <div class="col-lg-6">
                               <div class="form-group">
                                 <label for="exampleFormControlSelect1">Kurir</label>
                                 <select id="kurir" class="form-control" name="kurir">
-                                    <option>--Pilih Kurir</option>
                                     <option value="kke">KLAK KLIK EXPRESS</option>
                                     <option value="jne">JNE</option>
                                     <option value="tiki">TIKI</option>
@@ -342,13 +343,13 @@
                         <div class="row">
                             
 
-                            <div class="col-lg-6 col-12">
+                            <!-- <div class="col-lg-6 col-12">
                                 <div class="form-group">
                                 <label>Berat (gram)</label>
-                                <input id="berat" type="text" class="form-control" name="berat" value="500" />
+                                <input id="berat" type="hidden" class="form-control" name="berat" value="500" />
                                 </div>
 
-                            </div>
+                            </div> -->
                             
 
                             <div class="col-lg-6 col-12 ">
@@ -364,22 +365,23 @@
 
                             <div class="col-lg-6 col-12">
                                 <div class="form-group">
-                                <button type="submit" id="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
+
+                                <label>Kode POS</label>
+
+                                <input name="kode-pos"  type="number" value="<?php echo $customer_data->kode_pos;?>" class="form-control" id="kode_pos" placeholder="Masukkan Kode Pos" />
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6 col-12">
+                                <div class="form-group">
+                                <button type="button" id="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
                                 </div>
                             </div>
 
                             
 
-                            <div class="col-lg-6 col-12">
-                                <div class="form-group">
-
-                                <label>Kode POS</label>
-                                           <?php   $region =   explode("-",$this->session->userdata('customer_kode_pos'));  ?>
-
-                                <input name="kode-pos"  type="number" value="<?php echo $region[2];?>" class="form-control" id="kode-pos" placeholder="Masukkan Kode Pos" />
-                                </div>
-
-                            </div>
+                           
                             <!-- <div class="col-lg-6 col-12">
                             <button type="button" class="btn btn-default" id="cek" style="width: 90%;border-radius: 25px;height: 20px;">CEK ONGKIR</button>
 
@@ -806,13 +808,60 @@
         });
 
 
-        // UPDATE SHIPPING
+        // UPDATE SHIPPING zzz
         $('#submit').click(function(){
+            var nama_lengkap = $('#nama_lengkap').val(); 
+            var alamat = $('#alamat').val();
+            var kecamatan = $('#kecamatan_kelurahan').val();
             var provinsi = $('#provinsi').find(':selected').data('namaprovinsi');
-            alert(provinsi);
+            var perusahaan = $('#perusahaan').val();
+            var kota = $('#kota').find(':selected').data('namakota');
+            var no_telp = $('#no_telp').val();
+            var kurir = $('#kurir').find(':selected').text();
+            var berat = $('#berat').val();
+            // var jenis_pengiriman = 
+            var kode_pos = $('#kode_pos').val();
+            var total_main = $('#total_main').text();
+            var total_all = $('#total_all').val();
+            var jumlah_ongkir = $('#jumlah_ongkir').text();
+
+            // alert(kode_pos);
+
+            $.ajax({
+                type : 'POST',
+                url : '<?php echo base_url(); ?>checkout/update_shipping',
+                data :  {
+                    nama_lengkap : nama_lengkap, 
+                    alamat : alamat,
+                    kecamatan : kecamatan,
+                    provinsi : provinsi,
+                    perusahaan : perusahaan,
+                    kota : kota,
+                    no_telp : no_telp,
+                    kurir : kurir,
+                    berat : berat,
+                    kode_pos : kode_pos,
+                    total_main : total_main,
+                    total_all : total_all,
+                    jumlah_ongkir : jumlah_ongkir
+                    },
+                    success: function (data) {
+ 
+                    //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                    // $("body").html(data);
+                    top.location = '<?php echo base_url(); ?>checkout/payment_method';
+                }
+            });
+
+
+            
+            // alert(kurir);
+            
                
 
         });
+
+
     });
 </script>
 
@@ -856,7 +905,7 @@
 
         <script>
         $(document).ready(function(){
-            var kode_pos=$('#kode-pos').val(); //mengambil Kodepos
+            var kode_pos=$('#kode_pos').val(); //mengambil Kodepos
             var berat=$('#berat').val(); //mengambil Kodepos
            
 
@@ -887,6 +936,7 @@
                     }
 
                     $('#total_main').text(rupiah);
+                    $('#total_all').val(total_after);
 
                     
 
@@ -905,7 +955,7 @@
             });
 
             //Rubah Total Ketik Kodepos
-                $(document).on('keyup','#kode-pos',function(){
+                $(document).on('keyup','#kode_pos',function(){
 
                     var kode_pos=$(this).val(); //mengambil Kodepos
                     var berat=$('#berat').val(); //mengambil Kodepos
@@ -939,6 +989,8 @@
                             }
 
                             $('#total_main').text(rupiah);
+                        $('#total_all').val(total_after);
+
 
                             
 
@@ -961,7 +1013,7 @@
             // Rubah total ketka ketik Berat
                 $(document).on('keyup','#berat',function(){
 
-                    var kode_pos=$('#kode-pos').val(); //mengambil Kodepos
+                    var kode_pos=$('#kode_pos').val(); //mengambil Kodepos
                     var berat=$(this).val(); //mengambil Kodepos
                         $.ajax({
                         url : "<?php echo base_url();?>checkout/cek_ongkir_lokal",
@@ -989,6 +1041,8 @@
                             }
 
                             $('#total_main').text(rupiah);
+                            $('#total_all').val(total_after);
+
 
                             
 
@@ -1032,6 +1086,8 @@
             }
 
             $('#total_main').text(rupiah);
+            $('#total_all').val(total_after);
+
 
                 $(document).on('click','#apply-coupon',function(){
 
@@ -1075,6 +1131,8 @@
                                 }
 
                                 $('#total_main').text(rupiah);
+                                $('#total_all').val(total_after);
+
 
                             
 
@@ -1103,7 +1161,7 @@
         <!-- End Input Coupon -->
 
         <!-- Count Total -->
-         <script>
+      <!--    <script>
         $(document).ready(function(){
 
             //Hapus Item Cart
@@ -1144,7 +1202,7 @@
         });
 
  
-        </script>
+        </script> -->
         <!-- End Count Total -->
 
 

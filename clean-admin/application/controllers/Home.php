@@ -7,6 +7,7 @@ class Home extends CI_Controller {
         $this->load->model('Crud_produk');
         $this->load->model('Model_kategori');
          $this->load->model('cart_model');
+         $this->load->model('admin/Slider');
          // $this->load->model('Product_model');
     }
 
@@ -22,6 +23,7 @@ class Home extends CI_Controller {
         $data['produk'] = $this->Crud_produk->read();
         $data['data']=$this->cart_model->get_all_produk();
         $data['kategori'] = $this->Model_kategori->read();
+        $data['slider'] = $this->Slider->read();
      
         
 		$this->load->view('home',$data );
@@ -42,6 +44,7 @@ class Home extends CI_Controller {
 			'price_before' => $this->input->post('produk_harga_origin'), 
 			'qty' => $this->input->post('qty') , 
 			'gbr' => $this->input->post('gambar'),
+			'id_brand' =>$this->input->post('id_brand')
 		);
 		$this->cart->insert($data);
 		echo $this->show_cart(); //tampilkan cart setelah added
@@ -69,13 +72,7 @@ class Home extends CI_Controller {
 
 
 	        }
-
-	       
-
-
-
-			
-
+		
 			$no++;
 			$output .='
             
@@ -116,7 +113,7 @@ class Home extends CI_Controller {
             </div>
             <!-- View cart -->
             <div class="checkout-box" style="margin-top: 5px; margin-right:25px;">
-                 <a href="'.base_url().'checkout/shipping">Checkout</a>
+                 <a href="'.base_url().'checkout/payment-method">Checkout</a>
             </div>
             <!-- quotation -->
             <div class="checkout-box">
@@ -160,6 +157,11 @@ class Home extends CI_Controller {
 
 	        }
 
+	          $get_brand = $this->db->query("SELECT * from t_brand where id = $items[id_brand] ")->result();
+	        foreach ($get_brand as $get_brands) {
+	        	$nama_brand = $get_brands->nama_brand;
+	        }
+
 
 
 			
@@ -176,7 +178,7 @@ class Home extends CI_Controller {
 	                    <div class="content">
                             <a href="" style="font-size: 14px;color: #212121;">'.$items['name'].'</a>
                             <br>
-                            <a href="" style="font-size: 12px;line-height: 16px;color: #757575;">Phillips</a>
+                            <a href="" style="font-size: 12px;line-height: 16px;color: #757575;">'.$nama_brand.'</a>
                             <br>
                             <div class="delete_box">
 		                        <a  id="'.$items['rowid'].'" class=" hapus_cart" name="7a10563a10f7c44814661c2a1d28fb4f">
@@ -189,8 +191,8 @@ class Home extends CI_Controller {
 
 					<td>
 						<div class="cart-item-middle">
-	                        <p class="current-price">'.number_format($items['price'])  .'</p>
-	                        <p class="origin-price">'.number_format($items['price_before'])  .'</p>
+	                        <p class="current-price">'.number_format($items['price']).'</p>
+	                        <p class="origin-price">'.number_format($items['price_before']).'</p>
 	                        <p class="promotion-ratio">'.$discount_amount.'%</p>
 	                    </div>
 					</td>
@@ -228,6 +230,10 @@ class Home extends CI_Controller {
 		return number_format($this->cart->total());
 	}
 
+	function show_total_before(){
+		return $this->cart->total();
+	}
+
 
 
     
@@ -256,6 +262,11 @@ class Home extends CI_Controller {
 
 	function load_total(){
 		echo $this->show_total();
+	}
+
+	function load_total_before(){
+		echo $this->show_total_before();
+
 	}
 
 	function load_cart(){ //load data cart

@@ -15,6 +15,16 @@
                         </li>
 
                         <li> 
+                            <a class="waves-effect waves-dark" href="<?php echo base_url('admin-area/order'); ?>" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Order <span class="badge badge-pill badge-cyan"><?php echo $this->Order_model->count(); ?></span></span>
+                            </a>
+                        </li>
+
+                        <li> 
+                            <a class="waves-effect waves-dark" href="<?php echo base_url('admin-area/quotation'); ?>" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Quotation <span class="badge badge-pill badge-cyan"><?php echo $this->Quotation_model->count(); ?></span></span>
+                            </a>
+                        </li>
+
+                        <li> 
                             <a class="has-arrow waves-effect waves-dark" href="s" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Products </span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
@@ -101,6 +111,8 @@
                             </a>
                             
                         </li>
+
+
                         
                         <li> 
                             <a class=" waves-effect waves-dark" href="<?php echo base_url('admin-area/konfirmasi'); ?>" aria-expanded="false"><i class="fa fa-money"></i><span class="hide-menu">Konfirmasi Transfer </span>
@@ -112,9 +124,17 @@
                             <a class=" waves-effect waves-dark" href="<?php echo base_url('admin-area/inventori '); ?>" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Inventori</span>
                             </a>
                             
+                        </li> 
+                        
+                        <li> 
+                            <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url('admin-area/slider'); ?>" aria-expanded="false"><i class="fa fa-photo"></i><span class="hide-menu">Slider </span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="<?php echo base_url('admin-area/slider'); ?>?action=add">-- Add slider </a></li>
+                                <li><a href="<?php echo base_url('admin-area/slider'); ?>">-- Manage slider </a></li>
+                            </ul>
+                            
                         </li>
-
-
 
                         <li class="nav-small-cap"></li>
 

@@ -159,21 +159,16 @@
             <div class="col-lg-9 offset-lg-3">
                 <div class="slider_inner home2_slider">
                     <div class="owl-carousel main_slider">
-                                                <div class="item">
-                            <a href="bdtask.html" target="_blank">
-                                <img src="isshue-v1.1/my-assets/image/category/5fdf47c34c451273a40465dfce109c64.jpg"  alt="sliderImage">
+                                                 
+                        
+                        <?php foreach($slider as $slider ): ?>
+                        <div class="item">
+                            <a href="<?php echo $slider->link_url; ?>" target="_blank">
+                                <img src="<?php echo base_url() ?>my-assets/image/slider/<?php echo $slider->gambar; ?>"  alt="sliderImage">
                             </a>
                         </div>
-                                                <div class="item">
-                            <a href="bdtask.html" target="_blank">
-                                <img src="isshue-v1.1/my-assets/image/category/502bb75cae8a320dff057650900c7b8c.jpg"  alt="sliderImage">
-                            </a>
-                        </div>
-                                                <div class="item">
-                            <a href="http://www.styledunea.com/" target="_blank">
-                                <img src="isshue-v1.1/my-assets/image/category/7569c369997b5f0bf46e5416aab1e93c.jpg"  alt="sliderImage">
-                            </a>
-                        </div>
+                        <?php endforeach ?>
+                                                
                                             </div>    
                 </div>
             </div>
@@ -268,7 +263,7 @@
                                     <div class="item_image">
                                         <img style="width:0px;top: -260px;" src="<?php echo base_url()?>my-assets/image/product/<?php echo $data_produk['gambar_produk']; ?>" alt="product-image">
                                         
-                                        <button type="button" data-qty='1' data-price-origin="<?php echo $data_produk['harga'] ?>" data-satuan="<?php echo $fix_price ?>" data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $fix_price ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
+                                        <button type="button" data-qty='1' data-kategori="<?php echo $data_produk['id_kategori'] ?>" data-price-origin="<?php echo $data_produk['harga'] ?>" data-satuan="<?php echo $fix_price ?>" data-produkid="<?php echo $data_produk['id'] ?>" data-produknama="<?php echo $data_produk['sku'] ?>" data-produkharga="<?php echo $fix_price ?>" data-brand="<?php echo $data_produk['id_brand'] ?>" data-gambar="<?php echo $data_produk['gambar_produk']; ?>" class="add_cart btn cart_button_gray"><i class="fa fa-shopping-cart"></i>  Beli</button>
                                     </div>
                                 </form>
                         </div>
