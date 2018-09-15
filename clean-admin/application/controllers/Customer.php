@@ -15,6 +15,11 @@ class Customer extends CI_Controller {
 
     }
 
+    // API 1
+    // private $api_key = 'e9692dde5713ba259ac5412bda799507';
+
+    // API 2
+    private $api_key = '603506c51bb38f3092cba48acdb12840';
 
 	public function index()
 	{
@@ -33,6 +38,255 @@ class Customer extends CI_Controller {
 		$this->load->view('Customer');
 	}
 
+    function update_customer(){
+        
+
+        $email_old  = $this->input->post('email_old');
+        $email      = $this->input->post('email');
+        $gambar_lama= $this->input->post('gambar_lama');
+        $password = $this->input->post('password');
+        
+        $config['upload_path'] = './my-assets/image/customers/'; //path folder
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp'; //type yang dapat diakses bisa anda sesuaikan
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        // echo $email;
+
+        $this->upload->initialize($config);
+        // Jika Email tidak sama
+        if($email_old != $email){
+                $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[t_customer.email]');
+                
+                if($this->form_validation->run() != false){
+                    // JIka ada file diupload
+                    if(!empty($_FILES['photo']['name'])){
+                        // Jika Upload Berhasil
+                        if ($this->upload->do_upload('photo')){
+                            $gbr = $this->upload->data();
+                            //Compress Image
+                            $config['image_library']='gd2';
+                            $config['source_image']='./my-assets/image/customers/'.$gbr['file_name'];
+                            $config['create_thumb']= FALSE;
+                            $config['maintain_ratio']= TRUE;
+                            $config['quality']= '50%';
+                            $config['width']= 600;
+                            // $config['height']= 400;
+                            $config['new_image']= './my-assets/image/customers/'.$gbr['file_name'];
+                            $this->load->library('image_lib', $config);
+                            $this->image_lib->resize();
+                            
+                            $gambar=$gbr['file_name'];
+                            unlink("./my-assets/image/customers/".$gambar_lama);
+
+                            // Cek Pssword Kosong atau tidak
+                            if($password != ''){
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'photo' => $gambar
+                                );
+
+                            }else{
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'photo' => $gambar
+                                    
+                                );
+
+                            }
+
+                                
+                            $where = array (
+                                'id' => $this->input->post('id')
+                            );
+
+                            // Update ke Database
+                          
+                            if( $this->Customer_model->update($data,$where)){
+                            $status_action = 'update';
+                            $this->session->set_flashdata('status_action', $status_action);
+
+                            redirect(base_url().'customer/order');
+                            }
+                                
+                        // Jika Upload Gagal
+                        }else{
+                            echo 'Upload gagal';
+                        }
+                    
+                    //Jika tidak ada file di upload 
+                    }else{
+
+                        if($password != ''){
+                            $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'no_telp' => $this->input->post('no_telp')
+                                );
+                        }else{
+                            $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'no_telp' => $this->input->post('no_telp')
+                                    
+                                );
+                        }
+
+                        
+                        $where = array (
+                            'id' => $this->input->post('id')
+                        );
+
+
+                        // Update ke Database
+                          
+                        if( $this->Customer_model->update($data,$where)){
+                        $status_action = 'update';
+                        $this->session->set_flashdata('status_action', $status_action);
+
+                        redirect(base_url().'customer/order');
+                        }
+
+                            
+                    }
+                
+                // JIka Validasi salah 
+                }else{
+                        $status_action = 'email'; 
+                        $this->session->set_flashdata('status_action',$status_action);
+                        redirect(base_url().'customer/order');
+                }
+                        
+
+        // Jika Email Samas
+        }else{
+
+            if(!empty($_FILES['photo']['name'])){
+                        // Jika Upload Berhasil
+                        if ($this->upload->do_upload('photo')){
+                            $gbr = $this->upload->data();
+                            //Compress Image
+                            $config['image_library']='gd2';
+                            $config['source_image']='./my-assets/image/customers/'.$gbr['file_name'];
+                            $config['create_thumb']= FALSE;
+                            $config['maintain_ratio']= TRUE;
+                            $config['quality']= '50%';
+                            $config['width']= 600;
+                            // $config['height']= 400;
+                            $config['new_image']= './my-assets/image/customers/'.$gbr['file_name'];
+                            $this->load->library('image_lib', $config);
+                            $this->image_lib->resize();
+                            
+                            $gambar=$gbr['file_name'];
+                            unlink("./my-assets/image/customers/".$gambar_lama);
+
+                            // Cek Pssword Kosong atau tidak
+                            if($password != ''){
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'photo' => $gambar
+                                    
+                                );
+                        
+                            }else{
+                                $data = array(
+                                    // 'id'=>$this->input->post('id'),
+                                    'nama' => $this->input->post('nama'),
+                                    'email' => $this->input->post('email'),
+                                    'perusahaan' => $this->input->post('perusahaan'),
+                                    'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                                    'no_telp' => $this->input->post('no_telp'),
+                                    'photo' => $gambar
+                                    
+                                );
+                            }
+
+                                
+                            $where = array (
+                                'id' => $this->input->post('id')
+                            );
+
+
+                            // Update ke Database
+                          
+                            if( $this->Customer_model->update($data,$where)){
+                            $status_action = 'update';
+                            $this->session->set_flashdata('status_action', $status_action);
+
+                            redirect(base_url().'customer/order');
+                            }
+                                
+                        // Jika Upload Gagal
+                        }else{
+                                echo "Upload gambar gagal";
+                        }       
+                    
+            //Jika tidak ada file di upload 
+            }else{
+
+                if($password != ''){
+                    $data = array(
+                        // 'id'=>$this->input->post('id'),
+                        'nama' => $this->input->post('nama'),
+                        'email' => $this->input->post('email'),
+                        'perusahaan' => $this->input->post('perusahaan'),
+                        'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                        'no_telp' => $this->input->post('no_telp')
+                    );
+                }else{
+                    $data = array(
+                        // 'id'=>$this->input->post('id'),
+                        'nama' => $this->input->post('nama'),
+                        'email' => $this->input->post('email'),
+                        'perusahaan' => $this->input->post('perusahaan'),
+                        'jenis_kelamin' => $this->input->post('jenis_kelamin'),
+                        'no_telp' => $this->input->post('no_telp')
+                    );
+                }
+
+                
+                $where = array (
+                    'id' => $this->input->post('id')
+                );
+
+
+                // Update ke Database
+                          
+                if( $this->Customer_model->update($data,$where)){
+                $status_action = 'update';
+                $this->session->set_flashdata('status_action', $status_action);
+
+                redirect(base_url().'customer/order');
+                }
+                    
+            }
+
+        }
+
+        // echo "hai";
+    }
+
+
 
     function order(){
 
@@ -40,6 +294,9 @@ class Customer extends CI_Controller {
         $where = array(
                 'id' => $id_customer
             );
+
+        $data['province'] = $this->get_province();
+        $data['city'] = $this->get_city();
         $data['data_customer'] = $this->Customer_model->get_data_customer($id_customer);
         $data['data_shipping'] = $this->session->flashdata('data_shipping');
         $data['cart']=$this->cart->contents();
@@ -353,4 +610,61 @@ class Customer extends CI_Controller {
         //load google login view
         $this->load->view('user_authentication/index',$data);
     }
+
+
+    public function get_city(){
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://api.rajaongkir.com/starter/city",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "GET",
+              CURLOPT_HTTPHEADER => array(
+                "key: $this->api_key"
+              ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+              echo "cURL Error #:" . $err;
+            } else {
+              return json_decode($response);
+            }
+        }
+
+        public function get_province(){
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL => "https://api.rajaongkir.com/starter/province",
+              CURLOPT_RETURNTRANSFER => true,
+              CURLOPT_ENCODING => "",
+              CURLOPT_MAXREDIRS => 10,
+              CURLOPT_TIMEOUT => 30,
+              CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST => "GET",
+              CURLOPT_HTTPHEADER => array(
+                "key: $this->api_key"
+              ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+              echo "cURL Error #:" . $err;
+            } else {
+              return json_decode($response);
+            }
+        }
 }

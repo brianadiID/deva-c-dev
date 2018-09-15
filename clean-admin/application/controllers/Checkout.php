@@ -11,7 +11,11 @@
         }
         
     	}
+
+    	// API 1
 		// private $api_key = 'e9692dde5713ba259ac5412bda799507';
+
+		// API 2
 		private $api_key = '603506c51bb38f3092cba48acdb12840';
 		public function index(){
 			
@@ -306,6 +310,48 @@
     			$session = array(
     				'total_all' => ''
     			);
+    		}else{
+    			echo 'GAGAL';
+    		}
+
+    		
+	        // $this->session->set_flashdata('data_shipping', $data);
+	        // redirect(base_url().'checkout/payment_method');
+
+    	}
+
+    	function update_alamat(){
+    		$alamat 		= $this->input->post('alamat');
+    		$kecamatan 		= $this->input->post('kecamatan');
+    		$provinsi 		= $this->input->post('provinsi');
+    		$kota 			= $this->input->post('kota');
+    		$kode_pos 		= $this->input->post('kode_pos');
+
+
+    		
+    	
+
+    		$this->load->model('admin/Customer_model');
+
+    		$where = array(
+    			'id' => $this->session->userdata('customer_id')
+    		);
+
+    		$data = array(
+    			'alamat' => $alamat,
+    			'provinsi'=>$provinsi,
+    			'kota' => $kota,
+    			'kecamatan_kelurahan' => $kecamatan,
+    			'kode_pos' => $kode_pos,
+    		);
+
+
+
+
+
+    		if($this->Customer_model->update($data,$where)){
+
+    			print_r($data);
     		}else{
     			echo 'GAGAL';
     		}

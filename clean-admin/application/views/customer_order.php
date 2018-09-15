@@ -53,10 +53,14 @@
         <link href="<?php echo base_url().'assets/website/vendor/SmartWizard-master/dist/css/smart_wizard_theme_dots.css'?>" rel="stylesheet" type="text/css">
 
         <!-- Jquery  -->
+
         <script src="<?php echo base_url().'assets/website/vendor/jquery/jquery-3.2.1.min.js'?>" type="text/javascript"></script>
 
         <!-- jquery-ui.min.js -->
         <script src="<?php echo base_url().'assets/website/vendor/jquery-ui/jquery-ui.min.js'?>" type="text/javascript"></script>
+
+        <link rel="stylesheet" href="<?php echo base_url();?>assets/node_modules/dropify/dist/css/dropify.min.css">
+
         
         
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -520,12 +524,73 @@
                         
                         </div>
                             
-                    </div>
+                    </div> 
 
                     <div class="col-lg-12 col-12 hilang content-inner" id="your-profile">
                         <div style="margin-top: 12px;background:#fff;padding: 40px;">
                         <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Profil</div>
+                        <form method="post" action="<?php echo base_url('customer/update_customer'); ?>" style="padding-left: 60px;padding-right: 60px;" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Nama Lengkap</label>
+                                      <input type="text" name="nama" value="<?php echo $data_customer[0]->nama; ?>" class="form-control" id="nama_lengkap" placeholder="Nama Lengkap">
+                                      <input type="hidden" name="id" value="<?php echo $data_customer[0]->id;  ?>">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Nama Perusahaan</label>
+                                      <input name="perusahaan" type="text" value="<?php echo $data_customer[0]->perusahaan; ?>" class="form-control" id="perusahaan" placeholder="Masukkan Nama Perusahaan Anda">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Nomor Telepon</label>
+                                      <input name="no_telp" type="text" value="<?php echo $data_customer[0]->no_telp; ?>" class="form-control" id="no_telp" placeholder="Masukkan Nomor Telepon Anda">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+                                      <select id="kurir" class="form-control" name="jenis_kelamin">
+                                          <option value="">--Pilih Kelamin</option>
+                                          <option value="L" <?php if($data_customer[0]->jenis_kelamin == 'L') echo 'selected'; ?>>Laki - Laki</option>
+                                          <option value="P"  <?php if($data_customer[0]->jenis_kelamin == 'P') echo 'selected'; ?>>Perempuan</option>
+                                     
+                                      </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <label>Pilih Foto Profil</label>
+                                    <!-- <h5>Pilih Foto Profil <span class="text-danger">*</span></h5> -->
+                                    <input type="file" id="input-file-now-custom-3" name="photo" class="dropify" data-height="280" data-default-file="<?php echo base_url();?>my-assets/image/customers/<?php echo $data_customer[0]->photo; ?>" class="form-control"  >
+                                    <input type="hidden" name="gambar_lama" value="<?php echo $data_customer[0]->photo ; ?>">
+                                    </div>
+                                </div>
+                              </div>
+                          
 
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Email</label>
+                                      <input name="email" type="email" value="<?php echo $data_customer[0]->email; ?>" class="form-control" id="no_telp" placeholder="Masukkan Email Anda">
+                                      <input type="hidden" name="email_old" value="<?php echo $data_customer[0]->email; ?>" >
+                                    </div>
+                                </div>
+
+                            </div>
+                          
+
+                            <div class="row">
+                                  <div class="col-lg-6 col-12">
+                                      <div class="form-group">
+                                      <button type="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
+                                      </div>
+                                  </div>
+                                  
+                            </div>
+                           
+                         
+                          
+                        </form>
                         
                        
                    
@@ -537,6 +602,122 @@
                     <div class="col-lg-12 col-12 hilang content-inner" id="your-address">
                         <div style="margin-top: 12px;background:#fff;padding: 40px;">
                         <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Alamat</div>
+                        <form method="post" action="">
+                            <div class="row">
+                             
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="exampleFormControlInput1">Alamat</label>
+                                    <input type="text" class="form-control" name="alamat" value="<?php echo $data_customer[0]->alamat; ?>" id="alamat" placeholder="Silahkan Masukkan Alamat Anda ">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Kelurahan/Kecamatan</label>
+                                    <input type="text" class="form-control" value="<?php echo $data_customer[0]->kecamatan_kelurahan; ?>" name="kelurahan-kecamatan" id="kecamatan_kelurahan" placeholder="Masukkan Kelurahan/Kecamatan Anda">
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="exampleFormControlInput1">Provinsi</label>
+                                    <select  name="provinsi" class="form-control" id="provinsi">
+                                      <option>-Pilih Provinsi</option>
+                                      <?php foreach ($province->rajaongkir->results as $prov): ?>
+                                          
+                                        <option value="<?php echo $prov->province_id ?>" data-namaprovinsi="<?php echo $prov->province ?>"
+
+                                            <?php 
+                                            
+                                                $provinsi_rajaogkir = $prov->province ;
+
+                                                if($data_customer[0]->provinsi == $provinsi_rajaogkir){
+                                                 echo 'selected';   
+                                                }?>
+                                             
+                                            ><?php echo $provinsi_rajaogkir; ?>
+
+                                            
+                                                
+                                        </option>
+                                      
+                                      <?php endforeach ?>
+                                    </select>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label>Kabupaten/Kota Tujuan</label>
+                                    <select name="kabupaten-kota" class="form-control" id="kota" name="kota">
+                                    <option>-Pilih Kota/Kabupaten</option>
+                                    </select>
+
+
+                           
+                                  </div>
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              
+                              
+                            </div>
+
+                            <div class="row">
+                              
+                            
+
+                            </div>
+                            <div class="row">
+                                
+                                
+
+                                
+
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+
+                                    <label>Kode POS</label>
+
+                                    <input name="kode-pos"  type="number" value="<?php echo $data_customer[0]->kode_pos;?>" class="form-control" id="kode_pos" placeholder="Masukkan Kode Pos" />
+                                    </div>
+
+                                </div>
+
+                                <div class="col-lg-6 col-12">
+                                    <div class="form-group">
+                                    <button type="button" id="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
+                                    </div>
+                                </div>
+
+                                
+
+                               
+                                <!-- <div class="col-lg-6 col-12">
+                                <button type="button" class="btn btn-default" id="cek" style="width: 90%;border-radius: 25px;height: 20px;">CEK ONGKIR</button>
+
+                                    
+
+                                </div>
+        -->
+                                <!-- <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Nomor Telepon</label>
+                                    <select id="kurir" class="form-control" name="kurir">
+                                        <option value="jne">JNE</option>
+                                        <option value="tiki">TIKI</option>
+                                        <option value="pos">POS INDONESIA</option>
+                                    </select>
+                                  </div>
+                                </div> -->
+                            </div>
+                           
+                             
+                              
+                        </form>
+                        
 
                         
                        
@@ -610,16 +791,16 @@
                     <a href="javascript:void(0)" class="list-group-item your-address">Alamat</a> 
                     <a href="javascript:void(0)" class="list-group-item change-password">Ganti Password</a> 
 
-                    <a href="javascript:void(0)" class="list-group-item">Logout</a> 
+                    <a href="<?php echo base_url('customer/logout'); ?>" class="list-group-item">Logout</a> 
                 </div>
 
                 <script type="text/javascript">
-                    $('.your-order').on('click',function(){
-                        $('#your-order').removeClass('hilang');
-                        $('#your-quotation').addClass('hilang');
+                    $('.your-order' ).on('click',function(){
+                        $( '#your-order' ).removeClass('hilang');
+                        $( '#your-quotation' ).addClass('hilang');
                         $( '#your-profile' ).addClass('hilang');
-                        $( '#your-address').addClass('hilang');
-                        $(  '#change-password').addClass('hilang');
+                        $( '#your-address' ).addClass('hilang');
+                        $( '#change-password' ).addClass('hilang');
                     });
 
                     $('.your-quotation').on('click',function(){
@@ -918,6 +1099,52 @@
         // $('.list-group-item').removeClass('active');
     });
 </script>
+
+ <!-- jQuery file upload -->
+    <script src="<?php echo base_url();?>assets/node_modules/dropify/dist/js/dropify.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        // Basic
+        $('.dropify').dropify();
+
+        // Translated
+        $('.dropify-fr').dropify({
+            messages: {
+                default: 'Glissez-déposez un fichier ici ou cliquez',
+                replace: 'Glissez-déposez un fichier ou cliquez pour remplacer',
+                remove: 'Supprimer',
+                error: 'Désolé, le fichier trop volumineux'
+            }
+        });
+
+        // Used events
+        var drEvent = $('#input-file-events').dropify();
+
+        drEvent.on('dropify.beforeClear', function(event, element) {
+            return confirm("Do you really want to delete \"" + element.file.name + "\" ?");
+        });
+
+        drEvent.on('dropify.afterClear', function(event, element) {
+            alert('File deleted');
+        });
+
+        drEvent.on('dropify.errors', function(event, element) {
+            console.log('Has Errors');
+        });
+
+        var drDestroy = $('#input-file-to-destroy').dropify();
+        drDestroy = drDestroy.data('dropify')
+        $('#toggleDropify').on('click', function(e) {
+            e.preventDefault();
+            if (drDestroy.isDropified()) {
+                drDestroy.destroy();
+            } else {
+                drDestroy.init();
+            }
+        })
+    });
+    </script>
+
         
         <script>
             $('.discount').owlCarousel({
@@ -928,6 +1155,109 @@
                  nav: true  ,
              navText : ["<",">"],})
         </script>
+
+        <script type="text/javascript">
+ 
+      $(document).ready(function(){
+          //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+          var prov = $('#provinsi').val();
+
+          $.ajax({
+              type : 'GET',
+              url : '<?php echo base_url(); ?>checkout/cek_city',
+              data :  'prov_id=' + prov,
+                  success: function (data) {
+
+                  //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                  $("#kota").html(data);
+              }
+          });
+
+
+          $('#provinsi').change(function(){
+   
+              //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+              var prov = $('#provinsi').val();
+   
+              $.ajax({
+                  type : 'GET',
+                  url : '<?php echo base_url(); ?>checkout/cek_city',
+                  data :  'prov_id=' + prov,
+                      success: function (data) {
+   
+                      //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                      $("#kota").html(data);
+                  }
+              });
+          });
+
+
+   
+          $("#cek").click(function(){
+              //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+              var asal = 501;
+              var kab = $('#kota').val();
+              var kurir = $('#kurir').val();
+              var berat = $('#berat').val();
+   
+              $.ajax({
+                  type : 'POST',
+                  url : '<?php echo base_url(); ?>checkout/cek_ongkir',
+                  data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+                      success: function (data) {
+   
+                      //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                      $("#ongkir").html(data);
+                  }
+              });
+          });
+
+
+          // UPDATE SHIPPING zzz
+          $('#submit').click(function(){
+              var alamat = $('#alamat').val();
+              var kecamatan = $('#kecamatan_kelurahan').val();
+              var provinsi = $('#provinsi').find(':selected').data('namaprovinsi');
+              var kota = $('#kota').find(':selected').data('namakota');
+              // var jenis_pengiriman = 
+              var kode_pos = $('#kode_pos').val();
+
+              // alert(kode_pos);
+              // alert(kode_pos);
+
+              $.ajax({
+                  type : 'POST',
+                  url : '<?php echo base_url(); ?>checkout/update_alamat',
+                  data :  {
+                    
+                      alamat : alamat,
+                      kecamatan : kecamatan,
+                      provinsi : provinsi,
+                      // perusahaan : perusahaan,
+                      kota : kota,
+                      kode_pos : kode_pos
+                      },
+                      success: function (data) {
+   
+                      //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                      // $("body").html(data);
+                      top.location = '<?php echo base_url(); ?>customer/order';
+                  }
+              });
+
+
+              
+              // alert(kurir);
+              
+                 
+
+          });
+
+       
+
+
+      });
+    </script>
         
         
     </body>

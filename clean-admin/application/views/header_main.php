@@ -178,7 +178,7 @@
                         </a>
 
                         <?php }else{ ?>
-                          <a href="<?php echo base_url('customer/logout') ?>"  role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
+                          <a href="<?php echo base_url('customer/order') ?>"  role="button" aria-haspopup="true" aria-expanded="true" id="search-form">
                             <i class="fa fa-user-o"></i>
                             <span class="cart-text"><?php echo $this->session->userdata('customer_nama_user'); ?> </span>
                         </a>

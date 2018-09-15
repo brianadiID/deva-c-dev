@@ -1346,6 +1346,8 @@ class Admin_area extends CI_Controller {
         }
     }
 
+    
+
     function delete_customer(){
         $id    = $this->input->post("id");
         $photo = $this->input->post("photo");

@@ -753,117 +753,117 @@
 
     <script type="text/javascript">
  
-    $(document).ready(function(){
-        //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
-        var prov = $('#provinsi').val();
+      $(document).ready(function(){
+          //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+          var prov = $('#provinsi').val();
 
-        $.ajax({
-            type : 'GET',
-            url : '<?php echo base_url(); ?>checkout/cek_city',
-            data :  'prov_id=' + prov,
-                success: function (data) {
+          $.ajax({
+              type : 'GET',
+              url : '<?php echo base_url(); ?>checkout/cek_city',
+              data :  'prov_id=' + prov,
+                  success: function (data) {
 
-                //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
-                $("#kota").html(data);
-            }
-        });
-
-
-        $('#provinsi').change(function(){
- 
-            //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
-            var prov = $('#provinsi').val();
- 
-            $.ajax({
-                type : 'GET',
-                url : '<?php echo base_url(); ?>checkout/cek_city',
-                data :  'prov_id=' + prov,
-                    success: function (data) {
- 
-                    //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
-                    $("#kota").html(data);
-                }
-            });
-        });
+                  //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                  $("#kota").html(data);
+              }
+          });
 
 
- 
-        $("#cek").click(function(){
-            //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
-            var asal = 501;
-            var kab = $('#kota').val();
-            var kurir = $('#kurir').val();
-            var berat = $('#berat').val();
- 
-            $.ajax({
-                type : 'POST',
-                url : '<?php echo base_url(); ?>checkout/cek_ongkir',
-                data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
-                    success: function (data) {
- 
-                    //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
-                    $("#ongkir").html(data);
-                }
-            });
-        });
+          $('#provinsi').change(function(){
+   
+              //Mengambil value dari option select provinsi kemudian parameternya dikirim menggunakan ajax 
+              var prov = $('#provinsi').val();
+   
+              $.ajax({
+                  type : 'GET',
+                  url : '<?php echo base_url(); ?>checkout/cek_city',
+                  data :  'prov_id=' + prov,
+                      success: function (data) {
+   
+                      //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
+                      $("#kota").html(data);
+                  }
+              });
+          });
 
 
-        // UPDATE SHIPPING zzz
-        $('#submit').click(function(){
-            var nama_lengkap = $('#nama_lengkap').val(); 
-            var alamat = $('#alamat').val();
-            var kecamatan = $('#kecamatan_kelurahan').val();
-            var provinsi = $('#provinsi').find(':selected').data('namaprovinsi');
-            var perusahaan = $('#perusahaan').val();
-            var kota = $('#kota').find(':selected').data('namakota');
-            var no_telp = $('#no_telp').val();
-            var kurir = $('#kurir').find(':selected').text();
-            var berat = $('#berat').val();
-            // var jenis_pengiriman = 
-            var kode_pos = $('#kode_pos').val();
-            var total_main = $('#total_main').text();
-            var total_all = $('#total_all').val();
-            var jumlah_ongkir = $('#jumlah_ongkir').text();
-
-            // alert(kode_pos);
-
-            $.ajax({
-                type : 'POST',
-                url : '<?php echo base_url(); ?>checkout/update_shipping',
-                data :  {
-                    nama_lengkap : nama_lengkap, 
-                    alamat : alamat,
-                    kecamatan : kecamatan,
-                    provinsi : provinsi,
-                    perusahaan : perusahaan,
-                    kota : kota,
-                    no_telp : no_telp,
-                    kurir : kurir,
-                    berat : berat,
-                    kode_pos : kode_pos,
-                    total_main : total_main,
-                    total_all : total_all,
-                    jumlah_ongkir : jumlah_ongkir
-                    },
-                    success: function (data) {
- 
-                    //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
-                    // $("body").html(data);
-                    top.location = '<?php echo base_url(); ?>checkout/payment_method';
-                }
-            });
+   
+          $("#cek").click(function(){
+              //Mengambil value dari option select provinsi asal, kabupaten, kurir, berat kemudian parameternya dikirim menggunakan ajax 
+              var asal = 501;
+              var kab = $('#kota').val();
+              var kurir = $('#kurir').val();
+              var berat = $('#berat').val();
+   
+              $.ajax({
+                  type : 'POST',
+                  url : '<?php echo base_url(); ?>checkout/cek_ongkir',
+                  data :  {'kab_id' : kab, 'kurir' : kurir, 'asal' : asal, 'berat' : berat},
+                      success: function (data) {
+   
+                      //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                      $("#ongkir").html(data);
+                  }
+              });
+          });
 
 
-            
-            // alert(kurir);
-            
-               
+          // UPDATE SHIPPING zzz
+          $('#submit').click(function(){
+              var nama_lengkap = $('#nama_lengkap').val(); 
+              var alamat = $('#alamat').val();
+              var kecamatan = $('#kecamatan_kelurahan').val();
+              var provinsi = $('#provinsi').find(':selected').data('namaprovinsi');
+              var perusahaan = $('#perusahaan').val();
+              var kota = $('#kota').find(':selected').data('namakota');
+              var no_telp = $('#no_telp').val();
+              var kurir = $('#kurir').find(':selected').text();
+              var berat = $('#berat').val();
+              // var jenis_pengiriman = 
+              var kode_pos = $('#kode_pos').val();
+              var total_main = $('#total_main').text();
+              var total_all = $('#total_all').val();
+              var jumlah_ongkir = $('#jumlah_ongkir').text();
 
-        });
+              // alert(kode_pos);
+
+              $.ajax({
+                  type : 'POST',
+                  url : '<?php echo base_url(); ?>checkout/update_shipping',
+                  data :  {
+                      nama_lengkap : nama_lengkap, 
+                      alamat : alamat,
+                      kecamatan : kecamatan,
+                      provinsi : provinsi,
+                      perusahaan : perusahaan,
+                      kota : kota,
+                      no_telp : no_telp,
+                      kurir : kurir,
+                      berat : berat,
+                      kode_pos : kode_pos,
+                      total_main : total_main,
+                      total_all : total_all,
+                      jumlah_ongkir : jumlah_ongkir
+                      },
+                      success: function (data) {
+   
+                      //jika data berhasil didapatkan, tampilkan ke dalam element div ongkir
+                      // $("body").html(data);
+                      top.location = '<?php echo base_url(); ?>checkout/payment_method';
+                  }
+              });
 
 
-    });
-</script>
+              
+              // alert(kurir);
+              
+                 
+
+          });
+
+
+      });
+    </script>
 
         <script type="text/javascript">
         $(document).ready(function(){
