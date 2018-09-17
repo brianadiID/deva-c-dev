@@ -25,6 +25,11 @@
                         </li>
 
                         <li> 
+                            <a class="waves-effect waves-dark" href="<?php echo base_url('admin-area/laporan'); ?>" aria-expanded="false"><i class="icon-speedometer"></i><span class="hide-menu">Report <span class="badge badge-pill badge-cyan">4</span></span>
+                            </a>
+                        </li>
+
+                        <li> 
                             <a class="has-arrow waves-effect waves-dark" href="s" aria-expanded="false"><i class="fa fa-archive"></i><span class="hide-menu">Products </span>
                             </a>
                             <ul aria-expanded="false" class="collapse">

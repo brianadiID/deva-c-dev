@@ -730,6 +730,39 @@
                     <div class="col-lg-12 col-12 hilang content-inner" id="change-password">
                         <div style="margin-top: 12px;background:#fff;padding: 40px;">
                         <div style="    font-size: 18px;color: #212121;margin-bottom: 14px;position: relative;font-weight: 500;">Ganti Password</div>
+                        <form method="post" action="<?php echo base_url('customer/update_password'); ?>" style="padding-left: 60px;padding-right: 60px;" enctype="multipart/form-data">
+                            
+                          
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Password Baru</label>
+                                      <input name="password" type="password" value="" class="form-control" id="no_telp" placeholder="Masukkan Email Anda">
+                                      <input type="hidden" name="id" value="<?php echo $data_customer[0]->id; ?>" >
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="exampleFormControlSelect1">Konfirmasi Password Baru</label>
+                                      <input name="confirm_password" type="password" value="" class="form-control" id="no_telp" placeholder="Masukkan Email Anda">
+                                    </div>
+                                </div>
+
+                            </div>
+                          
+
+                            <div class="row">
+                                  <div class="col-lg-6 col-12">
+                                      <div class="form-group">
+                                      <button type="submit" class="btn btn-primary" style="width: 90%;border-radius: 2px;height: 50px;margin-top: 8px;">SIMPAN</button>
+                                      </div>
+                                  </div>
+                                  
+                            </div>
+                           
+                         
+                          
+                        </form>
 
                         
                        

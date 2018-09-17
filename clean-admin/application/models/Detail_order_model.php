@@ -24,7 +24,25 @@ class Detail_order_model extends CI_Model
 		$query=$this->db->get("t_order");
 		return $query->result();
 	}
+
+	function report_category(){
+		$query = $this->db->query('select t_order_detail.id_produk,t_produk.id_kategori,t_order_detail.no_order,t_order.tanggal_order, t_order_detail.sub_total,
+
+(SELECT SUM(t_order_detail.sub_total) 
+    FROM t_order_detail 
+    WHERE t_order_detail.id_produk = t_produk.id) as paid
     
+    
+from t_order_detail inner join t_produk ON t_order_detail.id_produk=t_produk.id inner join t_order on t_order_detail.no_order=t_order.no_order GROUP by t_produk.id  
+ORDER BY `t_produk`.`id_kategori` ASC')->result();
+		return $query;
+	}
+    
+	function report_period($dateFrom,$dateTo){
+		$query = $this->db->query("select status_order,total FROM (SELECT SUM(total_bayar) AS Total, status_order FROM t_order WHERE tanggal_order BETWEEN '".$dateFrom."' and '".$dateTo."' GROUP BY status_order ORDER BY total DESC) AS c limit 10")->result();
+		return $query;
+	}
+
     function top_customer(){
 		$query=$this->db->query("select id_customer,total FROM (SELECT SUM(total_bayar) AS Total, id_customer FROM t_order GROUP BY id_customer ORDER BY Total DESC) AS A limit 10");
 		return $query->result();

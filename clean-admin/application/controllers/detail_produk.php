@@ -7,6 +7,7 @@ class Detail_produk extends CI_Controller {
 		parent::__construct();
         $this->load->model('Crud_produk');
         $this->load->model('Model_kategori');
+        $this->load->model('admin/Katalog_model');
 
 	}
 
@@ -24,6 +25,11 @@ class Detail_produk extends CI_Controller {
 		);
         
       	$data['produk_detail'] = $this->Crud_produk->edit_data($where);
+
+        $data['data_katalog'] = $this->Katalog_model->get_data($data['produk_detail'][0]['id_kategori']);
+        // print_r($data['data_katalog']);
+
+
         
         
         // Parsing Data Category Combobox
@@ -53,6 +59,8 @@ class Detail_produk extends CI_Controller {
         // Realted Query
         $limit=10;
 		$id_kategori=$related['id_kategori'];
+
+
         $data['related_produk'] = $this->Crud_produk->related_data($limit,$id_kategori);
         
       	

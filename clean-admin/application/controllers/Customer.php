@@ -38,6 +38,30 @@ class Customer extends CI_Controller {
 		$this->load->view('Customer');
 	}
 
+
+
+    function update_password(){
+        $password = $this->input->post('password');
+        $id = $this->input->post('id');
+
+        $where = array(
+            'id' => $id
+        );
+
+        $data = array (
+            'password' => md5($password)
+        );
+    
+        if($this->Customer_model->update($data,$where)){
+            redirect(base_url().'customer/order');
+
+        }else{
+            echo 'gagal';
+        }
+
+
+    }
+
     function update_customer(){
         
 

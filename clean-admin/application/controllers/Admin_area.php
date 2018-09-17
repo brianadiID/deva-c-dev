@@ -18,6 +18,7 @@ class Admin_area extends CI_Controller {
         $this->load->model('Detail_order_model');
         $this->load->library('upload');
         $this->load->model('admin/Konfirmasi');
+        $this->load->model('admin/Katalog_model');
         $this->load->model('admin/Slider');
         // cek login
         
@@ -2020,19 +2021,149 @@ class Admin_area extends CI_Controller {
         }
     }
     
-    
+    // report
      function laporan()
     {
-           $data['action'] = $this->input->get('action');
+
+        $dateFrom = '2018-09-14';
+        $dateTo = '2018-09-15';
+        $data['action'] = $this->input->get('action');
         $data['data_inventori'] = $this->Product_model->read();
         $data['laporan_top'] = $this->Detail_order_model->top_customer();
         $data['stok'] = $this->Detail_order_model->stok();
         $data['produk'] = $this->Detail_order_model->top_product();
-//        $data['laporan_top_nama'] = $this->Detail_order_model->top_customer_nama();
+        $data['period'] = $this->Detail_order_model->report_period($dateFrom,$dateTo);
+       // $data['laporan_top_nama'] = $this->Detail_order_model->top_customer_nama();
+       $data['kategori'] = $this->Detail_order_model->report_category();
        
 
         $this->load->view('admin/laporan',$data);
     }
+
+    function report_between(){
+        $dateFrom = date('Y-m-d',strtotime($this->input->get('datef')));
+        $dateTo = date('Y-m-d',strtotime($this->input->get('datet')));
+        $data['period'] = $this->Detail_order_model->report_period($dateFrom,$dateTo);
+        $no=1;  
+
+        $output = '';
+        foreach ($data['period'] as $laporan) {
+             if($laporan->status_order == 0){
+                $status_order = "<span class='label label-inverse'>Waiting Payment</span>";
+            }elseif($laporan->status_order == 1){
+                $status_order = "<span class='label label-primary'>On Process</span>";
+            }elseif($laporan->status_order == 2){
+                $status_order = "<span class='label label-info'>On Delivery</span>";
+            }elseif($laporan->status_order == 3){
+                $status_order = "<span class='label label-success'>Success</span>";
+            }elseif($laporan->status_order == 4){
+                $status_order = "<span class='label label-danger'>Cancel</span>";
+
+            }else{
+                 $status_order = "<span class='label label-warning'>Pending</span>";
+
+            }
+            $output .= '
+            <tr  class="">
+                    <td> '.$no++.'</td>
+                    <td>
+                        '.$status_order.'
+                     
+                    </td>
+
+                    <td>Rp. '.number_format($laporan->total).'</td>
+            </tr>
+            ';
+            // echo $laporan->total;
+            // echo '<br>';
+        }
+        echo $output;
+
+        // print_r($data['period']);
+        // echo $date_from;
+        // echo '<br>';
+        // echo $date_to;
+
+    }
+
+    // end Report
+
+
+    // Katalog
+    function katalog(){
+        $data['data_kategori'] = $this->Category_model->read();
+        $data['data_katalog'] = $this->Katalog_model->read();
+        $data['data_produk'] = $this->Product_model->read();
+        // print_r($data['data_produk']);
+
+        $data['action'] = $this->input->get('action');
+        $data['status_action'] = $this->session->flashdata('status_action');
+        
+         // Edit Data
+           if($this->input->get('id')){
+                $id = $this->input->get('id');
+
+                $data['data_produk_edit'] = $this->Product_model->get_data($id);
+
+                $this->load->view('admin/katalog',$data); 
+
+           }else{
+                $this->load->view('admin/katalog',$data);        
+           }
+        
+    }
+
+
+    function add_katalog(){
+        $id_kategori = $this->input->post('kategori');  
+        $bahasa = $this->input->post('bahasa');  
+
+
+
+
+        
+        // $config['upload_path'] = base_url().'my-assets/image/katalog/'; //path folder
+
+        $config['upload_path'] = './my-assets/image/katalog/'; //path folder
+        
+         // set allowed file types
+        $config['allowed_types'] = 'pdf';
+        // set upload limit, set 0 for no limit
+        $config['max_size']    = 0;
+        // load library upload
+
+        $this->upload->initialize($config);
+
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('nama_file')) {
+          
+            $error = $this->upload->display_errors();
+            // menampilkan pesan error
+            print_r($error);
+
+        } else {
+            $file = $this->upload->data();
+
+            $data = array(
+                'id_kategori' => $id_kategori,
+                'nama_file' => $file['file_name'],
+                'tanggal' =>date('Y-m-d'),
+                'bahasa'=>$bahasa
+            );    
+            // $result = $this->upload->data();
+            // print_r($result);
+       
+            $this->Katalog_model->create($data);
+            $status_action = 'save';
+            $this->session->set_flashdata('status_action', $status_action);
+            redirect(base_url().'admin-area/katalog');
+
+        }
+
+        
+    }
+
+    // End Katalog
     
 
     

@@ -399,16 +399,17 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td><a href=""><small>Tesys Motor Control - Constructor - Catalouge 206.pdf</small></a></td>
-                      <td><small>25 Jan 2018</small></td>
-                      <td><small><b>IND (IN)</b></small> </td>
-                    </tr>
-                    <tr>
-                      <td><a href=""><small>Tesys Motor Control - Constructor - Catalouge 206.pdf</small></a></td>
-                      <td><small>03 Feb 2018</small></td>
-                      <td><small><b>IND (IN)</b></small></td>
-                    </tr>
+
+                    <?php foreach ($data_katalog as $katalog_data): ?>
+                          <tr>
+                              <td><a href=""><small><?php echo $katalog_data->nama_file ?></small></a></td>
+                              <td><small><?php echo $katalog_data->tanggal ?></small></td>
+                              <td><small><b><?php echo $katalog_data->bahasa ?></b></small> </td>
+                            </tr>
+                        
+                    <?php endforeach ?>
+                  
+                    
                 
                   </tbody>
                 </table>
