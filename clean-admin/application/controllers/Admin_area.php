@@ -15,6 +15,7 @@ class Admin_area extends CI_Controller {
         $this->load->model('admin/Coupon_model');
         $this->load->model('admin/Konfirmasi');
         $this->load->library('upload');
+        $this->load->library('form_validation');
         // cek login
         
         if($this->session->userdata('login_session') != "allowed"){

@@ -180,7 +180,11 @@
         <!--====== Header Area ======-->
 <header>
     <!-- Main Header Area -->
-   <?php      $this->load->view('header_main');             ?> 
+   <?php      $this->load->view('header_main');             ?>
+
+   <!-- header bottom start -->
+        <?php   $this->load->view('header');             ?> 
+    <!-- header bottom end -->
     
 
    

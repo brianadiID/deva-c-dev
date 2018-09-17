@@ -3,7 +3,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 hidden-md-down">
-                    <div class="dropdown category_menu  show">
+                  <?php 
+                      // finds the last URL segment  
+                      $urlArray = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+                      $segments = explode('/', $urlArray);
+                      $numSegments = count($segments); 
+                      $currentSegment = $segments[$numSegments - 1];
+                    ?>
+                    <div class="dropdown category_menu  show" <?php if($currentSegment !== ""){echo "hidden";}?>>
                         <div class="dropdown-toggle menu_part" >
                         <span>CATEGORIES</span><!--<i class="fa fa-chevron-down"></i>-->
                         </div>
@@ -21,7 +28,7 @@
 
                                 
                                
-                              $konek =  mysqli_connect("localhost","root","","theklakklik");
+                              $konek =  mysqli_connect("localhost","root","123456","theklakklik");
                                $sql = mysqli_query($konek,$query);
 
                                

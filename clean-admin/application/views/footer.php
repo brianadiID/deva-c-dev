@@ -248,12 +248,12 @@
                         <h4 class="widget_title">Menu</h4>
                         <div class="widget_inner row m0">
                             <ul>
-                                <li><a href="#"><span>Home</span></a></li>
-                                <li><a href="#"><span>How To Buy</span></a></li>
-                                <li><a href="#"><span>News &amp; Promo</span></a></li>
-                                <li><a href="#"><span>Oreder Tracking</span></a></li>
-                                <li><a href="#"><span>About us</span></a></li>
-                                <li><a href="#"><span>contact</span></a></li>
+                                <li><a href="<?php echo base_url(''); ?>"><span>Home</span></a></li>
+                                <li><a href="<?php echo base_url('how-to-buy'); ?>"><span>How To Buy</span></a></li>
+                                <li><a href="<?php echo base_url('news-and-promo'); ?>"><span>News &amp; Promo</span></a></li>
+                                <li><a href="<?php echo base_url('order-tracking'); ?>"><span>Oreder Tracking</span></a></li>
+                                <li><a href="<?php echo base_url('about'); ?>"><span>About us</span></a></li>
+                                <li><a href="<?php echo base_url('contact'); ?>"><span>contact</span></a></li>
                             </ul>
                         </div>
                     </div><div class="widget widget2 widget_links col-md-6 col-lg-3">

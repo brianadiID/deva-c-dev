@@ -17,7 +17,7 @@
           <?php 
             function build_category_tree(&$output, $preselected, $parent=0, $indent=""){
               $query = "SELECT id, nama_kategori FROM t_kategori WHERE id_parent = $parent  ";
-              $konek =  mysqli_connect("localhost","sitedeva_rohimam","Together1!","sitedeva_rohimam");
+              $konek =  mysqli_connect("localhost","root","123456","theklakklik");
               $sqls = mysqli_query($konek,$query);
 
                               while ($row = mysqli_fetch_assoc($sqls)) {

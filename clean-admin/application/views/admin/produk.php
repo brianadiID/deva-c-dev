@@ -1,4 +1,4 @@
-
+ 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -180,7 +180,7 @@
                                             <?php endif ?>
 
 
-                                            <form class="m-t-40" action="<?php echo base_url('admin-area/create-produk'); ?>" method="post" enctype="multipart/form-data" novalidate>
+                                            <form class="m-t-40" action="<?php echo base_url('admin-area/create-produk'); ?>" method="POST" novalidate>
 
                                             <div class="row">
                                               
@@ -189,7 +189,7 @@
                                                        <div class="form-group">
                                                             <h5>Image Product <span class="text-danger">*</span></h5>
                                                             <div class="controls">
-                                                            <input type="file" id="input-file-now-custom-3" name="gambar_produk" class="dropify" data-height="300" class="form-control"  >
+                                                            <input type="file" id="input-file-now-custom-3" name="gambar_produk" class="dropify" data-height="300" class="form-control" multiple=""  >
                                                             </div>
 
                                                         </div>
@@ -531,8 +531,7 @@
                                             </div>
                                             <?php endif ?>
 
-
-                                            <form class="m-t-40" action="<?php echo base_url('admin-area/update-produk'); ?>" method="post" enctype="multipart/form-data" novalidate>
+                                            <form class="m-t-40" action="<?php echo base_url('admin-area/update-produk'); ?>" method="POST" novalidate>
                                                     
                                             <?php foreach ($data_produk_edit as $data_edit ): ?>
 
@@ -611,7 +610,7 @@
                                                                 <div class="form-group">                                 
                                                                 <h5>Manufacturer SKU<span class="text-danger">*</span></h5>
                                                                 <div class="controls">
-                                                                    <input type="text" name="sku" value="<?php echo $data_edit->sku; ?>" class="form-control" required data-validation-required-message="This field is required">
+                                                                    <input type="text" name="sku" value="<?php echo $data_edit->sku; ?>" class="form-control" required data-validation-required-message="This field is required" >
                                                                 </div>
                                                                 </div>
                                                             </div>

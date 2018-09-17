@@ -47,4 +47,10 @@ class Product_model extends CI_Model
 		$query = $this->db->get('t_produk');
 		return $query->result();
 	}
+
+	function store_pic_data($data){
+		$insert_data['gambar_produk'] = $data['pic_file'];
+
+		$query = $this->db->insert('t_produk', $insert_data);
+	}
 }
