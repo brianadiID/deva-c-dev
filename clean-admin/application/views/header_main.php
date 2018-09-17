@@ -38,7 +38,7 @@
 
                                 
                                
-                            $konek =  mysqli_connect("localhost","root","","theklakklik");
+                            $konek =  mysqli_connect("localhost","root","123456","theklakklik_2");
                             $sqls = mysqli_query($konek,$query);
 
                             

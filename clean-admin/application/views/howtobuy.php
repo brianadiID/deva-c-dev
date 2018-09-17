@@ -200,7 +200,9 @@
         <?php      $this->load->view('header_main');             ?>
 
 
-
+        <!-- header bottom start -->
+<?php   $this->load->view('header');             ?> 
+    <!-- header bottom end -->
     </header>
     <!--===== End Header Area =======-->
 

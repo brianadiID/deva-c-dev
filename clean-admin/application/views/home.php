@@ -157,12 +157,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 offset-lg-3">
-                <div class="slider_inner home2_slider">
-                    <div class="owl-carousel main_slider">
+                <div class="slider_inner home2_slider" style="height: 460px;">
+                    <div class="owl-carousel main_slider" style="height: 460px;">
                                                  
-                        
                         <?php foreach($slider as $slider ): ?>
-                        <div class="item">
+                        <div class="item" style="height: 460px">
                             <a href="<?php echo $slider->link_url; ?>" target="_blank">
                                 <img src="<?php echo base_url() ?>my-assets/image/slider/<?php echo $slider->gambar; ?>"  alt="sliderImage">
                             </a>
